@@ -76,7 +76,7 @@
 
 			<!--first row-->
 		  	<div class="col-sm-4 col-sm-offset-2 left-box left-box" id = "about-box">
-				<p class = "sub-heading" > About Company </p> <br>
+				<p class = "sub-heading" > About Company </p> 
 				<p id="about-text">
           <?php #query to get user information#
        				$query = "SELECT cDescription FROM company WHERE compID = " . $compID;
@@ -92,7 +92,7 @@
 			</div>
 
 		  	<div class="col-sm-4  col-sm-offset-1 right-box top-box" id = "quick-facts-box">
-				<p class = "sub-heading" > Quick Facts </p> <br>
+				<p class = "sub-heading" > Quick Facts </p>
 				<p id="facts-text">
           <?php #query to get user information#
               $query = "SELECT Founder, Location, Focus FROM company WHERE compID = " . $compID;
@@ -123,7 +123,6 @@
 
 
 		  	<div class="col-sm-4  col-sm-offset-1 right-box " id = "projects-box">
-		 
 				<p class = "sub-heading" > Contact Us  </p>
 				<p id="projects-text" >
           <?php #query to get user information#

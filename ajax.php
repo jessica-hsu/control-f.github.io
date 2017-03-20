@@ -92,7 +92,8 @@ switch ($func) {
 		$menu = $text[0];
 		$sub_menu = $text[1];
 		if (strcmp($menu, "dev") == 0) {
-			$query = "";
+			$query = "SELECT user.userID AS userID, CONCAT(firstName,' ',lastName) AS person, skillName FROM user, userSkill
+			WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $text[1] . "%'";
 		} else { #query to search for company using given focus
 			$query="SELECT compID, cName FROM company WHERE Focus LIKE '%" . $sub_menu . "%'";
 		}

@@ -68,7 +68,7 @@
 	    				<option value="ios">Mobile - iOS application</option>
 	    				<option value="social">Social Media</option>
 	    				<option value="game">Game development</option>
-	    				<option value="graphics">Graphic Design</option>
+	    				<option value="graphic">Graphic Design</option>
 	    				<option value="support">IT Support</option>
 	    			</select>
 	    				
@@ -127,25 +127,6 @@
 			</div>
 		</div>
 	</div> <!-- end of container-fluid -->
-	
-	<!-- start modals to view profile from result table -->
-	<div id="profileModal" class="modal fade" role="dialog">
-  		<div class="modal-dialog modal-lg">
-    		<div class="modal-content">
-      			<div class="modal-header">
-        			<button type="button" class="close" data-dismiss="modal">&times;</button>
-        			<h4 class="modal-title" id="modal-title"></h4>
-      			</div>
-      			<div class="modal-body" id="modal-body">
-        			
-      			</div>
-      			<div class="modal-footer">
-        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-     			 </div>
-    		</div>
-  		</div>
-	</div>
-	
 	
 	<!-- Javascript code begins here -->
 	<script>
@@ -223,7 +204,6 @@
 				sub_menu_selected = sub_menu.options[sub_menu.selectedIndex].text;
 			}
 			text.push(menu_selected); text.push(sub_menu_selected);
-
 			var f = "search";
 
 			$.ajax ({
@@ -234,6 +214,7 @@
 				success: function(data) {
 					var obj = JSON.stringify(data);	//need this or it won't work
 					obj = JSON.parse(obj);
+		            $("#profiles").find("tr:not(:first)").remove();
 					for (var i=0; i<obj.length; i++) {
 						var profile_table = document.getElementById('profiles');
 						var row = profile_table.insertRow(-1);

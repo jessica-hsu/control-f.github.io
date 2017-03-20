@@ -18,18 +18,19 @@
 	<!-- jQUERY -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	
-	<link rel="stylesheet" href="search.css">
-
-	<link rel='icon' href='img/icon.ico' type='image/x-icon'>
-
+	<link rel="stylesheet" href="viewProfile.css">
+	<link rel="icon" href="img\icon.ico" type="image/x-icon">
 	<title>Control-F</title>
 	
-	
+		
+
 </head>
-<?php include "connectDB.php" ?>
+<?php include "connectDB.php";
+$userID = $_GET['info'];
+
+?>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
@@ -52,10 +53,141 @@
       			</div>
     		</div>
     	</nav>
-    	
-    	<div id="test"></div>
-    </div> <!-- end of container fluid -->
-   
+    	<!--- for the profile backimage -->
+	
+		<div class = "container-fluid" id = "top-background">
+			<div id = "title-text">
+			<?php #query to get user information#
+   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID =" . $userID;
+   				if ( ! ( $result = mysqli_query($conn, $query)) ) {
+   					echo("Error: %s\n"+ mysqli_error($conn));
+   					exit(1);
+   				} 
+   				$row = mysqli_fetch_assoc($result);
+   				echo($row['firstName'] . " " . $row['lastName']);
+   			?>
+			
+			</div>	 
+		</div>
+		<div class = "container-fluid" id = "division-bar"> 
+		</div>
+		<img src="img/ross.png" class="img-fluid" alt="Responsive image" id = "profile-image">
+		<div class="container-fluid"
+		<div class="row">
 
+		  	<!--first row-->
+		  	<div class="col-sm-4 col-sm-offset-2 left-box left-box" id = "about-box">
+		  		
+				<p class = "sub-heading" > About Developer </p>
+				<p id="about-text" contentEditable="false">
+				<?php #query to get user information#
+   					$query = "SELECT uDescription FROM user WHERE userID = " . $userID;
+   					if ( ! ( $result = mysqli_query($conn, $query)) ) {
+   						echo("Error: %s\n"+ mysqli_error($conn));
+   						exit(1);
+   					} 
+   					$row = mysqli_fetch_assoc($result);
+   					echo($row['uDescription']);
+   				?>	
+				</p>
+				
+			</div>
+		  	
+
+
+		  	<div class="col-sm-4  col-sm-offset-1 right-box top-box" id = "quick-facts-box"> 
+				
+				<p class = "sub-heading" > Quick Facts </p>
+				<p id="quick-facts">
+				<?php #query to get user information#
+   				$query = "SELECT email, phone, age FROM user WHERE userID = " . $userID;
+   				if ( ! ( $result = mysqli_query($conn, $query)) ) {
+   					echo("Error: %s\n"+ mysqli_error($conn));
+   					exit(1);
+   				} 
+   				while($row = mysqli_fetch_assoc($result)) {
+   					echo("Age: &nbsp; <span contentEditable='false' class='facts-text' id='myAge'>" . $row['age'] . "</span><br>");
+   					echo("Email: &nbsp; <span contentEditable='false' class='facts-text' id='myEmail'>" . $row['email'] . "</span><br>");
+   					echo("Phone: &nbsp; <span contentEditable='false' class='facts-text' id='myPhone'>" . $row['phone'] . "</span><br>");
+   				}
+   				
+   				?>	 
+				</p>
+
+			</div>
+
+			<!-- 3rd row -->
+
+			<div class="col-sm-9 col-sm-offset-2 left-box " id = "skills-box"> 
+			
+				<p class = "sub-heading" >Skills </p>
+				<p>
+				<div class="table-responsive">
+					<table class="table table-striped" id="skill-table">
+						<thead><tr>
+							<th>Skill</th>
+							<th>Years of Experience</th>
+							<th>Sample URL</th></tr>
+						</thead>
+						<tbody>
+						<?php 
+						$query = "SELECT skillName, yearsExp, portfolioURL FROM userSkill WHERE userID = " . $userID;
+						if ( ! ( $result = mysqli_query($conn, $query)) ) {
+							echo("Error: %s\n"+ mysqli_error($conn));
+							exit(1);
+						}
+						while($row = mysqli_fetch_assoc($result)) {
+							echo("<tr class='skillz'><td class='skills-text' contentEditable='false'>" . $row['skillName'] . 
+									"</td><td class='skills-text' contentEditable='false'>" . $row['yearsExp'] . 
+									"</td><td class='skills-text' contentEditable='false'>" . $row['portfolioURL'] . 
+									"</td></tr>");
+						}
+
+						?>
+												
+						</tbody>
+					</table>
+				</div>
+				</p>
+
+			</div>
+			
+			<div class="col-sm-9  col-sm-offset-2 left-box " id = "social-media"> 
+				
+				<p class = "sub-heading" > Other Places to Find Developer </p> 
+				<p>
+				<div class="table-responsive">
+					<table class="table table-striped" id="link-table">
+						<thead><tr>
+							<th>Name</th>
+							<th>URL</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php 
+						$query = "SELECT name, links FROM links WHERE id=" . $userID;
+						if ( ! ( $result = mysqli_query($conn, $query)) ) {
+							echo("Error: %s\n"+ mysqli_error($conn));
+							exit(1);
+						}
+						while($row = mysqli_fetch_assoc($result)) {
+							echo("<tr class='linkz'><td class='link-text' contentEditable='false'>" . $row['name'] .
+									"</td><td class='link-text' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
+									</td></tr>");
+						}
+						
+
+						?>
+						</tbody>
+					</table>
+				</div>
+				</p>
+
+			</div>
+		  	
+		</div>
+		  	
+	</div>	
+<?php mysqli_close($conn); ?>	
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-$GLOBALS['conn'] = mysqli_connect("mydbinstance.cvjenxnjjyrk.us-west-2.rds.amazonaws.com:3306","admin", "admin123");
+$conn = mysqli_connect("mydbinstance.cvjenxnjjyrk.us-west-2.rds.amazonaws.com:3306","admin", "admin123");
 
 if (mysqli_connect_errno()) {
 	echo("Connect failed: %s\n"+ mysqli_connect_error());
