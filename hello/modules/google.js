@@ -17,7 +17,11 @@
 
 			// Authorization scopes
 			scope: {
+<<<<<<< HEAD
+				basic: 'https://www.googleapis.com/auth/plus.me profile,https://www.googleapis.com/auth/userinfo.email',
+=======
 				basic: 'https://www.googleapis.com/auth/plus.me profile',
+>>>>>>> control-f/master
 				email: 'email',
 				birthday: '',
 				events: '',

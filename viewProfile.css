@@ -68,16 +68,18 @@ width:100vw;
 
 }
 
-
+.row {
+	height: 100%;
+	width: auto;
+	padding: 1%;
+}
 
 .left-box {
 	background-color: #e8e9ea;
-	height: auto;
-	height: 33vh;
-	margin-radius: 10% 0px 10% 0px;
+	height: 98%;
+	margin-radius: 0;
 	padding: 1%;
 	vertical-align: middle;
-	margin-top: 5vh;
 
 
 
@@ -86,14 +88,15 @@ width:100vw;
 
 .right-box {
 	background-color: #e8e9ea;
-	height: 33vh;
-	margin-radius: 0px 10px 0px 10px;
+	height: 98%;
+	margin-radius: 0;
 	padding: 1%;
 	vertical-align: middle;
-	margin-top:5vh;
 }
 
-
+#about-text, #quick-facts {
+	height: 10vh;
+}
 
 
 
@@ -134,7 +137,13 @@ border-bottom: solid 1px #66FFC0;
 
 }
 
+.glyphicon-floppy-disk {
+	display: none;
+}
 
+.addMe {
+	display: none;
+}
 
 @media screen and (max-width: 1196px) {
 
@@ -175,10 +184,6 @@ border-bottom: solid 1px #66FFC0;
 	margin-left: 10%;
 }
 
-#about-text  {
-
-	margin-left: 10%;
-}
 
 @media screen and (max-width: 1065px) {
 

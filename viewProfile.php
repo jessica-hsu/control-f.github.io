@@ -1,10 +1,10 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,8 +21,6 @@
 	<link rel="stylesheet" href="viewProfile.css">
 	<link rel="icon" href="img\icon.ico" type="image/x-icon">
 	<title>Control-F</title>
-	
-		
 
 </head>
 <?php include "connectDB.php"?>
@@ -51,11 +49,11 @@
     		</div>
     	</nav>
     	<!--- for the profile backimage -->
-	
+	<?php echo $_SESSION['ID']?>
 		<div class = "container-fluid" id = "top-background">
 			<div id = "title-text">
 			<?php #query to get user information#
-   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID = 1 ";
+   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID = " . $_SESSION['ID'];
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
@@ -63,7 +61,6 @@
    				$row = mysqli_fetch_assoc($result);
    				echo($row['firstName'] . " " . $row['lastName']);
    			?>
-			
 			</div>	 
 		</div>
 		<div class = "container-fluid" id = "division-bar"> 
@@ -80,19 +77,19 @@
   				<strong>ERROR: Profile failed to update.</strong>
 			</div>
 			
-		  	<!--first row-->
+			<div class="row" id="row1"> 
 		  	<div class="col-sm-4 col-sm-offset-2 left-box left-box" id = "about-box">
 		  		<button onclick="editAbout(this);" class="edit-icon"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
-		  		<button  onclick="update('about-text')" class="edit-icon"> 
-		  			<span class="glyphicon glyphicon-floppy-disk""></span> 
+		  		<button onclick="update('about-text')" class="edit-icon"> 
+		  			<span id='save-about-text' class="glyphicon glyphicon-floppy-disk""></span> 
 		  		</button>
 		  		<br>
 				<p class = "sub-heading" > About Developer </p>
 				<p id="about-text" contentEditable="false">
 				<?php #query to get user information#
-   					$query = "SELECT uDescription FROM user WHERE userID = 1 ";
+   					$query = "SELECT uDescription FROM user WHERE userID = " . $_SESSION['ID'];
    					if ( ! ( $result = mysqli_query($conn, $query)) ) {
    						echo("Error: %s\n"+ mysqli_error($conn));
    						exit(1);
@@ -105,16 +102,19 @@
 			  	function editAbout(button) {
 			    	var text = document.getElementById("about-text");
 			    	var box = document.getElementById("about-box");
+			    	var save = document.getElementById('save-about-text');
+			    	
 				    if (text.contentEditable == "true") {
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
+				       	 save.style.display = 'none';
 				       
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				       
+				        save.style.display = 'block';
 				    }
 				}
 		  		</script>
@@ -126,21 +126,21 @@
 				<button onclick="editFacts(this);" class="edit-icon"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
-		  		<button  onclick="update('quick-facts')" class="edit-icon"> 
-		  			<span class="glyphicon glyphicon-floppy-disk""></span> 
+		  		<button onclick="update('quick-facts')" class="edit-icon"> 
+		  			<span id='save-quick-facts' class="glyphicon glyphicon-floppy-disk""></span> 
 		  		</button> <br>
 				<p class = "sub-heading" > Quick Facts </p>
 				<p id="quick-facts">
 				<?php #query to get user information#
-   				$query = "SELECT email, phone, age FROM user WHERE userID = 1 ";
+   				$query = "SELECT email, phone, age FROM user WHERE userID = " . $_SESSION['ID'];
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
    				} 
    				while($row = mysqli_fetch_assoc($result)) {
-   					echo("Age: &nbsp; <span contentEditable='false' class='facts-text' id='myAge'>" . $row['age'] . "</span><br>");
-   					echo("Email: &nbsp; <span contentEditable='false' class='facts-text' id='myEmail'>" . $row['email'] . "</span><br>");
-   					echo("Phone: &nbsp; <span contentEditable='false' class='facts-text' id='myPhone'>" . $row['phone'] . "</span><br>");
+   					echo("Age: &nbsp; <span id='myAge'>" . $row['age'] . "</span><br>");
+   					echo("Phone: &nbsp; <span contentEditable='false' id='myPhone'>" . $row['phone'] . "</span><br>");
+   					echo("Email: &nbsp; <span id='myEmail'>" . $row['email'] . "</span><br>");
    				}
    				
    				?>	 
@@ -148,39 +148,48 @@
 
 				<script>
 			  	function editFacts(button) {
-			    	var text = document.getElementsByClassName("facts-text");
+			    	var text = document.getElementById("myPhone");
+			    	var age = document.getElementById("myAge");
 			    	var box = document.getElementById("quick-facts-box");
-				    if (text[0].contentEditable == "true" || text[1].contentEditable == "true" || text[2].contentEditable == "true") {
-				        text[0].contentEditable = "false";
-				        text[1].contentEditable = "false";
-				        text[2].contentEditable = "false";
+			    	var save = document.getElementById('save-quick-facts');
+				    if (text.contentEditable == "true") {
+				        text.contentEditable = "false";
+				        var s = document.getElementById('age');
+				        age.innerHTML = s.options[s.selectedIndex].value;
+				        save.style.display="none";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	box.style.border = "none";
 				       
 				    } else {
-				        text[0].contentEditable = "true";
-				        text[1].contentEditable = "true";
-				        text[2].contentEditable = "true";
+				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				       
+				        save.style.display="block";
+				        var temp = age.innerHTML;
+				        age.innerHTML = "<select id='age' name='age'></selected>";
+				        for (var i = 1; i<=100; i++) {
+					        if (i==temp) {
+					        	$("#age").append("<option value='"+i+"' selected>"+i+"</option>");
+					        } else {   
+					        	$("#age").append("<option value='"+i+"'>"+i+"</option>");
+					        }
+				        }
 				    }
 				}
 		  		</script>
-			
 			</div>
+			</div> <!-- end row -->
 
-			<!-- 3rd row -->
-
+			<div class="row" id="row2">
 			<div class="col-sm-9 col-sm-offset-2 left-box " id = "skills-box"> 
 				<button onclick="editSkills(this);" class="edit-icon"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
 		  		<button  onclick="update('skills-facts')" class="edit-icon"> 
-		  			<span class="glyphicon glyphicon-floppy-disk""></span> 
+		  			<span id='save-skills-facts' class="glyphicon glyphicon-floppy-disk""></span> 
 		  		</button> <br>
 				<p class = "sub-heading" >Skills </p>
-				<p>
+				<p> <span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="skill-table">
 						<thead><tr>
@@ -190,21 +199,21 @@
 						</thead>
 						<tbody>
 						<?php 
-						$query = "SELECT skillName, yearsExp, portfolioURL FROM userSkill WHERE userID = 1";
+						$query = "SELECT skillName, yearsExp, portfolioURL FROM userSkill WHERE userID = " . $_SESSION['ID'];
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
 							exit(1);
 						}
 						while($row = mysqli_fetch_assoc($result)) {
-							echo("<tr class='skillz'><td class='skills-text' contentEditable='false'>" . $row['skillName'] . 
-									"</td><td class='skills-text' contentEditable='false'>" . $row['yearsExp'] . 
+							echo("<tr class='skillz'><td class='skills-text-name'>" . $row['skillName'] . 
+									"</td><td class='skills-text-yrs'>" . $row['yearsExp'] . 
 									"</td><td class='skills-text' contentEditable='false'>" . $row['portfolioURL'] . 
 									"</td><td><span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span></tr>");
 						}
 
 						?>
 												
-						<button type="button" class="btn btn-info" onclick="addSkill()"><span class="glyphicon glyphicon-plus"></span></button>
+						<button type="button" id="add-skill" class="btn btn-info addMe" onclick="addSkill()"><span class="glyphicon glyphicon-plus"></span></button>
 						</tbody>
 					</table>
 				</div>
@@ -212,48 +221,95 @@
 
 				<script>
 			  	function editSkills(button) {
-			    	var text = document.getElementsByClassName("skills-text");
 			    	var box = document.getElementById("skills-box");
-			    	var startEdit=false;
-					for (var i=0; i<text.length; i++) {
-						if (text[i].contentEditable == "true") {
-							startEdit == true;
-							break;
-						}
-					}
-			    
-				    if (startEdit) {
-				    	for (var i=0; i<text.length; i++) {
-							text[i].contentEditable = "false";
-								
-						}
+			    	var temp = document.getElementById('temp');
+			    	var save = document.getElementById('save-skills-facts');
+			    	var add = document.getElementById('add-skill');
+			    	var s = document.getElementsByClassName('skills-text-name');
+			    	var y = document.getElementsByClassName('skills-text-yrs');
+			    	var t = document.getElementsByClassName('skills-text');
+				    if (temp.contentEditable == "true") { //CLOSE EDITING VIEW
+				    	temp.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	box.style.border = "none";
-				       
-				    } else {
-				    	for (var i=0; i<text.length; i++) {
-							text[i].contentEditable = "true";
-								
-						}
+				       	save.style.display = "none";
+				       	add.style.display = "none";
+				       	for (var i=0; i<t.length; i++) {	//for the website box
+					       	t[i].contentEditable = "false";
+				       	}
+				       	var rowCount = $('#skill-table tr').length;
+						if (rowCount > 1) {			//only turn text non-editable when there are rows of data
+					
+							
+						}				       		
+				    } else {  //START EDITING
+				    	temp.contentEditable = "true";
 						box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				       
+				    	save.style.display = "block";
+				    	add.style.display = "block";
+				    	for (var i=0; i<t.length; i++) { //for the website box
+					       	t[i].contentEditable = "true";
+				       	}
+				    	var tempName = "";
+				    	var tempYr = "";
+				    	for (var i=0; i<s.length; i++) {
+					    	tempName = s[i].innerHTML;
+					    	s[i].innerHTML="<select class='pickSkill'>\
+					    		<option value='web'>Website/Web application</option>\
+			    				<option value='android'>Mobile - android application</option>\
+			    				<option value='ios'>Mobile - iOS application</option>\
+			    				<option value='social'>Social Media</option>\
+			    				<option value='game'>Game development</option>\
+			    				<option value='graphic'>Graphic Design</option>\
+			    				<option value='support'>IT Support</option>\
+			    				<option value='html'>HTML</option>\
+			    				<option value='sql'>SQL</option>\
+			    				<option value='java'>Java</option>\
+			    				<option value='python'>Python</option>\
+			    				<option value='php'>PHP</option>\
+			    				<option value='swift'>Swift</option></select>";
+		    				var o = s[i].getElementsByTagName('option');
+		    				for (var j=0; j<o.length; j++) {
+			    				if (o[j].innerHTML == tempName) {
+				    				o[j].selected = "selected";
+			    				}
+		    				}
+				    	}
+				    	for (var i=0; i<s.length; i++) {
+					    	tempYr = y[i].innerHTML;
+					    	y[i].innerHTML="";
+					    	newSelect = document.createElement("select");
+					    	newSelect.className = "pickYear";
+					    	y[i].appendChild(newSelect);
+					    	menu = document.getElementsByClassName("pickYear");
+					    	for (var j=1; j<=100; j++) {
+					    		newOpt = document.createElement('option');
+					    		newOpt.value = j;
+					    		newOpt.text = j;
+						    	if (j==tempYr) {
+							    	newOpt.selected = "selected";
+						    	} 
+					    		menu[i].appendChild(newOpt);
+					    	}
+				    	}
 				    }
 				}
 		  		</script>
-				
 			</div>
+			</div> <!-- end row -->
 			
+			<div class="row" id="row3">
 			<div class="col-sm-9  col-sm-offset-2 left-box " id = "social-media"> 
 				<button onclick="editLinks(this);" class="edit-icon"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
 		  		<button  onclick="update('links-facts')" class="edit-icon"> 
-		  			<span class="glyphicon glyphicon-floppy-disk""></span> 
+		  			<span id="save-links" class="glyphicon glyphicon-floppy-disk""></span> 
 		  		</button>
 		  		 <br>
 				<p class = "sub-heading" > Other Places to Find Developer </p> 
-				<p>
+				<p><span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="link-table">
 						<thead><tr>
@@ -263,20 +319,18 @@
 						</thead>
 						<tbody>
 						<?php 
-						$query = "SELECT name, links FROM links WHERE id=1";
+						$query = "SELECT name, links FROM links WHERE id = " . $_SESSION['ID'];
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
 							exit(1);
 						}
 						while($row = mysqli_fetch_assoc($result)) {
-							echo("<tr class='linkz'><td class='link-text' contentEditable='false'>" . $row['name'] .
-									"</td><td class='link-text' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
+							echo("<tr class='linkz'><td class='link-text'>" . $row['name'] .
+									"</td><td class='link-url' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
 									</td><td><span class='glyphicon glyphicon-remove' onclick='removeLink(this)'></span></tr>");
 						}
-						
-
 						?>
-						<button type="button" class="btn btn-info" onclick="addLink()"><span class="glyphicon glyphicon-plus"></span></button>
+						<button type="button" id='add-link' class="btn btn-info addMe" onclick="addLink()"><span class="glyphicon glyphicon-plus"></span></button>
 						</tbody>
 					</table>
 				</div>
@@ -284,38 +338,63 @@
 
 				<script>
 			  	function editLinks(button) {
-			    	var text = document.getElementsByClassName("link-text");
 			    	var box = document.getElementById("social-media");
-			    	var startEdit=false;
-					for (var i=0; i<text.length; i++) {
-						if (text[i].contentEditable == "true") {
-							startEdit == true;
-							break;
-						}
-					}
-			    
-				    if (startEdit) {
-				    	for (var i=0; i<text.length; i++) {
-							text[i].contentEditable = "false";
-								
-						}
+			    	var temp = document.getElementById('temp');
+			    	var save = document.getElementById('save-links');
+			    	var add = document.getElementById('add-link');
+			    	var t = document.getElementsByClassName('link-url');
+			    	var s = document.getElementsByClassName('link-text');
+			       	var theLink = document.getElementsByClassName('pickLink');
+			    	
+			    	
+				    if (temp.contentEditable == "true") { //CLOSE EDIT VIEW
+				    	temp.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	box.style.border = "none";
+				       	save.style.display = "none";
+				       	add.style.display = "none";
+				       	var selected=[];
+				       	 
+				       	for (var i=0; i<theLink.length; i++) {
+				       		selected.push(theLink[i].options[theLink[i].selectedIndex].text);
+				       	}
+				       	for (var i=0; i<t.length; i++) { //for the website box
+					       	t[i].contentEditable = "false";
+				       	}
+				       console.log(selected);
 				       
-				    } else {
-				    	for (var i=0; i<text.length; i++) {
-							text[i].contentEditable = "true";
-								
-						}
+				    } else { //OPEN EDIT VIEW
+				    	temp.contentEditable = "true";
 						box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				       
+				    	save.style.display = "block";
+				    	add.style.display = "block";
+				    	for (var i=0; i<t.length; i++) { //for the website box
+					       	t[i].contentEditable = "true";
+				       	}
+				       	var tempName="";
+				    	for (var i=0; i<s.length; i++) {
+					    	tempName = s[i].innerHTML;
+					    	s[i].innerHTML="<select class='pickLink'>\
+					    		<option value='github'>GitHub</option>\
+					    		<option value='linkedin'>LinkedIn</option>\
+					    		<option value='google'>Google</option>\
+					    		<option value='twitter'>Twitter</option>\
+					    		<option value='website'>Personal Website</option>\
+					    		<option value='instagram'>Instagram</option>\
+					    		<option value='project'>Project Link</option></select>";
+		    				var o = s[i].getElementsByTagName('option');
+		    				for (var j=0; j<o.length; j++) {
+			    				if (o[j].innerHTML == tempName) {
+				    				o[j].selected = "selected";
+			    				}
+		    				}
+				    	}
 				    }
 				}
 		  		</script>
-				
-			</div>
-		  	
+			</div> <!-- end column -->
+		  	</div> <!-- end row -->
 		</div>
 		  	
 	</div>	
@@ -330,16 +409,36 @@
 		var cell2 = row.insertCell(1);
 		var cell3 = row.insertCell(2);
 		var cell4 = row.insertCell(3);
-		cell1.className = "skills-text";
-		cell2.className = "skills-text";
-		cell3.className = "skills-text";
 		var att = document.createAttribute("contentEditable");
-		att.value=false;
-		cell1.setAttributeNode(att);
-		cell2.setAttributeNode(att.cloneNode(true));
-		cell3.setAttributeNode(att.cloneNode(true));
-		cell1.innerHTML = "Skill";
-		cell2.innerHTML = "0";
+		att.value=true;
+		cell3.setAttributeNode(att);
+		cell1.className = "skills-text-name";
+		cell2.className = "skills-text-yrs";
+		cell3.className = "skills-text";
+		cell1.innerHTML = "<select class='pickSkill'>\
+    		<option value='web'>Website/Web application</option>\
+			<option value='android'>Mobile - android application</option>\
+			<option value='ios'>Mobile - iOS application</option>\
+			<option value='social'>Social Media</option>\
+			<option value='game'>Game development</option>\
+			<option value='graphic'>Graphic Design</option>\
+			<option value='support'>IT Support</option>\
+			<option value='html'>HTML</option>\
+			<option value='sql'>SQL</option>\
+			<option value='java'>Java</option>\
+			<option value='python'>Python</option>\
+			<option value='php'>PHP</option>\
+			<option value='swift'>Swift</option></select>";
+
+		var cell2String = "<select class='pickYear'></select>";
+		for (var i = 1; i<=100; i++) {
+	        if (i==temp) {
+	        	cell2String += "<option value='"+i+"' selected>"+i+"</option>";
+	        } else {   
+	        	cell2String += "<option value='"+i+"'>"+i+"</option>";
+	        }
+        }
+        cell2.innerHTML = cell2String;
 		cell3.innerHTML = "sample website";
 		cell4.innerHTML = "<span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span>";
 	}
@@ -358,13 +457,19 @@
 		var cell2 = row.insertCell(1);
 		var cell3 = row.insertCell(2);
 		cell1.className = "link-text";
-		cell2.className = "link-text";
-		cell3.className = "link-text";
+		cell2.className = "link-url";
 		var att = document.createAttribute("contentEditable");
-		att.value=false;
-		cell1.setAttributeNode(att);
-		cell2.setAttributeNode(att.cloneNode(true));
-		cell1.innerHTML = "Name";
+		att.value=true;
+		cell2.setAttributeNode(att);
+		cell1.innerHTML = "<select class='pickLink'>\
+    		<option value='github'>GitHub</option>\
+    		<option value='linkedin'>LinkedIn</option>\
+    		<option value='google'>Google</option>\
+    		<option value='twitter'>Twitter</option>\
+    		<option value='website'>Personal Website</option>\
+    		<option value='instagram'>Instagram</option>\
+    		<option value='project'>Project Link</option></select>";
+		
 		cell2.innerHTML = "URL";
 		cell3.innerHTML = "<span class='glyphicon glyphicon-remove' onclick='removeLink(this)'></span>";
 	}
@@ -380,7 +485,7 @@
 		var func = "";
 		var years="";
 		var urls="";
-		var size=0;
+		var size=0;			
 		switch(id) {
 			case 'about-text':
 				f = 'about';
@@ -389,44 +494,40 @@
 			case 'quick-facts':
 				f = 'facts';
 				var text = [];
-				var age = document.getElementById('myAge');
-				if (parseFloat(age.innerHTML) % 1 != 0 || typeof parseFloat(age.innerHTML) != 'number' || parseFloat(age.innerHTML) < 0) {
-					alert("Please use a whole number greater than 0 for age");
-					return;
-				}
-				var email = document.getElementById('myEmail'); 
+				var age = document.getElementById('age');
 				var phone = document.getElementById('myPhone');
-				text = [parseFloat(age.innerHTML), email.innerHTML, phone.innerHTML];
+				text = [age.value, phone.innerHTML];
 				break;
 			case 'skills-facts':
-				var skillz = document.getElementsByClassName('skillz');
+				var skillz = document.getElementsByClassName('pickSkill');
 				f = 'skills';
 				text = []; years = []; urls=[];
+				var yrs = document.getElementsByClassName('pickYear');
+				var links = document.getElementsByClassName('skills-text');
 				for (var i=0; i<skillz.length; i++) {
-					var s = skillz[i].getElementsByClassName('skills-text');
-					text.push(s[0].innerHTML);	
-					years.push(s[1].innerHTML);
-					if (s[2].innerHTML == "") {
+					text.push(skillz[i].options[skillz[i].selectedIndex].text);
+					years.push(yrs[i].options[yrs[i].selectedIndex].value);
+					
+					if (links[i].innerHTML == "") {
 						urls.push("no website available");
 					} else {
-						urls.push(s[2].innerHTML);
-					}			
+						urls.push(links[i].innerHTML);
+					}	
 				}
-				size = text.length;
 				break;
 			case 'links-facts':
 				f = 'links';
-				var linkz = document.getElementsByClassName('linkz');
+				var linkName = document.getElementsByClassName('pickLink');
+				var linkz = document.getElementsByClassName('link-url');
 				text = []; urls=[];
-				for (var i=0; i<linkz.length; i++) {
-					var s = linkz[i].getElementsByClassName('link-text');
-					if (s[1].innerHTML.indexOf("<a href") == -1) {
-						var web = s[1].innerHTML;
+				for (var i=0; i<linkName.length; i++) {
+					if (linkz[i].innerHTML.indexOf("<a href") == -1) {
+						var web = linkz[i].innerHTML;
 					} else {
-						var a = s[1].getElementsByTagName('a');
-						var web = a[0].innerHTML;
+						var a = linkz[i].getElementsByTagName('a');
+						var web = a[i].innerHTML;
 					}
-					text.push(s[0].innerHTML);	
+					text.push(linkName[i].options[linkName[i].selectedIndex].text);	
 					
 					if (web == "") {
 						urls.push("no website available");
@@ -434,7 +535,9 @@
 						urls.push(web);
 					}			
 				}
+				
 				size = text.length;
+				
 				break;
 			default:
 				alert("Error");
