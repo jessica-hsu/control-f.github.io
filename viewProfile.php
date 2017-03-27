@@ -431,11 +431,12 @@
 			<option value='swift'>Swift</option></select>";
 
 		cell2.innerHTML = "<select class='pickYear'></select>";
+		
 		for (var i = 1; i<=100; i++) {
 	        if (i==temp) {
 	        	$("select[class^='pickYear'] > select:empty").append("<option value='"+i+"' selected>"+i+"</option>");
 	        } else {   
-	        	$(".pickYear :empty").append("<option value='"+i+"'>"+i+"</option>");
+	        	$("select[class^='pickYear'] > select:empty").append("<option value='"+i+"'>"+i+"</option>");
 	        }
         }
 		cell3.innerHTML = "sample website";
