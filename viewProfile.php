@@ -431,12 +431,12 @@
 			<option value='swift'>Swift</option></select>";
 
 		cell2.innerHTML = "<select class='pickYear'></select>";
-		
+		$(".pickYear").empty();
 		for (var i = 1; i<=100; i++) {
 	        if (i==temp) {
-	        	$("select[class^='pickYear'] > select:empty").append("<option value='"+i+"' selected>"+i+"</option>");
+	        	$(".pickYear").append("<option value='"+i+"' selected>"+i+"</option>");
 	        } else {   
-	        	$("select[class^='pickYear'] > select:empty").append("<option value='"+i+"'>"+i+"</option>");
+	        	$(".pickYear").append("<option value='"+i+"'>"+i+"</option>");
 	        }
         }
 		cell3.innerHTML = "sample website";
