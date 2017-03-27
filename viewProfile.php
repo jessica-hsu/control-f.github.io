@@ -433,9 +433,9 @@
 		cell2.innerHTML = "<select class='pickYear'></select>";
 		for (var i = 1; i<=100; i++) {
 	        if (i==temp) {
-	        	$(".pickSkill :empty").append("<option value='"+i+"' selected>"+i+"</option>");
+	        	$(".pickYear :empty").append("<option value='"+i+"' selected>"+i+"</option>");
 	        } else {   
-	        	$(".pickSkill :empty").append("<option value='"+i+"'>"+i+"</option>");
+	        	$(".pickYear :empty").append("<option value='"+i+"'>"+i+"</option>");
 	        }
         }
 		cell3.innerHTML = "sample website";
