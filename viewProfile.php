@@ -433,7 +433,7 @@
 		cell2.innerHTML = "<select class='pickYear'></select>";
 		for (var i = 1; i<=100; i++) {
 	        if (i==temp) {
-	        	$(".pickYear :empty").append("<option value='"+i+"' selected>"+i+"</option>");
+	        	$("select[class^='pickYear'] > select");.append("<option value='"+i+"' selected>"+i+"</option>");
 	        } else {   
 	        	$(".pickYear :empty").append("<option value='"+i+"'>"+i+"</option>");
 	        }
