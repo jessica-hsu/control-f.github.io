@@ -1,7 +1,7 @@
 <?php
 include 'connectDB.php';
 
-if (isset($_POST['func'])) {
+/*if (isset($_POST['func'])) {
 	$func = $_POST['func'];
 	
 } 
@@ -29,8 +29,13 @@ if (isset($_POST['s'])) {
 if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
 
-}
-
+}*/
+$userID = 1;
+$func = "skills";
+$urls = ["some web app"];
+$size = 1;
+$years = [2];
+$text = ["SQL"];
 
 switch ($func) {
 	#Update the description of user
@@ -55,20 +60,20 @@ switch ($func) {
 	#Update, add, delete skills
 	case 'skills':
 		#Delete all skills from table where userID = id of current user
-		$query = "DELETE FROM userSkill WHERE userID = " . $userID;
-		if (mysqli_query($conn, $query)) {
+		//$query = "DELETE FROM userSkill WHERE userID = " . $userID;
+		/*if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error deleting records: " . mysqli_error($conn);
-		}
+		}*/
 		#Insert all the values back
 		for ($i=0; $i < $size; $i++) {
 			$query = "INSERT INTO userSkill (skillName, userID, yearsExp, portfolioURL)
 				VALUES ('" . $text[$i] . 
 				"'," . $userID . ", " . $years[$i] . ", '" . $urls[$i] . "')";
-			if (mysqli_query($conn, $query)) {
+			/*if (mysqli_query($conn, $query)) {
 			} else {
 				echo "Error inserting record: " . mysqli_error($conn);
-			}
+			}*/
 		}
 		break;
 		

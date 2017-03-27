@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("mydbinstance.cvjenxnjjyrk.us-west-2.rds.amazonaws.com:3306","admin", "admin123");
+#$conn = mysqli_connect("mydbinstance.cvjenxnjjyrk.us-west-2.rds.amazonaws.com:3306","admin", "admin123");
 #$conn = mysqli_connect("127.0.0.1:3306","admin", "rabbit");
 
 
