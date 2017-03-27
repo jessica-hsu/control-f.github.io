@@ -514,6 +514,7 @@
 						urls.push(links[i].innerHTML);
 					}	
 				}
+				console.log(text); console.log(years); console.log(urls);
 				break;
 			case 'links-facts':
 				f = 'links';
