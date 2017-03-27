@@ -30,7 +30,7 @@ namespace App17
 
             _posts = new ObservableCollection<Post>(posts);
             postsListView.ItemsSource = _posts;
-
+        
 			base.OnAppearing();
 		}
 
@@ -38,19 +38,27 @@ namespace App17
 		{
             var post = new Post { Title= "Title " + DateTime.Now.Ticks };
 
-
+             _posts.Insert(0, post);
             var content = JsonConvert.SerializeObject(post);
             await _client.PostAsync(Url, new StringContent(content));
 
-            _posts.Insert(0, post);
+           
 		}
 
-		void OnUpdate(object sender, System.EventArgs e)
+		async void OnUpdate(object sender, System.EventArgs e)
 		{
+            var post = _posts[0];
+            post.Title += " UPDATED";
+
+            var content = JsonConvert.SerializeObject(post);
+            await _client.PutAsync(Url + "/" + post.Id, new StringContent(content));
 		}
 
-		void OnDelete(object sender, System.EventArgs e)
+		async void OnDelete(object sender, System.EventArgs e)
 		{
+            var post = _posts[0];
+            _posts.Remove(post);
+            await _client.DeleteAsync(Url + "/" + post.Id);
 		}
 	}
 }
