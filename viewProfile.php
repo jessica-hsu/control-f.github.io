@@ -24,6 +24,7 @@
 
 </head>
 <?php include "connectDB.php"?>
+<span id="currentUser" hidden><?php echo $_SESSION['ID']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -49,7 +50,6 @@
     		</div>
     	</nav>
     	<!--- for the profile backimage -->
-	<?php echo $_SESSION['ID']?>
 		<div class = "container-fluid" id = "top-background">
 			<div id = "title-text">
 			<?php #query to get user information#
@@ -485,7 +485,8 @@
 		var func = "";
 		var years="";
 		var urls="";
-		var size=0;			
+		var size=0;		
+		var user=document.getElementById('currentUser').innerHTML;	
 		switch(id) {
 			case 'about-text':
 				f = 'about';
@@ -547,7 +548,7 @@
 		$.ajax ({
 			type: "POST",
 			url: "ajax.php",
-			data: {func: f, textUpdate: text, tYear: years, tURL: urls, s: size},
+			data: {func: f, textUpdate: text, tYear: years, tURL: urls, s: size, id: user},
 			dataType: "html",
 			success: function(data) {
 				var success = document.getElementById("updateYes");
