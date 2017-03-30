@@ -1,4 +1,9 @@
-<?php session_start();	?>
+<?php session_start();	
+//$userID = $_SESSION['ID'];
+$userID = 1;
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +29,7 @@
 
 </head>
 <?php include "connectDB.php"?>
-<span id="currentUser" hidden><?php echo $_SESSION['ID']?></span>
+<span id="currentUser" hidden><?php echo $userID?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -53,7 +58,7 @@
 		<div class = "container-fluid" id = "top-background">
 			<div id = "title-text">
 			<?php #query to get user information#
-   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID = " . $_SESSION['ID'];
+   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID = " . $userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
@@ -89,7 +94,7 @@
 				<p class = "sub-heading" > About Developer </p>
 				<p id="about-text" contentEditable="false">
 				<?php #query to get user information#
-   					$query = "SELECT uDescription FROM user WHERE userID = " . $_SESSION['ID'];
+   					$query = "SELECT uDescription FROM user WHERE userID = " . $userID;
    					if ( ! ( $result = mysqli_query($conn, $query)) ) {
    						echo("Error: %s\n"+ mysqli_error($conn));
    						exit(1);
@@ -132,7 +137,7 @@
 				<p class = "sub-heading" > Quick Facts </p>
 				<p id="quick-facts">
 				<?php #query to get user information#
-   				$query = "SELECT email, phone, age FROM user WHERE userID = " . $_SESSION['ID'];
+   				$query = "SELECT email, phone, age FROM user WHERE userID = " . $userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
@@ -199,7 +204,7 @@
 						</thead>
 						<tbody>
 						<?php 
-						$query = "SELECT skillName, yearsExp, portfolioURL FROM userSkill WHERE userID = " . $_SESSION['ID'];
+						$query = "SELECT skillName, yearsExp, portfolioURL FROM userSkill WHERE userID = " . $userID;
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
 							exit(1);
@@ -238,8 +243,24 @@
 					       	t[i].contentEditable = "false";
 				       	}
 				       	var rowCount = $('#skill-table tr').length;
+				       	var selectName = document.getElementsByClassName('pickSkill');
+				       	var selectYear = document.getElementsByClassName('pickYear'); 
+				       	var theNames = []; 
+				       	var theYears = [];
 						if (rowCount > 1) {			//only turn text non-editable when there are rows of data
-					
+							for (var i=0; i<t.length; i++) {
+								t[i].contentEditable = "false";
+							}
+							for (var i=0; i<selectName.length; i++) {
+								var theName = selectName[i].options[selectName[i].selectedIndex].text;
+								theNames.push(theName);
+								var theYear = selectYear[i].value;
+								theYears.push(theYear);
+							}
+							for (var i =0; i<s.length; i++) {
+								s[i].innerHTML = theNames[i];
+								y[i].innerHTML = theYears[i];
+							}
 							
 						}				       		
 				    } else {  //START EDITING
@@ -278,20 +299,7 @@
 				    	}
 				    	for (var i=0; i<s.length; i++) {
 					    	tempYr = y[i].innerHTML;
-					    	y[i].innerHTML="";
-					    	newSelect = document.createElement("select");
-					    	newSelect.className = "pickYear";
-					    	y[i].appendChild(newSelect);
-					    	menu = document.getElementsByClassName("pickYear");
-					    	for (var j=1; j<=100; j++) {
-					    		newOpt = document.createElement('option');
-					    		newOpt.value = j;
-					    		newOpt.text = j;
-						    	if (j==tempYr) {
-							    	newOpt.selected = "selected";
-						    	} 
-					    		menu[i].appendChild(newOpt);
-					    	}
+					    	y[i].innerHTML="<input type='number' min='1' max='100' value='"+tempYr+"' class='pickYear'>";
 				    	}
 				    }
 				}
@@ -319,7 +327,7 @@
 						</thead>
 						<tbody>
 						<?php 
-						$query = "SELECT name, links FROM links WHERE id = " . $_SESSION['ID'];
+						$query = "SELECT name, links FROM links WHERE id = " . $userID;
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
 							exit(1);
@@ -346,7 +354,6 @@
 			    	var s = document.getElementsByClassName('link-text');
 			       	var theLink = document.getElementsByClassName('pickLink');
 			    	
-			    	
 				    if (temp.contentEditable == "true") { //CLOSE EDIT VIEW
 				    	temp.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
@@ -358,10 +365,12 @@
 				       	for (var i=0; i<theLink.length; i++) {
 				       		selected.push(theLink[i].options[theLink[i].selectedIndex].text);
 				       	}
+				       	for (var i =0; i<s.length; i++) {
+					       	s[i].innerHTML = selected[i];
+				       	}
 				       	for (var i=0; i<t.length; i++) { //for the website box
 					       	t[i].contentEditable = "false";
 				       	}
-				       console.log(selected);
 				       
 				    } else { //OPEN EDIT VIEW
 				    	temp.contentEditable = "true";
@@ -429,16 +438,8 @@
 			<option value='python'>Python</option>\
 			<option value='php'>PHP</option>\
 			<option value='swift'>Swift</option></select>";
-
-		cell2.innerHTML = "<select class='pickYear'></select>";
-		$(".pickYear").empty();
-		for (var i = 1; i<=100; i++) {
-	        if (i==temp) {
-	        	$(".pickYear").append("<option value='"+i+"' selected>"+i+"</option>");
-	        } else {   
-	        	$(".pickYear").append("<option value='"+i+"'>"+i+"</option>");
-	        }
-        }
+			
+		cell2.innerHTML = "<input type='number' min='1' max='100' value='1' class='pickYear'>";
 		cell3.innerHTML = "sample website";
 		cell4.innerHTML = "<span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span>";
 	}
@@ -507,7 +508,7 @@
 				var links = document.getElementsByClassName('skills-text');
 				for (var i=0; i<skillz.length; i++) {
 					text.push(skillz[i].options[skillz[i].selectedIndex].text);
-					years.push(yrs[i].options[yrs[i].selectedIndex].value);
+					years.push(yrs[i].value);
 					
 					if (links[i].innerHTML == "") {
 						urls.push("no website available");
@@ -515,7 +516,7 @@
 						urls.push(links[i].innerHTML);
 					}	
 				}
-				console.log(text); console.log(years); console.log(urls);
+				size=text.length;
 				break;
 			case 'links-facts':
 				f = 'links';
@@ -539,7 +540,6 @@
 				}
 				
 				size = text.length;
-				
 				break;
 			default:
 				alert("Error");
