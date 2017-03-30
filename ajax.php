@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'connectDB.php';
 
 if (isset($_POST['func'])) {
@@ -27,11 +26,21 @@ if (isset($_POST['s'])) {
 
 } 
 
+if (isset($_POST['id'])) {
+	$userID = $_POST['id'];
+
+}
+/*$userID = 1;
+$func = "skills";
+$urls = ["some web app", "sample"];
+$size = 2;
+$years = [2, 3];
+$text = ["SQL", "HTML"];*/
 
 switch ($func) {
 	#Update the description of user
 	case 'about':
-		$query = "UPDATE user SET uDescription = '" . $text . "' WHERE userID = " . $_SESSION['ID'];
+		$query = "UPDATE user SET uDescription = '" . $text . "' WHERE userID = " . $userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
@@ -41,7 +50,7 @@ switch ($func) {
 	#Update the email, age, phone of user
 	case 'facts':
 		$age = $text[0]; $phone = $text[1]; 
-		$query = "UPDATE user SET age = " . $age . ", phone= '" . $phone . "' WHERE userID = " . $_SESSION['ID'];
+		$query = "UPDATE user SET age = " . $age . ", phone= '" . $phone . "' WHERE userID = " . $userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
@@ -51,27 +60,44 @@ switch ($func) {
 	#Update, add, delete skills
 	case 'skills':
 		#Delete all skills from table where userID = id of current user
-		$query = "DELETE FROM userSkill WHERE userID = " . $_SESSION['ID'];
+		$query = "DELETE FROM userSkill WHERE userID = " . $userID;
 		if (mysqli_query($conn, $query)) {
+			echo "deleted records \n";
 		} else {
 			echo "Error deleting records: " . mysqli_error($conn);
 		}
-		#Insert all the values back
-		for ($i=0; $i < $size; $i++) {
+		
+		for ($i = 0; $i<$size; $i++) {
 			$query = "INSERT INTO userSkill (skillName, userID, yearsExp, portfolioURL)
-				VALUES ('" . $text[$i] . 
-				"'," . $_SESSION['ID'] . ", " . $years[$i] . ", '" . $urls[$i] . "')";
+				VALUES ('".$text[$i]."', ".$userID.",".$years[$i].", '".$urls[$i]."')";
+			echo $query . "\n";
 			if (mysqli_query($conn, $query)) {
+				echo "success" . $i . "\n";
 			} else {
 				echo "Error inserting record: " . mysqli_error($conn);
 			}
 		}
+		
+		
+		#Insert all the values back
+		/*for ($i=0; $i < $size; $i++) {
+			echo $i. "\n";
+			$query = "INSERT INTO userSkill (skillName, userID, yearsExp, portfolioURL)
+				VALUES ('" . $text[$i] . 
+				"'," . $userID . ", " . $years[$i] . ", '" . $urls[$i] . "')";
+			echo $query . "\n";
+			if (mysqli_query($conn, $query)) {
+				echo "success" . $i . "\n";
+			} else {
+				echo "Error inserting record: " . mysqli_error($conn);
+			}
+		}*/
 		break;
 		
 	#Update, add, delete social media of user
 	case 'links':
 		#Delete all links from table where userID = id of current user
-		$query = "DELETE FROM links WHERE id = " . $_SESSION['ID'];
+		$query = "DELETE FROM links WHERE id = " . $userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error deleting records: " . mysqli_error($conn);
@@ -79,7 +105,7 @@ switch ($func) {
 		#Insert all the links back
 		for ($i=0; $i < $size; $i++) {
 			$query = "INSERT INTO links (id, name, links)
-				VALUES (". $_SESSION['ID'] .", '" . $text[$i] . "', '" . $urls[$i] . "')";
+				VALUES (". $userID .", '" . $text[$i] . "', '" . $urls[$i] . "')";
 						
 			if (mysqli_query($conn, $query)) {
 			} else {
@@ -130,6 +156,6 @@ switch ($func) {
 	default:
 		die("Choose a function!");
 }
-mysqli_close($conn);
+#mysqli_close($conn);
 
 ?>

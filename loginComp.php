@@ -1,3 +1,20 @@
+<?php 
+session_start();
+
+if (isset($_POST['name'])) {
+	$_SESSION['userName'] = $_POST['name'];
+}
+
+
+if (isset($_POST['email'])) {
+	$_SESSION['userEmail'] = $_POST['email'];
+}
+
+if (isset($_POST['profile'])) {
+	$_SESSION['profileType'] = $_POST['profile'];
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -197,7 +214,26 @@
         </p>
       </div>
 
-
+<script class="pre">
+hello.on('auth.login', function(auth) {
+    hello(auth.network).api('/me').then(function(r) {               
+        console.log("name = "+r.name);
+        console.log("email = " + r.email);
+        var p = "comp";
+        $.ajax({
+            url: 'loginComp.php',
+            data: {name: r.name, email: r.email, profile: p},
+            type: 'post',
+            success: function(result) {
+                console.log("action performed successfully");
+            }, 
+            error: function(result) {
+            	console.log(result);
+            }
+        });
+    });
+});
+</script> 
 
       <pre class="response"></pre>
 
@@ -223,12 +259,5 @@
 
 
 </body>
-<script class="pre">
-hello.on('auth.login', function(auth) {
-    hello(auth.network).api('/me').then(function(r) {               
-        console.log("name = "+r.name);
-        console.log("email = " + r.email);
-    });
-});
-</script> 
+
 </html>

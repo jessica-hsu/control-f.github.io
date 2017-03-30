@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,11 +34,11 @@
 			 	<ul class="nav navbar-nav">
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="profile.html">Profile</a></li>
-					<li><a href="search.html">Search</a></li>
-					<li><a href="postAd.html">Post Ad</a></li>
-						<li><a href="about.html">About Us</a></li>
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="viewCompanyProfile.php">Profile</a></li>
+					<li><a href="search.php">Search</a></li>
+					<li><a href="postAd.php">Post Ad</a></li>
+						<li><a href="about.php">About Us</a></li>
+					<li><a href="contact.php">Contact Us</a></li>
 
 				</ul>
 			</div>

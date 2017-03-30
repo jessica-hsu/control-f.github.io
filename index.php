@@ -41,8 +41,8 @@
          				<li><a href="about.html">About Us</a></li>
          				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Login/Register<span class="caret"></span></a>
          					<ul class="dropdown-menu">
-         						<li><a href="loginDev.html">Login - developers</a></li>
-         						<li><a href="loginComp.html">Login - nonprofits</a></li>
+         						<li><a href="loginDev.php">Login - developers</a></li>
+         						<li><a href="loginComp.php">Login - nonprofits</a></li>
          					</ul>
          				</li>
          				
@@ -54,19 +54,20 @@
 		<div class="row" id=title>
 			<div class="col-sm-12" id="overlay1">
 				<div id="landing-page-title">Control-F</div>
-				<span>Finding a Freelancer or Gaining Experience Should Be Easy</span>
+				<span>Finding a freelancer or gaining experience should be as easy as a keystroke.</span>
 			</div>
 		</div>
 		
 		<div class="row" id="line">
 			<div class="col-sm-12" id="small-line">
-				<p>What We Do</p>
+				<p>How it works</p>
 			</div>
 		</div>
 		<div class="row" id="description">
 			<div class="col-sm-12" id="overlay2">
-				<p> Control-F is an advertisement-free, neutral marketplace to connect small business owners and nonprofits with technical developers willing to volunteer time, 
-				or developers who are willing to work for less. 
+				<p> Control-F is an advertisement-free, neutral marketplace, connecting small-businesses with aspiring, innovative developers.
+					Nonprofits can login with Google or LinkedIn and gain the ability to post help ads or search for developers with relevant skills. Developers
+					can login with LinkedIn or Github, add a profile, and search for opportunities to posted by nonprofits. Contact information will be available to both parties
 				</p>
 			</div> 
 		</div>
