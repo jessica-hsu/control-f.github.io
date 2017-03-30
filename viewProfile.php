@@ -1,7 +1,10 @@
 <?php session_start();	
 $userID = $_SESSION['ID'];
 //$userID = 1;
-
+if (strcmp($_SESSION['profileType'], "comp")==0) {
+	header('Location: viewCompanyProfile.php');
+	exit;
+}
 
 ?>
 <!DOCTYPE html>
