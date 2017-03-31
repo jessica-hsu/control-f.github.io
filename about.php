@@ -40,8 +40,8 @@
        			 	<ul class="nav navbar-nav">
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
-         				<li><a href="index.html#description">How it works</a></li>
-         				<li><a href="about.html">About Us</a></li>
+         				<li><a href="index.html">How it works</a></li>
+         				<li><a href="about.php">About Us</a></li>
          				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Login/Register<span class="caret"></span></a>
          					<ul class="dropdown-menu">
          						<li><a href="loginDev.php">Login - developers</a></li>
