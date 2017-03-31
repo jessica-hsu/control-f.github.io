@@ -1,7 +1,7 @@
 <?php
 include 'connectDB.php';
 
-/*if (isset($_POST['func'])) {
+if (isset($_POST['func'])) {
 	$func = $_POST['func'];
 	
 } 
@@ -29,14 +29,14 @@ if (isset($_POST['s'])) {
 if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
 
-}*/
-
+}
+/*
 $userID = 6;
 $func = "postAd";
 //$urls = ["some web app", "sample"];
 //$size = 2;
 //$years = [2, 3];
-$text = ["example title", "des", "purp" ];
+$text = ["example title", "des", "purp" ];*/
 
 switch ($func) {
 	#Update the description of user
