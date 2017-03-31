@@ -154,6 +154,10 @@ switch ($func) {
 		break;
 	
 	case 'postAd':
+		$compID = $text[0]; 
+		$type = $text[1];
+		$description = $text[2];
+		$purpose = $text[3];
 		break;
 		
 	default:

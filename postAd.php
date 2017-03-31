@@ -63,7 +63,7 @@ $compName = $_SESSION['userName'];
 	<div>			
 	<span><h2>Your company: Temp Company<?php echo $compName;?></h2></span>
 	
-  		<form action="" onsubmit="submit()" method="post">
+  		<form>
    			<label for="project" id="projtype">Project Type</label>
 	   			<select id="project" name="project">
 	   				<option value="Website/Web Application">Website/Web Application</option>
@@ -88,7 +88,7 @@ $compName = $_SESSION['userName'];
 
     		<button class="btn" type="button" id="preview" onclick="p()">Preview</button>
 
-    		<button class="btn" type="submit" id="submit">
+    		<button class="btn" type="button" id="submit" onclick="submit()">
     			Submit
     		</button>
 
