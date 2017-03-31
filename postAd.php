@@ -5,7 +5,7 @@ $compName = $_SESSION['userName'];
 <!DOCTYPE html>
 <html lang="en">
 <span id="user" hidden><?php echo $compID?></span>
-<span id="mahName" hidden>Temp Company<?php echo $compName?></span>
+<span id="mahName" hidden><?php echo $compName?></span>
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
@@ -61,7 +61,7 @@ $compName = $_SESSION['userName'];
 	<h1>Post an Advertisement</h1>
 
 	<div>			
-	<span><h2>Your company: Temp Company<?php echo $compName;?></h2></span>
+	<span><h2>Your company: <?php echo $compName;?></h2></span>
 	
   		<form action="">
    			<label for="project" id="projtype">Project Type</label>
@@ -155,13 +155,14 @@ $compName = $_SESSION['userName'];
 			project = document.getElementById('project'); 
 			project_type = project.options[project.selectedIndex].value; 
 			user = document.getElementById('user').innerHTML;
-			text.push(user); text.push(project_type); text.push(description); text.push(purpose);
+			text.push(project_type); text.push(description); text.push(purpose);
 			$.ajax({
 	            url: 'ajax.php',
-	            data: {textUpdate: text, func: f},
+	            data: {textUpdate: text, func: f, id: user},
 	            type: 'post',
 	            success: function(result) {
 	                console.log("action performed successfully");
+	                window.location.href = 'viewCompanyProfile.php';
 	            }, 
 	            error: function(result) {
 	            	console.log(result);

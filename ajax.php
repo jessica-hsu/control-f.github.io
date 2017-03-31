@@ -30,12 +30,12 @@ if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
 
 }
-/*$userID = 1;
-$func = "skills";
-$urls = ["some web app", "sample"];
-$size = 2;
-$years = [2, 3];
-$text = ["SQL", "HTML"];*/
+//$userID = 6;
+//$func = "postAd";
+//$urls = ["some web app", "sample"];
+//$size = 2;
+//$years = [2, 3];
+//$text = ["Android", "description", "purpose" ];
 
 switch ($func) {
 	#Update the description of user
@@ -154,14 +154,14 @@ switch ($func) {
 		break;
 	
 	case 'postAd':
-		$compID = $text[0]; 
-		$type = $text[1];
-		$description = $text[2];
-		$purpose = $text[3];
+		$type = $text[0];
+		$description = $text[1];
+		$purpose = $text[2];
 		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES
-				(".$compID.", '".$description."', '".date("Y/m/d")."', '".$purpose."', '".$type."')";
-		
+				(".$userID.", '".$description."', '".date("Y/m/d")."', '".$purpose."', '".$type."')";
+		echo $query;
 		if (mysqli_query($conn, $query)) {
+			echo "sucess";
 		} else {
 			echo "Error inserting record: " . mysqli_error($conn);
 		}
