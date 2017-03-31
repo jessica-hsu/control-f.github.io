@@ -158,7 +158,7 @@ $compName = $_SESSION['userName'];
 			console.log(text);
 			$.ajax({
 	            url: 'ajax.php',
-	            data: {textUpdate: text, func: f, id: user},
+	            data: {func: f, textUpdate: text, id: user},
 	            type: 'post',
 				dataType: "json",
 	            

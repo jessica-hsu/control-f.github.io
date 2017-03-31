@@ -155,11 +155,8 @@ switch ($func) {
 		break;
 	
 	case 'postAd':
-		$data = array();
-		$row = $text;
-		$data[] = $row;
-		print json_encode($data);
-		/*$type = $text[0];
+		
+		$type = $text[0];
 		$description = $text[1]; 
 		$purpose = $text[2]; 
 		date_default_timezone_set('America/New_York');
@@ -170,7 +167,13 @@ switch ($func) {
 			echo "success" . "\n";
 		} else {
 			echo "Error inserting record: " . mysqli_error($conn);
-		}*/
+		}
+		$query ="SELECT * FROM advert";
+		$data = array();
+		$row = mysqli_fetch_assoc($result);
+		$data[] = $row;
+		print json_encode($data); //must have this for php to return json object
+		
 		break;
 		
 	default:
