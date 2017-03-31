@@ -105,7 +105,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
     		</div>
     	</nav>
     	<!--><h1 style="padding-top:15%;" id="banner">Welcome!</h1></!-->
-    	<?php echo("<h1 id="banner">Welcome back, " . $_SESSION['userName'] . "!</h1>")?>
+    	<?php echo("<h1 id='banner'>Welcome back, " . $_SESSION['userName'] . "!</h1>")?>
 	<p>Make a profile <a href="viewProfile.php" id="here">here</a> to get started!</p>
    </div> 	
 <script src="hello.all.js"></script>
