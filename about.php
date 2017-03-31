@@ -27,7 +27,7 @@
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
 			<a id="navLogo" class="navbar-brand" href="index.html" style="padding:0;">
-            	<img  src="img/Icon-title.png" class="d-inline-block align-top" alt="" style="width: 10%; margin:0; padding:2.5% 0;">
+            	
           	</a>
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
