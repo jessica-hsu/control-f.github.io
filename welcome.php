@@ -48,7 +48,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 	}
 	
 	#get userID from DB and save as SESSION variable
-	$query = "SELECT compID FROM company WHERE cName = '" . $_SESSION['userEmail'] . "'";
+	$query = "SELECT compID FROM company WHERE cEmail = '" . $_SESSION['userEmail'] . "'";
 	$result = mysqli_query($conn, $query);
 	$row = mysqli_fetch_array($result);
 	$_SESSION['ID'] = $row['compID'];
