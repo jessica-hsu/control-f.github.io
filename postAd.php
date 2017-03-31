@@ -60,7 +60,9 @@ $compName = $_SESSION['userName'];
 
 	<h1>Post an Advertisement</h1>
 
-	<div>
+	<div>			
+	<span><h2>Your company: <?php echo $compName;?></h2></span>
+	
   		<form action="viewProfile.php" onsubmit="submit()" method="post">
    			<label for="project" id="projtype">Project Type</label>
 	   			<select id="project" name="project">
@@ -74,7 +76,6 @@ $compName = $_SESSION['userName'];
 	      		</select>
 
 	      	<br>
-			<span><h2>Your company: <?php echo $compName;?></h2></span>
 	      	<label for="why">Please give a short description of the project:</label>
    				<input type="text" id="why" name="whyproject" placeholder="Description">
 
@@ -149,11 +150,12 @@ $compName = $_SESSION['userName'];
 		function submit() {
 			f = "postAd";
 			text = [];
-			purpose = ;
-			description = ;
-			project_type = ;
+			purpose = document.getElementById('purpose').value;
+			description = document.getElementById('why').value;
+			project = document.getElementById('project');
+			project_type = project.options[project.selectedIndex].value;
 			user = document.getElementById('user').innerHTML;
-			
+			text.push(user); text.push(project_type); text.push(description); text.push(purpose);
 			$.ajax({
 	            url: 'ajax.php',
 	            data: {text: r.name, func: f},
