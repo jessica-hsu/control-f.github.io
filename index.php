@@ -38,7 +38,7 @@
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
          				<li><a href="#description">What We Do</a></li>
-         				<li><a href="about.html">About Us</a></li>
+         				<li><a href="about.php">About Us</a></li>
          				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Login/Register<span class="caret"></span></a>
          					<ul class="dropdown-menu">
          						<li><a href="loginDev.php">Login - developers</a></li>
