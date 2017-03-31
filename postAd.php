@@ -50,8 +50,6 @@ $compName = $_SESSION['userName'];
          				<li><a href="welcome.php">Home</a></li>         		
          				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
-         				<li><a href="postAd.php">Post Ad</a></li>
-						<li><a href="about.php">About Us</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          			</ul>
       			</div>
