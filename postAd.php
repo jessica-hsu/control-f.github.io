@@ -63,7 +63,7 @@ $compName = $_SESSION['userName'];
 	<div>			
 	<span><h2>Your company: Temp Company<?php echo $compName;?></h2></span>
 	
-  		<form>
+  		<form action="">
    			<label for="project" id="projtype">Project Type</label>
 	   			<select id="project" name="project">
 	   				<option value="Website/Web Application">Website/Web Application</option>
@@ -88,7 +88,7 @@ $compName = $_SESSION['userName'];
 
     		<button class="btn" type="button" id="preview" onclick="p()">Preview</button>
 
-    		<button class="btn" type="button" id="submit" onclick="submit()">
+    		<button class="btn" type="button" id="submit" onclick="post()">
     			Submit
     		</button>
 
@@ -146,16 +146,17 @@ $compName = $_SESSION['userName'];
 			table.style.display = "block";
 		}
 
-		function submit() {
+		function post() {
 			f = "postAd";
+			alert("in function!");
 			text = [];
-			purpose = document.getElementById('purpose').value;
-			description = document.getElementById('why').value;
-			project = document.getElementById('project');
-			project_type = project.options[project.selectedIndex].value;
+			purpose = document.getElementById('purpose').value; 
+			description = document.getElementById('why').value; 
+			project = document.getElementById('project'); 
+			project_type = project.options[project.selectedIndex].value; 
 			user = document.getElementById('user').innerHTML;
 			text.push(user); text.push(project_type); text.push(description); text.push(purpose);
-			/*$.ajax({
+			$.ajax({
 	            url: 'ajax.php',
 	            data: {textUpdate: text, func: f},
 	            type: 'post',
@@ -165,7 +166,7 @@ $compName = $_SESSION['userName'];
 	            error: function(result) {
 	            	console.log(result);
 	            }
-	        });*/
+	        });
 		}
 	</script>
 

@@ -158,6 +158,13 @@ switch ($func) {
 		$type = $text[1];
 		$description = $text[2];
 		$purpose = $text[3];
+		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES
+				(".$compID.", '".$description."', '".date("Y/m/d")."', '".$purpose."', '".$type."')";
+		
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error inserting record: " . mysqli_error($conn);
+		}
 		break;
 		
 	default:
