@@ -79,10 +79,23 @@ if (isset($_POST['profile'])) {
 
         <br>
 
-          <button id="top-button" class ="buttons" style=" background-color:black; color:#f2f2f2" onclick="hello('github').login()"><i id ="top-icon" class="fa fa-github icons" style="font-size:4rem;color:#f2f2f2; " 8onclick="hello('linkedin').login()"></i> Access with Github</button>
+          <button id="top-button" class ="buttons" style=" background-color:black; color:#f2f2f2" onclick="userEmail('github', 'email');"><i id ="top-icon" class="fa fa-github icons" style="font-size:4rem;color:#f2f2f2;" onclick="userEmail('github', 'email');"></i> Access with Github</button>
 
-          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"8><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
-
+          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
+	<script class="pre">
+	function userEmail(network, target) {
+	var github = hello(network)
+	github.login({
+		scope:'email'
+	})
+	.then(function() {
+		// Get a bespoke endpoint from github
+		return github.api('/user/emails');
+	}).then(function(r) {
+		alert(JSON.stringify(r, null, 2));
+	});
+	}
+	</script>
         <p id = "bottom-text">
 
           We  hold our community to the highest standards.
