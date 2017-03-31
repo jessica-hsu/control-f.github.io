@@ -92,9 +92,23 @@ if (isset($_POST['profile'])) {
 		// Get a bespoke endpoint from github
 		return github.api('/user/emails');
 	}).then(function(r) {
-		alert(JSON.stringify(r, null, 2));
-	});
-	}
+		var em = JSON.stringify(r, null, 2);
+		var p = "dev";
+		hello(auth.network).api('/me').then(function(r) { 
+			$.ajax({
+			    url: 'loginDev.php',
+			    data: {name: r.name, email: em, profile: p},
+			    type: 'post',
+			    success: function(result) {
+				console.log("action performed successfully");
+			    }, 
+			    error: function(result) {
+				console.log(result);
+			    }
+			});
+		});
+    	});
+    	}	
 	</script>
         <p id = "bottom-text">
 
