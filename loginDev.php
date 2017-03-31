@@ -45,7 +45,6 @@ if (isset($_POST['profile'])) {
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
 			<a id="navLogo" class="navbar-brand" href="index.html" style="padding:0;">
-            	<img  src="img/Icon-title.png" class="d-inline-block align-top" alt="" style="width: 10%; margin:0; padding:2.5% 0;">
           	</a>
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
@@ -58,12 +57,12 @@ if (isset($_POST['profile'])) {
        			 	<ul class="nav navbar-nav">
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
-         				<li><a href="#description">How it works</a></li>
-         				<li><a href="about.html">About Us</a></li>
+         				<li><a href="index.html">How it works</a></li>
+         				<li><a href="about.php">About Us</a></li>
          				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Login/Register<span class="caret"></span></a>
          					<ul class="dropdown-menu">
-         						<li><a href="loginDev.html">Login - developers</a></li>
-         						<li><a href="loginComp.html">Login - nonprofits</a></li>
+         						<li><a href="loginDev.php">Login - developers</a></li>
+         						<li><a href="loginComp.php">Login - nonprofits</a></li>
          					</ul>
          				</li>
 
@@ -79,9 +78,9 @@ if (isset($_POST['profile'])) {
 
         <br>
 
-          <button id="top-button" class ="buttons" style=" background-color:black; color:#f2f2f2" onclick="hello('github').login()"><i id ="top-icon" class="fa fa-github icons" style="font-size:4rem;color:#f2f2f2; " 8onclick="hello('linkedin').login()"></i> Access with Github</button>
+          <button id="top-button" class ="buttons" style=" background-color:black; color:#f2f2f2" onclick="userEmail('github', 'email');"><i id ="top-icon" class="fa fa-github icons" style="font-size:4rem;color:#f2f2f2;" onclick="userEmail('github', 'email');"></i> Access with Github</button>
 
-          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"8><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
+          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
 
         <p id = "bottom-text">
 

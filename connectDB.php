@@ -11,6 +11,4 @@ if ( ! mysqli_select_db($conn, "mydbinstance") ) {
 	echo("Error: %s\n"+ mysqli_error($conn));
 	exit(1);
 }
-
-
 ?>

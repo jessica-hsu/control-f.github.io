@@ -152,6 +152,20 @@ switch ($func) {
 		$data[] = $row;
 		print json_encode($data); //must have this for php to return json object
 		break;
+	
+	case 'postAd':
+		$compID = $text[0]; 
+		$type = $text[1];
+		$description = $text[2];
+		$purpose = $text[3];
+		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES
+				(".$compID.", '".$description."', '".date("Y/m/d")."', '".$purpose."', '".$type."')";
+		
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error inserting record: " . mysqli_error($conn);
+		}
+		break;
 		
 	default:
 		die("Choose a function!");

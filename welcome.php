@@ -98,15 +98,13 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
          				<li><a href="welcome.php">Home</a></li>         		
          				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
-         				<li><a href="postAd.php">Post Ad</a></li>
-						<li><a href="about.php">About Us</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          			</ul>
       			</div>
     		</div>
-    	</nav>
-    	<h1 style="padding-top:15%;" id="banner">Welcome page</h1>
-    	<?php echo("<h2>Hi " . $_SESSION['userName'] . "! Your email is " . $_SESSION['userEmail'] . "</h2>")?>
+		</nav>
+    	<?php echo("<h1 id='banner'>Welcome back, " . $_SESSION['userName'] . "!</h1>")?>
+	<p>Make a profile <a href="viewProfile.php" id="here">here</a> to get started!</p>
    </div> 	
 <script src="hello.all.js"></script>
 <script>

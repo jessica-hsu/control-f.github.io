@@ -1,5 +1,11 @@
+<?php session_start();
+$compID = $_SESSION['ID'];
+$compName = $_SESSION['userName'];
+?>
 <!DOCTYPE html>
 <html lang="en">
+<span id="user" hidden><?php echo $compID?></span>
+<span id="mahName" hidden>Temp Company<?php echo $compName?></span>
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
@@ -44,8 +50,6 @@
          				<li><a href="welcome.php">Home</a></li>         		
          				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
-         				<li><a href="postAd.php">Post Ad</a></li>
-						<li><a href="about.php">About Us</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          			</ul>
       			</div>
@@ -56,8 +60,10 @@
 
 	<h1>Post an Advertisement</h1>
 
-	<div>
-  		<form action="/postAdAction.php">
+	<div>			
+	<span><h2>Your company: Temp Company<?php echo $compName;?></h2></span>
+	
+  		<form action="">
    			<label for="project" id="projtype">Project Type</label>
 	   			<select id="project" name="project">
 	   				<option value="Website/Web Application">Website/Web Application</option>
@@ -70,7 +76,6 @@
 	      		</select>
 
 	      	<br>
-
 	      	<label for="why">Please give a short description of the project:</label>
    				<input type="text" id="why" name="whyproject" placeholder="Description">
 
@@ -83,11 +88,7 @@
 
     		<button class="btn" type="button" id="preview" onclick="p()">Preview</button>
 
-    		<button class="btn" type="submit" id="submit">
-    			<a href="viewProfile.php">
-    				<span class="action_box right">
-    				</span>
-    			</a>
+    		<button class="btn" type="button" id="submit" onclick="post()">
     			Submit
     		</button>
 
@@ -103,7 +104,7 @@
 						<th>Type</th>
 						<th>Description</th>
 						<th>Purpose</th>
-						<th>Profile</th></tr>
+						</tr>
 					</thead>
 					<tbody>
 						<tr>
@@ -111,7 +112,6 @@
 							<td id="type"></td>
 							<td id="description"></td>
 							<td id="purp"></td>
-							<td id="profile"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -129,13 +129,14 @@
 			var project_selected = project.options[project.selectedIndex].value;
 			var why = document.getElementById('why');
 			var purpose = document.getElementById('purpose');
+			var mahName = document.getElementById('mahName');
 
 			var cell1 = document.getElementById('name');
 			var cell2 = document.getElementById('type');
 			var cell3 = document.getElementById('description');
 			var cell4 = document.getElementById('purp');
-			var cell5 = document.getElementById('profile');
-			
+	
+			cell1.innerHTML = mahName.innerHTML;
 			cell2.innerHTML = project_selected;
 			cell3.innerHTML = why.value;
 			cell4.innerHTML = purpose.value;
@@ -143,6 +144,29 @@
 			var preview = 'preview';
 			var submit = 'submit';
 			table.style.display = "block";
+		}
+
+		function post() {
+			f = "postAd";
+			alert("in function!");
+			text = [];
+			purpose = document.getElementById('purpose').value; 
+			description = document.getElementById('why').value; 
+			project = document.getElementById('project'); 
+			project_type = project.options[project.selectedIndex].value; 
+			user = document.getElementById('user').innerHTML;
+			text.push(user); text.push(project_type); text.push(description); text.push(purpose);
+			$.ajax({
+	            url: 'ajax.php',
+	            data: {textUpdate: text, func: f},
+	            type: 'post',
+	            success: function(result) {
+	                console.log("action performed successfully");
+	            }, 
+	            error: function(result) {
+	            	console.log(result);
+	            }
+	        });
 		}
 	</script>
 
