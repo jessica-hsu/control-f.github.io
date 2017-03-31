@@ -104,7 +104,7 @@ $compName = $_SESSION['userName'];
 						<th>Type</th>
 						<th>Description</th>
 						<th>Purpose</th>
-						<th>Profile</th></tr>
+						</tr>
 					</thead>
 					<tbody>
 						<tr>
@@ -112,7 +112,6 @@ $compName = $_SESSION['userName'];
 							<td id="type"></td>
 							<td id="description"></td>
 							<td id="purp"></td>
-							<td id="profile"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -156,9 +155,9 @@ $compName = $_SESSION['userName'];
 			project_type = project.options[project.selectedIndex].value;
 			user = document.getElementById('user').innerHTML;
 			text.push(user); text.push(project_type); text.push(description); text.push(purpose);
-			$.ajax({
+			/*$.ajax({
 	            url: 'ajax.php',
-	            data: {text: r.name, func: f},
+	            data: {textUpdate: text, func: f},
 	            type: 'post',
 	            success: function(result) {
 	                console.log("action performed successfully");
@@ -166,7 +165,7 @@ $compName = $_SESSION['userName'];
 	            error: function(result) {
 	            	console.log(result);
 	            }
-	        });
+	        });*/
 		}
 	</script>
 
