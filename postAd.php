@@ -61,9 +61,9 @@ $compName = $_SESSION['userName'];
 	<h1>Post an Advertisement</h1>
 
 	<div>			
-	<span><h2>Your company: <?php echo $compName;?></h2></span>
+	<span><h2>Your company: Temp Company<?php echo $compName;?></h2></span>
 	
-  		<form action="viewProfile.php" onsubmit="submit()" method="post">
+  		<form action="" onsubmit="submit()" method="post">
    			<label for="project" id="projtype">Project Type</label>
 	   			<select id="project" name="project">
 	   				<option value="Website/Web Application">Website/Web Application</option>

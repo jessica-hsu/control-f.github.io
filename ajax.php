@@ -152,6 +152,9 @@ switch ($func) {
 		$data[] = $row;
 		print json_encode($data); //must have this for php to return json object
 		break;
+	
+	case 'postAd':
+		break;
 		
 	default:
 		die("Choose a function!");
