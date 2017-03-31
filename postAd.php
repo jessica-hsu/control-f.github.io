@@ -148,7 +148,6 @@ $compName = $_SESSION['userName'];
 
 		function post() {
 			f = "postAd";
-			alert("in function!");
 			text = [];
 			purpose = document.getElementById('purpose').value; 
 			description = document.getElementById('why').value; 
@@ -156,7 +155,8 @@ $compName = $_SESSION['userName'];
 			project_type = project.options[project.selectedIndex].value; 
 			user = document.getElementById('user').innerHTML;
 			text.push(project_type); text.push(description); text.push(purpose);
-			$.ajax({
+			console.log(text);
+			/*$.ajax({
 	            url: 'ajax.php',
 	            data: {textUpdate: text, func: f, id: user},
 	            type: 'post',
@@ -167,7 +167,7 @@ $compName = $_SESSION['userName'];
 	            error: function(result) {
 	            	console.log(result);
 	            }
-	        });
+	        });*/
 		}
 	</script>
 
