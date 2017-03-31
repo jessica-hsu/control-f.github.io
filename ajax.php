@@ -1,7 +1,7 @@
 <?php
 include 'connectDB.php';
 
-if (isset($_POST['func'])) {
+/*if (isset($_POST['func'])) {
 	$func = $_POST['func'];
 	
 } 
@@ -29,14 +29,14 @@ if (isset($_POST['s'])) {
 if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
 
-}
+}*/
 
-/*$userID = 6;
+$userID = 6;
 $func = "postAd";
 //$urls = ["some web app", "sample"];
 //$size = 2;
 //$years = [2, 3];
-$text = ["Android", "description", "purpose" ];*/
+$text = ["example title", "des", "purp" ];
 
 switch ($func) {
 	#Update the description of user
@@ -160,20 +160,15 @@ switch ($func) {
 		$description = $text[1]; 
 		$purpose = $text[2]; 
 		date_default_timezone_set('America/New_York');
-		$date = date("Y/m/d");
+		$date = date('Y/m/d');
 		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES
-				(".$userID.", '".$description."', ".$date.", '".$purpose."', '".$type."')";
+				(".$userID.", '".$description."', '".$date."', '".$purpose."', '".$type."')";
+		echo $query;
 		if (mysqli_query($conn, $query)) {
 			echo "success" . "\n";
 		} else {
 			echo "Error inserting record: " . mysqli_error($conn);
 		}
-		$query ="SELECT * FROM advert";
-		$data = array();
-		$row = mysqli_fetch_assoc($result);
-		$data[] = $row;
-		print json_encode($data); //must have this for php to return json object
-		
 		break;
 		
 	default:
