@@ -45,7 +45,6 @@ if (isset($_POST['profile'])) {
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
 			<a id="navLogo" class="navbar-brand" href="index.html" style="padding:0;">
-            	<img  src="img/Icon-title.png" class="d-inline-block align-top" alt="" style="width: 10%; margin:0; padding:2.5% 0;">
           	</a>
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
@@ -58,12 +57,12 @@ if (isset($_POST['profile'])) {
        			 	<ul class="nav navbar-nav">
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
-         				<li><a href="#description">How it works</a></li>
-         				<li><a href="about.html">About Us</a></li>
+         				<li><a href="index.html">How it works</a></li>
+         				<li><a href="about.php">About Us</a></li>
          				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Login/Register<span class="caret"></span></a>
          					<ul class="dropdown-menu">
-         						<li><a href="loginDev.html">Login - developers</a></li>
-         						<li><a href="loginComp.html">Login - nonprofits</a></li>
+         						<li><a href="loginDev.php">Login - developers</a></li>
+         						<li><a href="loginComp.php">Login - nonprofits</a></li>
          					</ul>
          				</li>
 
