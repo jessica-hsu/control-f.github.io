@@ -5,7 +5,7 @@ $compName = $_SESSION['userName'];
 <!DOCTYPE html>
 <html lang="en">
 <span id="user" hidden><?php echo $compID?></span>
-<span id="mahName" hidden><?php echo $compName?></span>
+<span id="mahName" hidden>Temp Company<?php echo $compName?></span>
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
