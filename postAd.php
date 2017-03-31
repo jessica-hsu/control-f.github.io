@@ -160,9 +160,14 @@ $compName = $_SESSION['userName'];
 	            url: 'ajax.php',
 	            data: {textUpdate: text, func: f, id: user},
 	            type: 'post',
+				dataType: "json",
+	            
 	            success: function(result) {
 	                console.log("action performed successfully");
-	                window.location.href = 'viewCompanyProfile.php';
+	                var obj = JSON.stringify(data);	//need this or it won't work
+					obj = JSON.parse(obj);
+					console.log(obj);
+	               // window.location.href = 'viewCompanyProfile.php';
 	            }, 
 	            error: function(result) {
 	            	console.log(result);

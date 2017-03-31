@@ -155,7 +155,11 @@ switch ($func) {
 		break;
 	
 	case 'postAd':
-		$type = $text[0];
+		$data = array();
+		$row = $text;
+		$data[] = $row;
+		print json_encode($data);
+		/*$type = $text[0];
 		$description = $text[1]; 
 		$purpose = $text[2]; 
 		date_default_timezone_set('America/New_York');
@@ -166,7 +170,7 @@ switch ($func) {
 			echo "success" . "\n";
 		} else {
 			echo "Error inserting record: " . mysqli_error($conn);
-		}
+		}*/
 		break;
 		
 	default:
