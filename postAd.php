@@ -165,10 +165,7 @@ $compName = $_SESSION['userName'];
 	            
 	            success: function(result) {
 	                console.log("action performed successfully");
-	                var obj = JSON.stringify(result);	//need this or it won't work
-					obj = JSON.parse(obj);
-					console.log(obj);
-	               // window.location.href = 'viewCompanyProfile.php';
+	               	window.location.href = 'viewCompanyProfile.php';
 	            }, 
 	            error: function(result) {
 	            	console.log(result);
