@@ -162,7 +162,7 @@ switch ($func) {
 		date_default_timezone_set('America/New_York');
 		$date = date("Y/m/d");
 		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES
-				(".$userID.", '".$description."', '".$date."', '".$purpose."', '".$type."')";
+				(".$userID.", '".$description."', ".$date.", '".$purpose."', '".$type."')";
 		if (mysqli_query($conn, $query)) {
 			echo "success" . "\n";
 		} else {
