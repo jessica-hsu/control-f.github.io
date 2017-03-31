@@ -41,6 +41,18 @@ This page is used for authentication as well as POST using the Iframe+form+hash 
 	        hello(auth.network).api('/me').then(function(r) {               
 	            console.log("name(login) = "+r.name);
 	            console.log("email(login) = " + r.email);
+	            var p = "dev";
+	            $.ajax({
+	                url: 'loginDev.php',
+	                data: {name: r.name, email: r.email, profile: p},
+	                type: 'post',
+	                success: function(result) {
+	                    console.log("action performed successfully");
+	                }, 
+	                error: function(result) {
+	                	console.log(result);
+	                }
+	            });
 	        });
 
 	    });
