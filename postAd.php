@@ -4,8 +4,8 @@ $compName = $_SESSION['userName'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<span id="user" hidden><?php echo $compID?></span>
-<span id="mahName" hidden><?php echo $compName?></span>
+<span id="user" hidden><?php echo $compID; ?></span>
+<span id="mahName" hidden><?php echo $compName; ?></span>
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
@@ -153,7 +153,8 @@ $compName = $_SESSION['userName'];
 			description = document.getElementById('why').value; 
 			project = document.getElementById('project'); 
 			project_type = project.options[project.selectedIndex].value; 
-			user = document.getElementById('user').innerHTML;
+			user = document.getElementById('user').innerHTML; console.log("company id is: " + user);
+			console.log("my company name is: "+ document.getElementById('mahName').innerHTML);
 			text.push(project_type); text.push(description); text.push(purpose);
 			console.log(text);
 			$.ajax({
