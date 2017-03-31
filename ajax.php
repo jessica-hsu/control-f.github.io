@@ -154,10 +154,10 @@ switch ($func) {
 		break;
 	
 	case 'postAd':
-		$type = $text[0]; echo $type . "\n";
-		$description = $text[1]; echo $description . "\n";
-		$purpose = $text[2]; echo $purpose . "\n";
-		$timezone = date_default_timezone_get(); echo $timezone;
+		$type = $text[0];
+		$description = $text[1]; 
+		$purpose = $text[2]; 
+		$timezone = date_default_timezone_get(); 
 		date_default_timezone_set($timezone);
 		$date = date("Y/m/d");
 		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES

@@ -156,7 +156,7 @@ $compName = $_SESSION['userName'];
 			user = document.getElementById('user').innerHTML;
 			text.push(project_type); text.push(description); text.push(purpose);
 			console.log(text);
-			/*$.ajax({
+			$.ajax({
 	            url: 'ajax.php',
 	            data: {textUpdate: text, func: f, id: user},
 	            type: 'post',
@@ -167,7 +167,7 @@ $compName = $_SESSION['userName'];
 	            error: function(result) {
 	            	console.log(result);
 	            }
-	        });*/
+	        });
 		}
 	</script>
 
