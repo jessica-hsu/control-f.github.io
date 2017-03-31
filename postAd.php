@@ -4,7 +4,7 @@ $compName = $_SESSION['userName'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<span id="user" hidden><?php echo $compID; ?></span>
+<span id="user" hidden><?php echo $compID?></span>
 <span id="mahName" hidden><?php echo $compName; ?></span>
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
