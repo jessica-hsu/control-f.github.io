@@ -30,7 +30,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 } else {	#user is a COMPANY
 	
 	#CHECK TO SEE IF company Name already exists in DB
-	$query = "SELECT cEmail FROM company WHERE cName = '" . $_SESSION['userEmail'] . "'";
+	$query = "SELECT cEmail FROM company WHERE cEmail = '" . $_SESSION['userEmail'] . "'";
 	$result = mysqli_query($conn, $query);
 	
 	#parse full name into first and last name
