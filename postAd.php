@@ -137,8 +137,7 @@ $compName = $_SESSION['userName'];
 			var cell2 = document.getElementById('type');
 			var cell3 = document.getElementById('description');
 			var cell4 = document.getElementById('purp');
-			var cell5 = document.getElementById('profile');
-
+	
 			cell1.innerHTML = mahName.innerHTML;
 			cell2.innerHTML = project_selected;
 			cell3.innerHTML = why.value;
@@ -152,7 +151,9 @@ $compName = $_SESSION['userName'];
 		function submit() {
 			f = "postAd";
 			text = [];
-			
+			purpose = ;
+			description = ;
+			project_type = ;
 			user = document.getElementById('user').innerHTML;
 			
 			$.ajax({
