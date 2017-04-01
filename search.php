@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if ($_SESSION['profileType'] == null) {
-	header('Location: loginDev.php');
+	header('Location: index.php');
 }
 
 ?>
@@ -24,6 +24,7 @@ if ($_SESSION['profileType'] == null) {
 	
 	<!-- jQUERY -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="hello.all.js"></script>
 	
 	<link rel="stylesheet" href="search.css">
 

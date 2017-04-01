@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if ($_SESSION['profileType'] == null) {
-	header('Location: loginDev.php');
+	header('Location: index.php');
 }
 
 
@@ -22,6 +22,7 @@ if ($_SESSION['profileType'] == null) {
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="hello.all.js"></script>
 	
 	<!-- jQUERY -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
