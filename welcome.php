@@ -80,6 +80,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 	<title>Control-F</title>
 	<style>
 		#logout {
+			cursor: pointer;
 		}
 	</style>
 </head>
