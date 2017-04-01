@@ -1,6 +1,9 @@
 <?php 
-
 session_start(); 
+if ($_SESSION['ID'] == null) {
+	header('Location: loginDev.php');
+}
+
 include 'connectDB.php';
 
 #CHECK IF USER IS COMPANY OR DEVELOPER

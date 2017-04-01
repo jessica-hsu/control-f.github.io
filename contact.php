@@ -1,9 +1,11 @@
 <?php 
-if (session_status() == PHP_SESSION_NONE) {
+
+session_start(); 
+if ($_SESSION['ID'] == null) {
 	header('Location: loginDev.php');
 }
 
-session_start(); ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
