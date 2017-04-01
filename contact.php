@@ -1,7 +1,7 @@
 <?php 
 
 session_start(); 
-if ($_SESSION['ID'] == null) {
+if ($_SESSION['profileType'] == null) {
 	header('Location: loginDev.php');
 }
 
