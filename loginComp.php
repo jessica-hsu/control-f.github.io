@@ -93,6 +93,7 @@ if (isset($_POST['network'])) {
 
         </p>
       </div>
+    <script src="hello.all.js"></script>
 
 <script class="pre">
 hello.on('auth.login', function(auth) {
