@@ -40,6 +40,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 </head>
 <?php include "connectDB.php"?>
 <span id="currentUser" hidden><?php echo $userID?></span>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 		<nav class="navbar navbar-default navbar-fixed-top">

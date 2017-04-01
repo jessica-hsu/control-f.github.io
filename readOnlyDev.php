@@ -37,6 +37,7 @@ if ($_SESSION['profileType'] == null) {
 $userID = $_GET['info'];
 
 ?>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 		<nav class="navbar navbar-default navbar-fixed-top">

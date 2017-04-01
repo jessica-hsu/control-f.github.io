@@ -32,6 +32,7 @@ if ($_SESSION['profileType'] == null) {
 	<title>Control-F</title>
 </head>
 <?php include "connectDB.php" ?>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<div class="container-fluid">
