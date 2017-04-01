@@ -10,7 +10,6 @@ $userID = $_SESSION['ID'];
 //$userID = 1;
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
-	exit;
 }
 
 ?>
@@ -41,6 +40,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 <?php include "connectDB.php"?>
 <span id="currentUser" hidden><?php echo $userID?></span>
 <span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 		<nav class="navbar navbar-default navbar-fixed-top">

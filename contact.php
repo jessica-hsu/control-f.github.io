@@ -30,6 +30,7 @@ if ($_SESSION['profileType'] == null) {
 	<title>Contact Us</title>
 </head>
 <span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<div class="container-fluid">
