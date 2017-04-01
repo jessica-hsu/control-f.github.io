@@ -97,8 +97,14 @@ width:100vw;
 
 }
 
-#volunteers-table {
+#awards-box {
 	overflow: scroll;
+
+
+}
+
+#volunteers-table {
+	padding-bottom: 10px;
 }
 
 #about-text, #quick-facts {
@@ -116,6 +122,28 @@ width:100vw;
 	height:1%;
 }
 
+.save-icon {
+	float:right;
+	background: none;
+	border: none;
+
+}
+
+#save-about-text{
+	display:none;
+}
+
+#save-quick-facts-text {
+	display:none;
+}
+
+#save-skills-text {
+	display:none;
+}
+
+#save-contact-us-text {
+	display:none;
+}
 
 .edit-icon {
 
@@ -124,6 +152,8 @@ background: none;
 border: none;
 
 }
+
+
 
 
 

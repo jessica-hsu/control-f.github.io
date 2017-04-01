@@ -10,7 +10,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="viewCompanyProfile.css">
+  <link rel="stylesheet" type="text/css" href="viewCompanyProfile.css">
+  <script src="viewCompanyProfile.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
 
 
 </head>
@@ -42,11 +45,11 @@
 			</div>
 		</div>
 	</nav>
-	<!--- for the profile backimage -->
+	<!---for the profile backimage-->
 	<div class = "container-fluid" id = "top-background">
 		<div id = "title-text">
       <?php #query to get user information#
-   				$query = "SELECT cName FROM company WHERE compID = 1 ";
+   				$query = "SELECT cName FROM company WHERE compID = 6 ";
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
@@ -66,13 +69,18 @@
 
 			<!--first row-->
 		  	<div class="col-lg-4 col-lg-offset-2 left-box left-box" id = "about-box">
-		  		<button onclick="editAbout(this);" class="edit-icon">
-		  			<span class="glyphicon glyphicon-pencil "></span>
-		  		</button> <br>
+
+          <button onclick="editAbout(this);" class="edit-icon">
+		  			<span class="glyphicon glyphicon-pencil " ></span>
+		  		</button>
+          <button onclick="save('about-text');" class="save-icon">
+            <span class="glyphicon glyphicon-floppy-saved" id = "save-about-text"></span>
+		  		</button>
+          <br>
 				<p class = "sub-heading" > About Company </p> <br>
 				<p id="about-text" contentEditable="false">
           <?php #query to get user information#
-       				$query = "SELECT cDescription FROM company WHERE compID = 1 ";
+       				$query = "SELECT cDescription FROM company WHERE compID = 6 ";
        				if ( ! ( $result = mysqli_query($conn, $query)) ) {
        					echo("Error: %s\n"+ mysqli_error($conn));
        					exit(1);
@@ -81,23 +89,7 @@
        				echo($row['cDescription']);
        			?>
 				</p>
-				<script>
-			  	function editAbout(button) {
-			    	var text = document.getElementById("about-text");
-			    	var box = document.getElementById("about-box");
-				    if (text.contentEditable == "true") {
-				        text.contentEditable = "false";
-				       	box.style.backgroundColor="#e8e9ea";
-				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
-				    } else {
-				        text.contentEditable = "true";
-				        box.style.backgroundColor ="#f2f2f2";
-				        box.style.border = "2px dashed #cecece";
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
-				    }
-				}
-		  		</script>
+
 			</div>
 
 
@@ -105,7 +97,11 @@
 		  	<div class="col-lg-4  col-lg-offset-1 right-box top-box" id = "quick-facts-box">
 				<button onclick="editFacts(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
-		  		</button>
+		  	</button>
+        <button onclick="save('quick-facts-table');" class="save-icon">
+          <span class="glyphicon glyphicon-floppy-saved" id = "save-quick-facts-text"></span>
+        </button>
+
         <br>
 
 				<p class = "sub-heading" > Quick Facts </p> <br>
@@ -115,7 +111,7 @@
 
           <p id="facts-text" contentEditable="false">
             <?php #query to get user information#
-                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = 1";
+                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = 6";
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -131,33 +127,7 @@
 
       </table>
 
-				<script>
-			  	function editFacts(button) {
-			    	var text = document.getElementById("facts-text");
-			    	var box = document.getElementById("quick-facts-box");
-            var location = document.getElementById("loc");
-            var founder = document.getElementById("found");
-            var focus = document.getElementById("focus");
 
-				    if ( text.contentEditable == "true") {
-				         text.contentEditable = "false";
-				       	 box.style.backgroundColor="#e8e9ea";
-				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
-                 location.contentEditable=false;
-                 founder.contentEditable=false;
-                 focus.contentEditable=false;
-				    } else {
-				        text.contentEditable = "true";
-				        box.style.backgroundColor ="#f2f2f2";
-				        box.style.border = "2px dashed #cecece";
-                location.contentEditable=true;
-                founder.contentEditable=true;
-                focus.contentEditable=true;
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
-				    }
-				}
-		  		</script>
 
 			</div>
 
@@ -166,43 +136,41 @@
 		  	<div class="col-lg-4 col-lg-offset-2 left-box " id = "skills-box">
 		  		<button onclick="editSkills(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
-		  		</button> <br>
-				<p class = "sub-heading" > Things We Do </p> <br>
+		  		</button>
+          <button onclick="save('skills-text');" class="save-icon">
+            <span class="glyphicon glyphicon-floppy-saved" id = "save-skills-text"></span>
+          </button>
+          <br>
+				<p class = "sub-heading" > What We're Proud Of </p> <br>
 				<p id="skills-text" contentEditable="false">
-
+          <?php #query to get user information#
+              $query = "SELECT companycol FROM company WHERE compID = 6 ";
+              if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                echo("Error: %s\n"+ mysqli_error($conn));
+                exit(1);
+              }
+              $row = mysqli_fetch_assoc($result);
+              echo($row['companycol']);
+            ?>
 				</p>
-
-				<script>
-			  	function editSkills(button) {
-			    	var text = document.getElementById("skills-text");
-			    	var box = document.getElementById("skills-box");
-				    if (text.contentEditable == "true") {
-				        text.contentEditable = "false";
-				       	box.style.backgroundColor="#e8e9ea";
-				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
-				    } else {
-				        text.contentEditable = "true";
-				        box.style.backgroundColor ="#f2f2f2";
-				        box.style.border = "2px dashed #cecece";
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
-				    }
-				}
-		  		</script>
 
 			</div>
 
 
 		  	<div class="col-lg-4  col-lg-offset-1 right-box " id = "projects-box">
-		  		<button onclick="editProjects(this);" class="edit-icon">
+		  		<button onclick="editContact(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
-		  		</button> <br>
+		  		</button>
+          <button onclick="save('contact-box');" class="save-icon">
+            <span class="glyphicon glyphicon-floppy-saved" id = "save-contact-us-text"></span>
+          </button>
+          <br>
 				<p class = "sub-heading" > Contact Us  </p>
 
         <p id="projects-text" contentEditable="false">
         <table style="width:60%" id = "quick-facts-table">
           <?php #query to get user information#
-              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = 1;";
+              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = 6;";
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -215,32 +183,6 @@
         </table>
 				</p>
 
-				<script>
-			  	function editProjects(button) {
-			    	var text = document.getElementById("projects-text");
-			    	var box = document.getElementById("projects-box");
-            var email = document.getElementById("email");
-            var tel = document.getElementById("tel");
-				    if (text.contentEditable == "true") {
-				        text.contentEditable = "false";
-				       	box.style.backgroundColor="#e8e9ea";
-				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
-                 email.contentEditable=false;
-                 tel.contentEditable= false;
-
-
-
-				    } else {
-				        text.contentEditable = "true";
-				        box.style.backgroundColor ="#f2f2f2";
-				        box.style.border = "2px dashed #cecece";
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
-                email.contentEditable=true;
-                tel.contentEditable=true;
-				    }
-				}
-		  		</script>
 			</div>
 
 			<!-- 3rd row -->
@@ -248,7 +190,7 @@
 			<div class="col-lg-9 col-lg-offset-2 left-box " id = "awards-box">
 				<button onclick="editAwards(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
-		  		</button> <br>
+		  	</button> <br>
 				<p class = "sub-heading" > Volunteers Needed </p>
 
         <table style="width:80%" id = "volunteers-table" class="table table-hover">
@@ -261,7 +203,7 @@
         </thead>
 				<p id="awards-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = 1;";
+              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = 6;";
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -283,12 +225,12 @@
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
+                 $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
 				    }
 				}
 		  		</script>
@@ -326,12 +268,12 @@
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
+                 $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
 				    }
 				}
 		  		</script>
@@ -339,9 +281,6 @@
 			</div>
 
 		</div>
-
-
-
 
 	</div>
 
