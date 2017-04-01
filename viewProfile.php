@@ -1,4 +1,9 @@
-<?php session_start();	
+<?php 
+if (session_status() == PHP_SESSION_NONE) {
+	header('Location: loginDev.php');
+}
+
+session_start();	
 $userID = $_SESSION['ID'];
 //$userID = 1;
 if (strcmp($_SESSION['profileType'], "comp")==0) {
