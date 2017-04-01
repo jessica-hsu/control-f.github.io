@@ -98,13 +98,12 @@ if (isset($_POST['network'])) {
 <script class="pre">
 hello.on('auth.login', function(auth) {
     hello(auth.network).api('/me').then(function(r) {               
-        console.log("name = "+r.name);
-        console.log("email = " + r.email);
-        var p = "comp";
+        console.log("name(login) = "+r.name);
+        console.log("email(login) = " + r.email);
+       	var p = "comp";
        	var n = auth.network;
-        
         $.ajax({
-            url: 'loginComp.php',
+            url: 'loginDev.php',
             data: {name: r.name, email: r.email, profile: p, network: n},
             type: 'post',
             success: function(result) {
@@ -115,6 +114,7 @@ hello.on('auth.login', function(auth) {
             }
         });
     });
+
 });
 </script> 
 
