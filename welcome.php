@@ -134,7 +134,7 @@ $( document ).ready(function() {
 	
 });
 function logout() {
-	hello.logout("", true);
+	hello.logout({force:true});
 	console.log("logging out ... ");
 	f="logout";
 	profileType = document.getElementById('profileType').innerHTML;
