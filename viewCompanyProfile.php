@@ -10,13 +10,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="viewProfile.css">
+<link rel="stylesheet" type="text/css" href="viewCompanyProfile.css">
 
 
 </head>
 <?php include "connectDB.php"?>
 <body>
-
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
@@ -39,13 +38,11 @@
 					<li><a href="postAd.php">Post Ad</a></li>
 						<li><a href="about.php">About Us</a></li>
 					<li><a href="contact.php">Contact Us</a></li>
-
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<!--- for the profile backimage -->
-
 	<div class = "container-fluid" id = "top-background">
 		<div id = "title-text">
       <?php #query to get user information#
@@ -60,7 +57,7 @@
 
     </div>
 	</div>
-	<img src="img/puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
+	<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
 
 
 	<div class="container-fluid">
@@ -68,7 +65,7 @@
 		<div class="row">
 
 			<!--first row-->
-		  	<div class="col-sm-4 col-sm-offset-2 left-box left-box" id = "about-box">
+		  	<div class="col-lg-4 col-lg-offset-2 left-box left-box" id = "about-box">
 		  		<button onclick="editAbout(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
 		  		</button> <br>
@@ -85,7 +82,6 @@
        			?>
 				</p>
 				<script>
-
 			  	function editAbout(button) {
 			    	var text = document.getElementById("about-text");
 			    	var box = document.getElementById("about-box");
@@ -93,12 +89,12 @@
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
-
+                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
 				    }
 				}
 		  		</script>
@@ -106,10 +102,12 @@
 
 
 
-		  	<div class="col-sm-4  col-sm-offset-1 right-box top-box" id = "quick-facts-box">
+		  	<div class="col-lg-4  col-lg-offset-1 right-box top-box" id = "quick-facts-box">
 				<button onclick="editFacts(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
-		  		</button> <br>
+		  		</button>
+        <br>
+
 				<p class = "sub-heading" > Quick Facts </p> <br>
 
         <table style="width:60%" id = "quick-facts-table">
@@ -123,9 +121,9 @@
                   exit(1);
                 }
                 while($row = mysqli_fetch_assoc($result)) {
-                echo("<tr><td><i class=\"material-icons\">location_city</i></td><td>Location</td>  <span contentEditable='false' class='facts-text '> <td>" . $row['Location'] . "</td></tr>");
-                echo("<tr><td><i class=\"material-icons\">person</i></td><td>Founder</td>  <span contentEditable='false' class='facts-text '> <td>" . $row['Founder'] . "</td></tr>");
-                echo("<tr><td><i class=\"material-icons\">star</i></td><td>Focus</td>  <span contentEditable='false' class='facts-text '> <td>" . $row['Focus'] . "</td></tr>");
+                echo("<tr><td><i class=\"material-icons\">location_city</i></td><td>Location</td>  <span contentEditable='false' class='facts-text '> <td id = \"loc\">" . $row['Location'] . "</td></tr>");
+                echo("<tr><td><i class=\"material-icons\">person</i></td><td>Founder</td>  <span contentEditable='false' class='facts-text '> <td id =\"found\">" . $row['Founder'] . "</td></tr>");
+                echo("<tr><td><i class=\"material-icons\">star</i></td><td>Focus</td>  <span contentEditable='false' class='facts-text '> <td id =\"focus\">" . $row['Focus'] . "</td></tr>");
               }
               ?>
 
@@ -134,20 +132,29 @@
       </table>
 
 				<script>
-
 			  	function editFacts(button) {
 			    	var text = document.getElementById("facts-text");
 			    	var box = document.getElementById("quick-facts-box");
-				    if (text.contentEditable == "true") {
-				        text.contentEditable = "false";
-				       	box.style.backgroundColor="#e8e9ea";
-				       	 box.style.border = "none";
+            var location = document.getElementById("loc");
+            var founder = document.getElementById("found");
+            var focus = document.getElementById("focus");
 
+				    if ( text.contentEditable == "true") {
+				         text.contentEditable = "false";
+				       	 box.style.backgroundColor="#e8e9ea";
+				       	 box.style.border = "none";
+                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
+                 location.contentEditable=false;
+                 founder.contentEditable=false;
+                 focus.contentEditable=false;
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-
+                location.contentEditable=true;
+                founder.contentEditable=true;
+                focus.contentEditable=true;
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
 				    }
 				}
 		  		</script>
@@ -156,7 +163,7 @@
 
 
 			<!--second row-->
-		  	<div class="col-sm-4 col-sm-offset-2 left-box " id = "skills-box">
+		  	<div class="col-lg-4 col-lg-offset-2 left-box " id = "skills-box">
 		  		<button onclick="editSkills(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
 		  		</button> <br>
@@ -166,7 +173,6 @@
 				</p>
 
 				<script>
-
 			  	function editSkills(button) {
 			    	var text = document.getElementById("skills-text");
 			    	var box = document.getElementById("skills-box");
@@ -174,12 +180,12 @@
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
-
+                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
 				    }
 				}
 		  		</script>
@@ -187,7 +193,7 @@
 			</div>
 
 
-		  	<div class="col-sm-4  col-sm-offset-1 right-box " id = "projects-box">
+		  	<div class="col-lg-4  col-lg-offset-1 right-box " id = "projects-box">
 		  		<button onclick="editProjects(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
 		  		</button> <br>
@@ -202,29 +208,36 @@
                 exit(1);
               }
               while($row = mysqli_fetch_assoc($result)) {
-                echo("<br><tr><td><i class=\"material-icons\">email</i></td><td>Email</td>  <span contentEditable='false' class='facts-text '> <td>" . $row['cEmail'] . "</td></tr>");
-                echo("<tr><td><i class=\"material-icons\">phone</i></td><td>Phone</td>  <span contentEditable='false' class='facts-text '> <td>" . $row['cPhoneNumber'] . "</td></tr>");
-
+                echo("<br><tr><td><i class=\"material-icons\">email</i></td><td>Email &nbsp</td>  <span contentEditable='false' class='facts-text '> <td id=\"email\"> " . $row['cEmail'] . "</td></tr>");
+                echo("<tr><td><i class=\"material-icons\">phone</i></td><td>Phone &nbsp</td>  <span contentEditable='false' class='facts-text '> <td id=\"tel\">" . $row['cPhoneNumber'] . "</td></tr>");
               }
             ?>
         </table>
 				</p>
 
 				<script>
-
 			  	function editProjects(button) {
 			    	var text = document.getElementById("projects-text");
 			    	var box = document.getElementById("projects-box");
+            var email = document.getElementById("email");
+            var tel = document.getElementById("tel");
 				    if (text.contentEditable == "true") {
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
+                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
+                 email.contentEditable=false;
+                 tel.contentEditable= false;
+
+
 
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
+                email.contentEditable=true;
+                tel.contentEditable=true;
 				    }
 				}
 		  		</script>
@@ -232,7 +245,7 @@
 
 			<!-- 3rd row -->
 
-			<div class="col-sm-9 col-sm-offset-2 left-box " id = "awards-box">
+			<div class="col-lg-9 col-lg-offset-2 left-box " id = "awards-box">
 				<button onclick="editAwards(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
 		  		</button> <br>
@@ -254,14 +267,8 @@
                 exit(1);
               }
               while($row = mysqli_fetch_assoc($result) ) {
-
                 echo("<tr> <span contentEditable='false' class='facts-text '> <td>" . $row['title'] . "</td>");
                 echo("<td>" . $row['aDescription'] . "</td></tr></span>");
-
-
-
-
-
               }
             ?>
 				</p>
@@ -269,7 +276,6 @@
       </center>
 
 				<script>
-
 			  	function editAwards(button) {
 			    	var text = document.getElementById("awards-text");
 			    	var box = document.getElementById("awards-box");
@@ -277,12 +283,12 @@
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
-
+                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
 				    }
 				}
 		  		</script>
@@ -290,7 +296,7 @@
 			</div>
 
 			<!-- fourth row -->
-			<div class="col-sm-9  col-sm-offset-2 left-box " id = "social-media">
+			<div class="col-lg-9  col-lg-offset-2 left-box " id = "social-media">
 				<button onclick="editSocial(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
 		  		</button> <br>
@@ -313,7 +319,6 @@
         </p>
 
 				<script>
-
 			  	function editSocial(button) {
 			    	var text = document.getElementById("social-media-text");
 			    	var box = document.getElementById("social-media");
@@ -321,12 +326,12 @@
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
 				       	 box.style.border = "none";
-
+                 $(button).find(".glyphicon").removeClass("glyphicon-floppy-save").addClass("glyphicon-pencil");
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-floppy-save");
 				    }
 				}
 		  		</script>
