@@ -1,8 +1,6 @@
 <?php 
 session_start(); 
-if ($_SESSION['profileType'] == null) {
-	header('Location: index.php');
-}
+
 
 include 'connectDB.php';
 
