@@ -71,7 +71,7 @@ $userID = $_GET['info'];
 		</div>
 		<div class = "container-fluid" id = "division-bar"> 
 		</div>
-		<img src="img/ross.png" class="img-fluid" alt="Responsive image" id = "profile-image">
+		<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
 		<div class="container-fluid"
 		<div class="row">
 

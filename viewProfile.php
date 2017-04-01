@@ -73,7 +73,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		</div>
 		<div class = "container-fluid" id = "division-bar"> 
 		</div>
-		<img src=<?php echo("'".$_SESSION['pic']."'")?> class="img-fluid" alt="Responsive image" id = "profile-image">
+		<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
 		<div class="container-fluid">
 		<div class="row">
 			<div class="alert alert-success alert-dismissable" id="updateYes" style="display: none;">

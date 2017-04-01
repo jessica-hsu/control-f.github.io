@@ -67,7 +67,7 @@
 
     </div>
 	</div>
-	<img src="img/fossil.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
+	<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
 
 
 	<div class="container-fluid">
