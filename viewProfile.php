@@ -1,7 +1,7 @@
 <?php 
 if (session_status() == PHP_SESSION_NONE) {
 	header('Location: loginDev.php');
-}
+} 
 
 session_start();	
 $userID = $_SESSION['ID'];
