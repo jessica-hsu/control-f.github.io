@@ -57,6 +57,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 }
 #rejoice
 ?>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,6 +78,10 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 	<link rel='icon' href='img\icon.ico' type='image/x-icon'>
 
 	<title>Control-F</title>
+	<style>
+		#logout {
+		}
+	</style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<div class="container-fluid">
@@ -99,6 +104,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
          				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
+         				<li><a id="logout" onclick="logout()" >Logout</a></li>
          			</ul>
       			</div>
     		</div>
@@ -123,7 +129,30 @@ $( document ).ready(function() {
             console.log("email(login) = " + r.email);
         });
     });
-   
+
+	function logout() {
+    	hello.on('auth.logout', function () {
+    		f="logout";
+    		profileType = document.getElementById('profileType').innerHTML;
+    		$.ajax({
+            	url: 'ajax.php',
+            	data: {func: f},
+           		type: 'post',
+            	success: function(result) {
+                	console.log("action performed successfully");
+                	if (profileType == "dev") {
+                		window.location.href = "loginDev.php";
+                	} else {
+                    	window.location.href = "loginComp.php";
+                	}
+            	}, 
+            	error: function(result) {
+            		console.log(result);
+           		}
+        	});
+    	});
+	}
+    
 });
 </script>
 
