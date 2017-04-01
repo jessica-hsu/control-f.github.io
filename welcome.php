@@ -130,31 +130,32 @@ $( document ).ready(function() {
         });
     });
 
-	function logout() {
-		hello.logout();
-		console.log("logging out ... ");
-    	f="logout";
-    	profileType = document.getElementById('profileType').innerHTML;
-    	$.ajax({
-            url: 'ajax.php',
-            data: {func: f},
-           	type: 'post',
-            success: function(result) {
-                console.log("action performed successfully");
-                if (profileType == "dev") {
-                	window.location.href = "loginDev.php";
-                } else {
-                   	window.location.href = "loginComp.php";
-                }
-            }, 
-            error: function(result) {
-            	console.log(result);
-            }
-        });
-    	
-	}
-    
+	
 });
+function logout() {
+	hello.logout();
+	console.log("logging out ... ");
+	f="logout";
+	profileType = document.getElementById('profileType').innerHTML;
+	$.ajax({
+        url: 'ajax.php',
+        data: {func: f},
+       	type: 'post',
+        success: function(result) {
+            console.log("action performed successfully");
+            if (profileType == "dev") {
+            	window.location.href = "loginDev.php";
+            } else {
+               	window.location.href = "loginComp.php";
+            }
+        }, 
+        error: function(result) {
+        	console.log(result);
+        }
+    });
+	
+}
+
 </script>
 
 </body>
