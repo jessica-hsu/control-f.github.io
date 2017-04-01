@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connectDB.php';
 
 if (isset($_POST['func'])) {
@@ -162,6 +163,7 @@ switch ($func) {
 	
 	#kill session when user clicks logout
 	case 'logout':
+		$_SESSION = array();
 		session_destroy();
 		break;
 	default:
