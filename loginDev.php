@@ -119,21 +119,7 @@ hello.on('auth.login', function(auth) {
 
 });
 
-hello.on('auth.logout', function () {
-	f="logout";
-	$.ajax({
-        url: 'ajax.php',
-        data: {func: f},
-        type: 'post',
-        success: function(result) {
-            console.log("action performed successfully");
-            location.reload();
-        }, 
-        error: function(result) {
-        	console.log(result);
-        }
-    });
-});
+
 </script> 
         <script class="pre">
         hello.init({
