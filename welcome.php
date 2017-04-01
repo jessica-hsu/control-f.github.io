@@ -125,7 +125,9 @@ $( document ).ready(function() {
     var linkedin = hello('linkedin').getAuthResponse();
     console.log("token:" + linkedin.access_token);
     console.log("expires: " + linkedin.expires);
-
+	console.log("network: " + document.getElementById('network').innerHTML);
+	console.log("profile Type: " + document.getElementById('profile').innerHTML);
+	
     	    
     hello.on('auth.login', function(auth) {
         hello(auth.network).api('/me').then(function(r) {   
