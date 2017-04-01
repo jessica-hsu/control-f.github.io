@@ -58,6 +58,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 #rejoice
 ?>
 <span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,10 +135,16 @@ $( document ).ready(function() {
 	
 });
 function logout() {
-	hello.logout({force:true});
 	console.log("logging out ... ");
 	f="logout";
+	network = document.getElementById('network').innerHTML;
+	console.log(network);
 	profileType = document.getElementById('profileType').innerHTML;
+	console.log(profileType);
+	hello( network ).logout({force:true},function(e){
+		console.log("force logout of " + network);
+	});
+	
 	$.ajax({
         url: 'ajax.php',
         data: {func: f},
