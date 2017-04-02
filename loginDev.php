@@ -111,6 +111,7 @@ hello.on('auth.login', function(auth) {
             type: 'post',
             success: function(result) {
                 console.log("action performed successfully");
+                window.location.href='welcome.php';
             }, 
             error: function(result) {
             	console.log(result);
