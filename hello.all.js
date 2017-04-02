@@ -205,7 +205,7 @@ hello.utils.extend(hello, {
 		// OAuth2 authentication defaults
 		redirect_uri: window.location.href.split('#')[0],
 		response_type: 'token',
-		display: 'page',
+		display: 'popup',
 		state: '',
 
 		// OAuth1 shim
@@ -251,7 +251,7 @@ hello.utils.extend(hello, {
 		// When 'display=page' this property defines where the users page should end up after redirect_uri
 		// Ths could be problematic if the redirect_uri is indeed the final place,
 		// Typically this circumvents the problem of the redirect_url being a dumb relay page.
-		page_uri: 'welcome.php'
+		page_uri: window.location.href
 	},
 
 	// Service configuration objects
