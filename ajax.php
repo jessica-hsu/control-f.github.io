@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connectDB.php';
 
 if (isset($_POST['func'])) {
@@ -30,7 +31,7 @@ if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
 
 }
-/*
+/*For debugging purposes
 $userID = 6;
 $func = "postAd";
 //$urls = ["some web app", "sample"];
@@ -68,6 +69,7 @@ switch ($func) {
 			echo "Error deleting records: " . mysqli_error($conn);
 		}
 		
+		#insert all listed skills back
 		for ($i = 0; $i<$size; $i++) {
 			$query = "INSERT INTO userSkill (skillName, userID, yearsExp, portfolioURL)
 				VALUES ('".$text[$i]."', ".$userID.",".$years[$i].", '".$urls[$i]."')";
@@ -78,21 +80,7 @@ switch ($func) {
 				echo "Error inserting record: " . mysqli_error($conn);
 			}
 		}
-		
-		
-		#Insert all the values back
-		/*for ($i=0; $i < $size; $i++) {
-			echo $i. "\n";
-			$query = "INSERT INTO userSkill (skillName, userID, yearsExp, portfolioURL)
-				VALUES ('" . $text[$i] . 
-				"'," . $userID . ", " . $years[$i] . ", '" . $urls[$i] . "')";
-			echo $query . "\n";
-			if (mysqli_query($conn, $query)) {
-				echo "success" . $i . "\n";
-			} else {
-				echo "Error inserting record: " . mysqli_error($conn);
-			}
-		}*/
+	
 		break;
 		
 	#Update, add, delete social media of user
@@ -137,6 +125,8 @@ switch ($func) {
 		print json_encode($data); //must have this for php to return json object
 
 		break;
+		
+	#view a read-only profile of a user
 	case 'view':
 		$menu = $text[0];
 		$id = $text[1];
@@ -154,8 +144,8 @@ switch ($func) {
 		print json_encode($data); //must have this for php to return json object
 		break;
 	
-	case 'postAd':
-		
+	#for companies to post ad	
+	case 'postAd':	
 		$type = $text[0];
 		$description = $text[1]; 
 		$purpose = $text[2]; 
@@ -170,7 +160,12 @@ switch ($func) {
 			echo "Error inserting record: " . mysqli_error($conn);
 		}
 		break;
-		
+	
+	#kill session when user clicks logout
+	case 'logout':
+		$_SESSION = array();
+		session_destroy();
+		break;
 	default:
 		die("Choose a function!");
 }

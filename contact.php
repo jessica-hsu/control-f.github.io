@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php 
+
+session_start(); 
+if ($_SESSION['profileType'] == null) {
+	header('Location: index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +22,7 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="hello.all.js"></script>
 	
 	<link rel="stylesheet" href="contactUs.css">
 	
@@ -22,6 +30,9 @@
 	
 	<title>Contact Us</title>
 </head>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -41,6 +52,7 @@
                 <li><a href="viewProfile.php">Profile</a></li>
                 <li><a href="search.php">Search</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
+                <li><a id="logout" onclick="logout()" >Logout</a></li>
               </ul>
             </div>
         </div>
@@ -135,6 +147,37 @@
   				<a href="https://www.linkedin.com/in/brandon-pownall-b89ab6134/">LinkedIn</a>
   			</div>
 		</div>
+
+<script>
+function logout() {
+	console.log("logging out ... ");
+	f="logout";
+	network = document.getElementById('network').innerHTML;
+	console.log(network);
+	profileType = document.getElementById('profileType').innerHTML;
+	console.log(profileType);
+	hello( network ).logout({force:true},function(e){
+		console.log("force logout of " + network);
+	});
 	
+	$.ajax({
+        url: 'ajax.php',
+        data: {func: f},
+       	type: 'post',
+        success: function(result) {
+            console.log("action performed successfully");
+            if (profileType == "dev") {
+            	window.location.href = "loginDev.php";
+            } else {
+               	window.location.href = "loginComp.php";
+            }
+        }, 
+        error: function(result) {
+        	console.log(result);
+        }
+    });
+	
+}
+</script>	
 </body>
 </html>

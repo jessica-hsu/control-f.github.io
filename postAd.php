@@ -51,6 +51,7 @@ $compName = $_SESSION['userName'];
          				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
+         				<li><a id="logout" onclick="logout()" >Logout</a></li>
          			</ul>
       			</div>
     		</div>
@@ -171,6 +172,35 @@ $compName = $_SESSION['userName'];
 	            	console.log(result);
 	            }
 	        });
+		}
+		function logout() {
+			console.log("logging out ... ");
+			f="logout";
+			network = document.getElementById('network').innerHTML;
+			console.log(network);
+			profileType = document.getElementById('profileType').innerHTML;
+			console.log(profileType);
+			hello( network ).logout({force:true},function(e){
+				console.log("force logout of " + network);
+			});
+			
+			$.ajax({
+		        url: 'ajax.php',
+		        data: {func: f},
+		       	type: 'post',
+		        success: function(result) {
+		            console.log("action performed successfully");
+		            if (profileType == "dev") {
+		            	window.location.href = "loginDev.php";
+		            } else {
+		               	window.location.href = "loginComp.php";
+		            }
+		        }, 
+		        error: function(result) {
+		        	console.log(result);
+		        }
+		    });
+			
 		}
 	</script>
 

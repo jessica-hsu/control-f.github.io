@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if ($_SESSION['profileType'] == null) {
+	header('Location: index.php');
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +22,7 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="hello.all.js"></script>
 	
 	<!-- jQUERY -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -29,6 +38,8 @@
 $userID = $_GET['info'];
 
 ?>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -47,8 +58,8 @@ $userID = $_GET['info'];
          				<li><a href="welcome.php">Home</a></li>         		
          				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
-						<li><a href="about.html">About Us</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
+         				<li><a id="logout" onclick="logout()" >Logout</a></li>
          			</ul>
       			</div>
     		</div>
@@ -71,7 +82,7 @@ $userID = $_GET['info'];
 		</div>
 		<div class = "container-fluid" id = "division-bar"> 
 		</div>
-		<img src="img/ross.png" class="img-fluid" alt="Responsive image" id = "profile-image">
+		<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
 		<div class="container-fluid"
 		<div class="row">
 
@@ -188,6 +199,37 @@ $userID = $_GET['info'];
 		</div>
 		  	
 	</div>	
+<script>
+function logout() {
+	console.log("logging out ... ");
+	f="logout";
+	network = document.getElementById('network').innerHTML;
+	console.log(network);
+	profileType = document.getElementById('profileType').innerHTML;
+	console.log(profileType);
+	hello( network ).logout({force:true},function(e){
+		console.log("force logout of " + network);
+	});
+	
+	$.ajax({
+        url: 'ajax.php',
+        data: {func: f},
+       	type: 'post',
+        success: function(result) {
+            console.log("action performed successfully");
+            if (profileType == "dev") {
+            	window.location.href = "loginDev.php";
+            } else {
+               	window.location.href = "loginComp.php";
+            }
+        }, 
+        error: function(result) {
+        	console.log(result);
+        }
+    });
+	
+}
+</script>
 <?php mysqli_close($conn); ?>	
 </body>
 </html>

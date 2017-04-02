@@ -14,6 +14,11 @@ if (isset($_POST['profile'])) {
 	$_SESSION['profileType'] = $_POST['profile'];
 }
 
+if (isset($_POST['network'])) {
+	$_SESSION['network'] = $_POST['network'];
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,9 +104,10 @@ hello.on('auth.login', function(auth) {
         console.log("name(login) = "+r.name);
         console.log("email(login) = " + r.email);
        	var p = "dev";
+       	var n = auth.network;
         $.ajax({
             url: 'loginDev.php',
-            data: {name: r.name, email: r.email, profile: p},
+            data: {name: r.name, email: r.email, profile: p, network: n},
             type: 'post',
             success: function(result) {
                 console.log("action performed successfully");
@@ -113,6 +119,8 @@ hello.on('auth.login', function(auth) {
     });
 
 });
+
+
 </script> 
         <script class="pre">
         hello.init({
