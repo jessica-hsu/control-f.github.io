@@ -102,11 +102,15 @@ hello.on('auth.login', function(auth) {
        	var p = "comp";
        	var n = auth.network;
         $.ajax({
-            url: 'loginDev.php',
+            url: 'loginComp.php',
             data: {name: r.name, email: r.email, profile: p, network: n},
             type: 'post',
             success: function(result) {
                 console.log("action performed successfully");
+                $(".login").hide();
+                window.location.href='welcome.php';
+                
+                
             }, 
             error: function(result) {
             	console.log(result);
