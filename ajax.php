@@ -191,6 +191,30 @@ switch ($companyFunc) {
 		}
 
 		break;
+	case 'quick-facts-company':
+		$location= $changedText[0];
+		$founder = $changedText[1];
+		$focus = $changedText[2];
+		$query = "UPDATE company SET Founder= ' $founder ', Location = ' $location ', Focus = ' $focus '   WHERE compID= 6" ;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
+	case 'skills-company':
+		$query = "UPDATE company SET companycol = '  $changedText  ' WHERE compID = 6" ;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
+	case 'contact-company':
+		$query = "UPDATE company SET cPhoneNumber= '  $changedText[0]  ' WHERE compID = 6" ;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
 
 
 }
