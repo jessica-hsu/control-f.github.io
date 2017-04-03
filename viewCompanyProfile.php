@@ -62,7 +62,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	<div class = "container-fluid" id = "top-background">
 		<div id = "title-text">
       <?php #query to get user information#
-   				$query = "SELECT cName FROM company WHERE compID = 6 ";
+   				$query = "SELECT cName FROM company WHERE compID = ".$userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
@@ -93,7 +93,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 				<p class = "sub-heading" > About Company </p> <br>
 				<p id="about-text" contentEditable="false">
           <?php #query to get user information#
-       				$query = "SELECT cDescription FROM company WHERE compID = 6 ";
+       				$query = "SELECT cDescription FROM company WHERE compID = ".$userID;
        				if ( ! ( $result = mysqli_query($conn, $query)) ) {
        					echo("Error: %s\n"+ mysqli_error($conn));
        					exit(1);
@@ -124,7 +124,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 
           <p id="facts-text" contentEditable="false">
             <?php #query to get user information#
-                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = 6";
+                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = ".$userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -157,7 +157,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 				<p class = "sub-heading" > What We're Proud Of </p> <br>
 				<p id="skills-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT companycol FROM company WHERE compID = 6 ";
+              $query = "SELECT companycol FROM company WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -183,7 +183,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
         <p id="projects-text" contentEditable="false">
         <table style="width:60%" id = "quick-facts-table">
           <?php #query to get user information#
-              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = 6;";
+              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -216,7 +216,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
         </thead>
 				<p id="awards-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = 6;";
+              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);

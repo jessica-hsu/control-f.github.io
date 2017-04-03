@@ -30,6 +30,8 @@ if (isset($_POST['s'])) {
 if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
 
+} else {
+	$userID = $_SESSION['ID'];
 }
 
 if (isset($_POST['companyFunc'])) {
@@ -184,7 +186,7 @@ switch ($func) {
 switch ($companyFunc) {
 	case 'about-company':
 		
-		$query = "UPDATE company SET cDescription = '  $changedText  ' WHERE compID = 6" ;
+		$query = "UPDATE company SET cDescription = '  $changedText  ' WHERE compID = ".$userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
@@ -195,21 +197,21 @@ switch ($companyFunc) {
 		$location= $changedText[0];
 		$founder = $changedText[1];
 		$focus = $changedText[2];
-		$query = "UPDATE company SET Founder= ' $founder ', Location = ' $location ', Focus = ' $focus '   WHERE compID= 6" ;
+		$query = "UPDATE company SET Founder= ' $founder ', Location = ' $location ', Focus = ' $focus '   WHERE compID= ".$userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
 		break;
 	case 'skills-company':
-		$query = "UPDATE company SET companycol = '  $changedText  ' WHERE compID = 6" ;
+		$query = "UPDATE company SET companycol = '  $changedText  ' WHERE compID = ".$userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
 		break;
 	case 'contact-company':
-		$query = "UPDATE company SET cPhoneNumber= '  $changedText[0]  ' WHERE compID = 6" ;
+		$query = "UPDATE company SET cPhoneNumber= '  $changedText[0]  ' WHERE compID = ".$userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
