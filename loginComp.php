@@ -113,7 +113,7 @@ hello.on('auth.login', function(auth) {
             success: function(result) {
                 console.log("action performed successfully");
                 $(".login").hide();
-                
+                window.location.href = 'welcome.php';
                 
             }, 
             error: function(result) {
