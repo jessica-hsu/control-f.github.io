@@ -6,6 +6,8 @@ $compName = $_SESSION['userName'];
 <html lang="en">
 <span id="user" hidden><?php echo $compID?></span>
 <span id="mahName" hidden><?php echo $compName; ?></span>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
