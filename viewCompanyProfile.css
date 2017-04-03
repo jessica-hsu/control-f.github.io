@@ -76,29 +76,45 @@ width:100vw;
 
 .left-box {
 	background-color: #e8e9ea;
-	height: 98%;
+	height: 25rem;
 	margin-radius: 0;
 	padding: 1%;
 	vertical-align: middle;
-
-
+	margin-top: 5vh;
+	font-size: 1.5rem;
 
 
 }
 
 .right-box {
 	background-color: #e8e9ea;
-	height: 98%;
+	height: 25rem;
 	margin-radius: 0;
 	padding: 1%;
 	vertical-align: middle;
+	margin-top: 5vh;
+	font-size: 1.5rem;
+
+}
+
+#awards-box {
+	overflow: scroll;
+
+
+}
+
+#volunteers-table {
+	padding-bottom: 10px;
 }
 
 #about-text, #quick-facts {
 	height: 10vh;
+
 }
 
-
+#about-text {
+	padding: 10px;
+}
 
 .break {
 
@@ -106,6 +122,28 @@ width:100vw;
 	height:1%;
 }
 
+.save-icon {
+	float:right;
+	background: none;
+	border: none;
+
+}
+
+#save-about-text{
+	display:none;
+}
+
+#save-quick-facts-text {
+	display:none;
+}
+
+#save-skills-text {
+	display:none;
+}
+
+#save-contact-us-text {
+	display:none;
+}
 
 .edit-icon {
 
@@ -117,10 +155,13 @@ border: none;
 
 
 
+
+
 #social-media {
 
 height:auto;
 margin-bottom: 15vh;
+
 }
 
 .sub-heading {
@@ -243,6 +284,9 @@ padding-bottom: 2%;
 		margin-left: 38%;
 		font-size:200%;
 	}
+
+
+
 
 
 

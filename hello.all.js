@@ -1,4 +1,4 @@
-/*! hellojs v1.13.1 | (c) 2012-2016 Andrew Dodson | MIT https://adodson.com/hello.js/LICENSE */
+/*! hellojs v1.14.1 | (c) 2012-2017 Andrew Dodson | MIT https://adodson.com/hello.js/LICENSE */
 // ES5 Object.create
 if (!Object.create) {
 
@@ -177,7 +177,7 @@ hello.utils = {
 			if (Array.isArray(r) && Array.isArray(a)) {
 				Array.prototype.push.apply(r, a);
 			}
-			else if (r instanceof Object && a instanceof Object && r !== a) {
+			else if (r && (r instanceof Object || typeof r === 'object') && a && (a instanceof Object || typeof a === 'object') && r !== a) {
 				for (var x in a) {
 					r[x] = hello.utils.extend(r[x], a[x]);
 				}
@@ -1520,7 +1520,7 @@ hello.utils.extend(hello.utils, {
 				var res = 'result' in p && p.result ? JSON.parse(p.result) : false;
 
 				// Trigger the callback on the parent
-				parent[p.callback](res);
+				callback(parent, p.callback)(res);
 				closeWindow();
 			}
 
@@ -1570,7 +1570,7 @@ hello.utils.extend(hello.utils, {
 				var str = JSON.stringify(obj);
 
 				try {
-					parent[cb](str);
+					callback(parent, cb)(str);
 				}
 				catch (e) {
 					// Error thrown whilst executing parent callback
@@ -1578,6 +1578,16 @@ hello.utils.extend(hello.utils, {
 			}
 
 			closeWindow();
+		}
+
+		function callback(parent, callbackID) {
+			if (callbackID.indexOf('_hellojs_') !== 0) {
+				return function() {
+					throw 'Could not execute callback ' + callbackID;
+				};
+			}
+
+			return parent[callbackID];
 		}
 
 		function closeWindow() {
@@ -3303,7 +3313,7 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 			},
 
 			// Refresh the access_token
-			refresh: true,
+			refresh: false,
 
 			login: function(p) {
 
@@ -3313,9 +3323,8 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 					p.qs.auth_type = 'reauthenticate';
 				}
 
-				// The facebook login window is a different size.
-				p.options.popup.width = 580;
-				p.options.popup.height = 400;
+				// Set the display value
+				p.qs.display = p.options.display || 'popup';
 			},
 
 			logout: function(callback, options) {
@@ -3337,7 +3346,7 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 			},
 
 			// API Base URL
-			base: 'https://graph.facebook.com/v2.4/',
+			base: 'https://graph.facebook.com/v2.7/',
 
 			// Map GET requests
 			get: {
@@ -3875,7 +3884,7 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 				if (p.method !== 'get' && p.data) {
 
 					// Serialize payload as JSON
-					p.headers = p.headers || {};
+					p.headers = p.headers || {}
 					p.headers['Content-Type'] = 'application/json';
 					if (typeof (p.data) === 'object') {
 						p.data = JSON.stringify(p.data);
@@ -3903,6 +3912,7 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 			o.thumbnail = o.picture = o.avatar_url;
 			o.name = o.login;
 		}
+
 	}
 
 	function paging(res, headers, req) {
@@ -4392,7 +4402,6 @@ if (typeof chrome === 'object' && typeof chrome.identity === 'object' && chrome.
 			ready();
 		};
 	}
-
 
 	// Upload to Drive
 	// If this is PUT then only augment the file uploaded

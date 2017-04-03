@@ -10,64 +10,90 @@ html, body, section, div {
 
 
 body {
-
-  text-align: center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background-image: url("img/login-dev-background.jpg");
+  background-repeat: no-repeat;
   background-size: cover;
-}
+  background-blend-mode: overlay;
+  
 
-section {
-  width: 100%;
-}
 
-article {
+  background-color: #e8e9ea;
+	color: #6b6666;
   position: relative;
+}
+
+#login-box {
+
+  background-color: #f4f4f4;
+
+  width: 36vw;
+  height: 78vh;
+  position: absolute;
   top: 50%;
   left: 50%;
-  padding: 1rem;
+  margin-top: 20px;
   text-align: center;
   transform: translate(-50%, -50%);
+
+}
+
+
+#bottom-text {
+
+
+  text-align: justify;
+  font-size: 1rem;
+  margin-top: 20%;
+
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   padding-top: 4px;
-  color:#5A5857;
+  color:#777777;
 }
 
 h2 {
-  font-size: 2.5rem;
-  color: #5A5857;
+  font-size: 1.5rem;
+  color: #828282;
+  margin-bottom: 15%;
 }
 
-/*this is the css for the two halves*/
-.left-half {
+.buttons {
+  border: none;
+  text-align: left;
+  padding: 10px;
+  width: 80%;
+  height: 10%;
 
-  float: left;
-  width: 50%;
+  margin: 3px;
+  color: white;
+  vertical-align: middle;
+  font-size: 1.5rem;
+
 }
-.right-half {
 
-  float: left;
-  width: 50%;
-
+.icons {
+  padding-right: 20px;
+  padding-left: 3%;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 10px;
+  margin-top: -3px;
 
 }
+
+
+
+
+
 
 /*this is the part with the navbar*/
 .navbar-default {
-	padding: 0.5%;
+  padding: 0.5%;
 	padding-right: 5%;
 	padding-left: 0.5%;
-	background: #47FF9D; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* Standard syntax */
-    color: black;
-    font-family: Space Mono;
+
     font-weight: bold;
     font-size: 110%;
     margin: 0;
@@ -84,29 +110,12 @@ h2 {
 
 
 
-/*for the right half : basically to create the 'box'*/
-.box {
-
-    background: #47FF9D; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* Standard syntax */
 
 
-    padding-top:10px;
-    padding-right:20px;
-    padding-left:20px;
-    padding-bottom:10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-}
 
 
 /*adding the media screen resizing to match homepage. */
+
 @media screen and (max-width: 1196px) {
 
 	#banner {
@@ -115,12 +124,34 @@ h2 {
 	}
 
 }
+@media screen and (max-width: 1178px) {
+
+	#login-box {
+    width: 40vw;
+  }
+
+   h1 {
+     font-size: 3.4rem;
+   }
+
+}
+
 
 @media screen and (max-width: 1065px) {
 	#banner {
 		padding: 21%;
 		margin-top: 8%;
 	}
+  #login-box {
+    width: 43vw;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
 
 }
 
@@ -130,17 +161,22 @@ h2 {
 		padding: 25%;
 		margin-top: 10%;
 	}
+  #login-box {
+    width: 46vw;
+  }
+
+  h1 {
+    font-size: 2.8rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
 
 }
 
 @media screen and (max-width: 761px) {
 
 	body {
-		background: #47FF9D; /* For browsers that do not support gradients */
-    	background: -webkit-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2); /* For Safari 5.1 to 6.0 */
-    	background: -o-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* For Opera 11.1 to 12.0 */
-    	background: -moz-linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* For Firefox 3.6 to 15 */
-    	background: linear-gradient(-90deg, #47FF7C, #47FF9D, #47FF96, #47FF9A, #47FFAB, #47FFB5, #66FFC0, #47FFC2)); /* Standard syntax */
 
 	}
 	.navbar-default {
@@ -179,8 +215,10 @@ h2 {
 		font-size: 120%;
 	}
 
-  .left-half {
-    display:none;
+  #login-box {
+    background-color: #e8e9ea;
+    width: 100vw;
+    border: none;
   }
 
   .right-half {
@@ -189,16 +227,15 @@ h2 {
   }
 
   h2 {
-    font-size: 5rem;
-    padding-bottom: 20px;
-    padding-left: -5px;
-    padding-right: -5px;
+    font-size: 1.3rem;
+
 
   }
 
-  .box {
-    background: transparent;
-
+  h1 {
+    font-size: 3.5rem;
+    padding-left: -20px;
+    padding-right: -20px;
 
   }
 
@@ -213,3 +250,25 @@ h2 {
 	}
 
 }
+
+
+@media screen and (max-width: 404px) {
+
+  h1 {
+    font-size: 3rem;
+    padding-left: -20px;
+    padding-right: -20px;
+
+  }
+
+  h2 {
+    font-size: 1.1rem;
+
+
+  }
+
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> control-f/master

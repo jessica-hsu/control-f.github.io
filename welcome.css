@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Francois+One|Raleway');
+
+.navbar-default {
+	padding: 0.5%;
+	padding-right: 5%;
+	padding-left: 0.5%;
+    font-weight: bold;
+    font-size: 110%;
+    margin: 0;
+}
+
+
+ body {
+	height: 100%;
+	width: 100%;
+	background-color: #e0e0e0;
+	color: #6b6666;
+	padding: 1%;
+}
+
+h1 {
+	font-family: Raleway;
+	font-size: 350%;
+	text-align: center;
+	padding-top: 15%;
+	font-weight: bold;
+}
+
+p {
+	font-family: Raleway;
+	font-size: 250%;
+	text-align: center;
+}
+
+#here {
+	color: #4ec996;
+}
+
+/*.arrow-up {
+  width: 0; 
+  height: 0; 
+  -webkit-align-content: center;
+  align-content: center;
+  border-left: 50px solid red;
+  border-right: 50px solid ;
+  border-bottom: 50px solid #47FF7C;
+  padding-top: 8%;
+  margin-right: 50px;
+}*/
+
+@media screen and (max-width: 561px) {
+
+	.left {
+		padding-top: 9%;
+		padding-bottom: 0%;
+	}
+
+}
+
+
+@media screen and (min-width: 900px){
+	.left{
+		padding-top: 4%; 
+		padding-bottom: 20%;
+	}
+}
+
+
+
+}
+
+
+
+
+
+
+
