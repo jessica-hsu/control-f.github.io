@@ -18,7 +18,9 @@ if (isset($_POST['network'])) {
 	$_SESSION['network'] = $_POST['network'];
 }
 
-
+if (strcmp($_SESSION['profileType'], "comp") == 0) {
+	header('Location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
