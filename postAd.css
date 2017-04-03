@@ -27,7 +27,7 @@ h1 {
 	font-weight: bold;
 }
 
-p {
+h2, p {
 	font-family: Raleway;
 	font-size: 250%;
 	text-align: center;
