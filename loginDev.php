@@ -86,7 +86,7 @@ if (isset($_POST['network'])) {
           <button id="top-button" class ="buttons login" style=" background-color:black; color:#f2f2f2" onclick="userEmail('github', 'email');"><i id ="top-icon" class="fa fa-github icons" style="font-size:4rem;color:#f2f2f2;" onclick="userEmail('github', 'email');"></i> Access with Github</button>
 
           <button class ="buttons login" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
-          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="logout()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Logout</button>
+          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2; display:none;" onclick="logout()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Logout</button>
 
         <p id = "bottom-text">
 
