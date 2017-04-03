@@ -17,7 +17,12 @@ if (isset($_POST['profile'])) {
 if (isset($_POST['network'])) {
 	$_SESSION['network'] = $_POST['network'];
 }
+
+if (strcmp($_SESSION['profileType'], "comp") != 0) {
+	header('Location: loginDev.php');
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
