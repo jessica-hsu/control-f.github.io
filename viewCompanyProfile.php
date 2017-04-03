@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php session_start();
+
+$userID = $_SESSION['ID'];
+//$userID = 1;
+if (strcmp($_SESSION['profileType'], "dev")==0) {
+	header('Location: viewProfile.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +21,15 @@
   <link rel="stylesheet" type="text/css" href="viewCompanyProfile.css">
   <script src="viewCompanyProfile.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="hello.all.js"></script>
 
 
 
 </head>
 <?php include "connectDB.php"?>
+<span id="currentUser" hidden><?php echo $userID?></span>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 <body>
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -39,9 +51,7 @@
 					<li><a href="viewCompanyProfile.php">Profile</a></li>
 					<li><a href="search.php">Search</a></li>
 					<li><a href="postAd.php">Post Ad</a></li>
-					<li><a href="about.php">About Us</a></li>
 					<li><a href="contact.php">Contact Us</a></li>
-
 					<li><a id="logout" onclick="logout()" >Logout</a></li>
 
 				</ul>
