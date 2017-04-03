@@ -27,7 +27,7 @@ h1 {
 	font-weight: bold;
 }
 
-h2, p {
+p {
 	font-family: Raleway;
 	font-size: 250%;
 	text-align: center;
@@ -37,7 +37,7 @@ h2, p {
 	display: none;
 }
 
-label {
+h2, label {
 	margin-left: 3%;
 }
 
