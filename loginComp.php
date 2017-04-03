@@ -18,9 +18,9 @@ if (isset($_POST['network'])) {
 	$_SESSION['network'] = $_POST['network'];
 }
 
-if (strcmp($_SESSION['profileType'], "dev") == 0) {
+if ($_SESSION['profileType'] != null) {
 	header('Location: index.php');
-}
+}  
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +113,6 @@ hello.on('auth.login', function(auth) {
             success: function(result) {
                 console.log("action performed successfully");
                 $(".login").hide();
-                window.location.href='welcome.php';
                 
                 
             }, 
