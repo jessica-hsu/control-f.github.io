@@ -121,10 +121,7 @@ hello.on('auth.login', function(auth) {
 });
 </script> 
 
-      <pre class="response"></pre>
-
-      <script src="hello.all.js"></script>
-      <script>
+      <script class="pre">
         hello.init({
           google: "73862463897-ofr3bic69njtn603du9epk57648c3j7q.apps.googleusercontent.com"
         },{
