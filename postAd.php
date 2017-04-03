@@ -164,9 +164,7 @@ $compName = $_SESSION['userName'];
 			$.ajax({
 	            url: 'ajax.php',
 	            data: {func: f, textUpdate: text, id: user},
-	            type: 'post',
-				dataType: "json",
-	            
+	            type: 'post',	            
 	            success: function(result) {
 	                console.log("action performed successfully");
 	               	window.location.href = 'viewCompanyProfile.php';
