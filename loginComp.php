@@ -19,7 +19,7 @@ if (isset($_POST['network'])) {
 }
 
 if ($_SESSION['profileType'] != null) {
-	header('Location: index.php');
+	header('Location: welcome.php');
 }  
 ?>
 
