@@ -184,7 +184,7 @@ switch ($func) {
 switch ($companyFunc) {
 	case 'about-company':
 		
-		$query = "UPDATE company SET cDescription = ' . $changedText . ' WHERE compID = 6" ;
+		$query = "UPDATE company SET cDescription = '  $changedText  ' WHERE compID = 6" ;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
