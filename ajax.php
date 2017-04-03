@@ -31,6 +31,16 @@ if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
 
 }
+
+if (isset($_POST['companyFunc'])) {
+	$companyFunc = $_POST['companyFunc'];
+
+}
+
+if (isset($_POST['textUpdateCompany'])) {
+	$changedText = $_POST['textUpdateCompany'];
+
+}
 /*For debugging purposes
 $userID = 6;
 $func = "postAd";
@@ -170,5 +180,19 @@ switch ($func) {
 		die("Choose a function!");
 }
 #mysqli_close($conn);
+
+switch ($companyFunc) {
+	case 'about-company':
+		
+		$query = "UPDATE company SET cDescription = ' . $changedText . ' WHERE compID = 6" ;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+
+		break;
+
+
+}
 
 ?>
