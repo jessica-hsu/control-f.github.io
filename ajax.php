@@ -177,7 +177,7 @@ switch ($func) {
 		session_destroy();
 		break;
 	default:
-		die("Choose a function!");
+		break;
 }
 #mysqli_close($conn);
 
