@@ -30,6 +30,18 @@
 	display: inline;
 }
 
+.skills {
+	display:none;
+}
+
+.ads {
+	display: none;
+}
+
+.ads-focus {
+	display: none;
+}
+
 #result-table {
 	display: none;
 	

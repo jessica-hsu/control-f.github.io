@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include 'connectDB.php';
 
 if (isset($_POST['func'])) {
@@ -29,6 +29,18 @@ if (isset($_POST['s'])) {
 
 if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
+
+} else {
+	$userID = $_SESSION['ID'];
+}
+
+if (isset($_POST['companyFunc'])) {
+	$companyFunc = $_POST['companyFunc'];
+
+}
+
+if (isset($_POST['textUpdateCompany'])) {
+	$changedText = $_POST['textUpdateCompany'];
 
 }
 /*For debugging purposes
@@ -108,11 +120,48 @@ switch ($func) {
 	case 'search':
 		$menu = $text[0];
 		$sub_menu = $text[1];
+		$sub_menu2 = $text[2];	//for the 2nd drop down if ad is selected (the company focus)
 		if (strcmp($menu, "dev") == 0) {
+			
+			if (strcmp($sub_menu, "All") == 0) {
+				$query = "SELECT userID, CONCAT(firstName,' ',lastName) AS person FROM user";
+			} else {
+				$query = "SELECT user.userID AS userID, CONCAT(firstName,' ',lastName) AS person, skillName FROM user, userSkill
+				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
+			}
+			
+		} else if (strcmp($menu, "comp") == 0) { #query to search for company using given focus
+			
+			if (strcmp($sub_menu, "All") == 0 ) {
+				$query="SELECT compID, cName FROM company";
+			} else {
+				$query="SELECT compID, cName FROM company WHERE Focus LIKE '%" . $sub_menu . "%'";
+			}
+			
+		} else if (strcmp($menu, "skill") == 0) { #query to search for developers using given skill
 			$query = "SELECT user.userID AS userID, CONCAT(firstName,' ',lastName) AS person, skillName FROM user, userSkill
-			WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $text[1] . "%'";
-		} else { #query to search for company using given focus
-			$query="SELECT compID, cName FROM company WHERE Focus LIKE '%" . $sub_menu . "%'";
+				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
+			
+		} else if (strcmp($menu, "ad") == 0) { #query to search for ads using given product type and/or focus
+			
+			if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") == 0 )  {
+				$query = "SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+							WHERE a.compID = c.compID";
+			} else if (strcmp($sub_menu, "All") != 0 && strcmp($sub_menu2, "All") == 0 ) {
+				$query="SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+						WHERE a.compID = c.compID 
+						AND type LIKE '%".$sub_menu."%';";
+			} else if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") != 0 ) {
+				$query = "SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+						WHERE a.compID = c.compID 
+						AND Focus = '".$sub_menu2."'";
+			} else {
+				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
+				WHERE a.compID = c.compID 
+				AND type LIKE '%".$sub_menu."%'
+				AND Focus = '".$sub_menu2."'";
+			}
+			
 		}
 		if (! ( $result = mysqli_query($conn, $query))) {
 			echo "Error getting records: " . mysqli_error($conn);
@@ -167,8 +216,46 @@ switch ($func) {
 		session_destroy();
 		break;
 	default:
-		die("Choose a function!");
+		break;
 }
 #mysqli_close($conn);
+
+switch ($companyFunc) {
+	case 'about-company':
+		
+		$query = "UPDATE company SET cDescription = '  $changedText  ' WHERE compID = ".$userID;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+
+		break;
+	case 'quick-facts-company':
+		$location= $changedText[0];
+		$founder = $changedText[1];
+		$focus = $changedText[2];
+		$query = "UPDATE company SET Founder= ' $founder ', Location = ' $location ', Focus = ' $focus '   WHERE compID= ".$userID;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
+	case 'skills-company':
+		$query = "UPDATE company SET companycol = '  $changedText  ' WHERE compID = ".$userID;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
+	case 'contact-company':
+		$query = "UPDATE company SET cPhoneNumber= '  $changedText[0]  ' WHERE compID = ".$userID;
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
+
+
+}
 
 ?>

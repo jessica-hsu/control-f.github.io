@@ -1,8 +1,16 @@
-<?php session_start(); ?>
+<?php session_start();
+
+$userID = $_SESSION['ID'];
+//$userID = 1;
+if (strcmp($_SESSION['profileType'], "dev")==0) {
+	header('Location: viewProfile.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Company</title>
+  <title>Control-F</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,17 +21,20 @@
   <link rel="stylesheet" type="text/css" href="viewCompanyProfile.css">
   <script src="viewCompanyProfile.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
+	<script src="hello.all.js"></script>
+<link rel='icon' href='img/icon.ico' type='image/x-icon'>
 
 
 </head>
 <?php include "connectDB.php"?>
+<span id="currentUser" hidden><?php echo $userID?></span>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 <body>
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
 			<a id="navLogo" class="navbar-brand" href="index.html">
-		    		<img  src="img/Icon-title.png" class="d-inline-block align-top" alt="" style="width: 10%; margin:0;">
 		  	</a>
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
 				<span class="icon-bar"></span>
@@ -36,12 +47,10 @@
 			 	<ul class="nav navbar-nav">
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					<li><a href="welcome.php">Home</a></li>
 					<li><a href="viewCompanyProfile.php">Profile</a></li>
 					<li><a href="search.php">Search</a></li>
-					<li><a href="postAd.php">Post Ad</a></li>
-					<li><a href="about.php">About Us</a></li>
 					<li><a href="contact.php">Contact Us</a></li>
-
 					<li><a id="logout" onclick="logout()" >Logout</a></li>
 
 				</ul>
@@ -52,7 +61,7 @@
 	<div class = "container-fluid" id = "top-background">
 		<div id = "title-text">
       <?php #query to get user information#
-   				$query = "SELECT cName FROM company WHERE compID = 6 ";
+   				$query = "SELECT cName FROM company WHERE compID = ".$userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
@@ -67,7 +76,21 @@
 
 
 	<div class="container-fluid">
+		<div class="row">
 
+			<!-- post ad row --> 
+			<div class="col-lg-2 col-lg-offset-9">
+				<button class="btn" type="button" id="postAd" onclick="postAd()">
+					Post Ad
+				</button>
+			</div>
+			<script>
+				function postAd() {
+					window.location.href = 'postAd.php';
+				}
+			</script>
+
+    		</div>
 		<div class="row">
 
 			<!--first row-->
@@ -83,7 +106,7 @@
 				<p class = "sub-heading" > About Company </p> <br>
 				<p id="about-text" contentEditable="false">
           <?php #query to get user information#
-       				$query = "SELECT cDescription FROM company WHERE compID = 6 ";
+       				$query = "SELECT cDescription FROM company WHERE compID = ".$userID;
        				if ( ! ( $result = mysqli_query($conn, $query)) ) {
        					echo("Error: %s\n"+ mysqli_error($conn));
        					exit(1);
@@ -114,7 +137,7 @@
 
           <p id="facts-text" contentEditable="false">
             <?php #query to get user information#
-                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = 6";
+                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = ".$userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -147,7 +170,7 @@
 				<p class = "sub-heading" > What We're Proud Of </p> <br>
 				<p id="skills-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT companycol FROM company WHERE compID = 6 ";
+              $query = "SELECT companycol FROM company WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -173,7 +196,7 @@
         <p id="projects-text" contentEditable="false">
         <table style="width:60%" id = "quick-facts-table">
           <?php #query to get user information#
-              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = 6;";
+              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -206,7 +229,7 @@
         </thead>
 				<p id="awards-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = 6;";
+              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);

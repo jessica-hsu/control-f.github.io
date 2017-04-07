@@ -80,6 +80,7 @@ width:100vw;
 	margin-radius: 0;
 	padding: 1%;
 	vertical-align: middle;
+	overflow: scroll;
 
 
 
@@ -92,6 +93,7 @@ width:100vw;
 	margin-radius: 0;
 	padding: 1%;
 	vertical-align: middle;
+	overflow: scroll;
 }
 
 #about-text, #quick-facts {

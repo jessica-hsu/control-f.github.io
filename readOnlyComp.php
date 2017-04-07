@@ -14,7 +14,8 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	 	<script src="hello.all.js"></script>
+	 
 	<!-- jQUERY -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	
@@ -27,6 +28,8 @@
 <?php include "connectDB.php";
 	$compID = $_GET['info']; 
 ?>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<div class="container-fluid">
