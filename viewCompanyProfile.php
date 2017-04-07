@@ -10,7 +10,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Company</title>
+  <title>Control-F</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,7 +22,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
   <script src="viewCompanyProfile.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script src="hello.all.js"></script>
-
+<link rel='icon' href='img/icon.ico' type='image/x-icon'>
 
 
 </head>
@@ -49,7 +49,6 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="viewCompanyProfile.php">Profile</a></li>
 					<li><a href="search.php">Search</a></li>
-					<li><a href="postAd.php">Post Ad</a></li>
 					<li><a href="contact.php">Contact Us</a></li>
 					<li><a id="logout" onclick="logout()" >Logout</a></li>
 
@@ -76,7 +75,21 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 
 
 	<div class="container-fluid">
+		<div class="row">
 
+			<!-- post ad row --> 
+			<div class="col-lg-2 col-lg-offset-9">
+				<button class="btn" type="button" id="postAd" onclick="postAd()">
+					Post Ad
+				</button>
+			</div>
+			<script>
+				function postAd() {
+					window.location.href = 'postAd.php';
+				}
+			</script>
+
+    		</div>
 		<div class="row">
 
 			<!--first row-->
