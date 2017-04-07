@@ -130,9 +130,10 @@ hello.on('auth.login', function(auth) {
 
 
 </script> 
-        <script class="pre">
+
+     <script class="pre">
         hello.init({
-           github: "ffe1c437297f06e9e275"
+          google: "73862463897-ofr3bic69njtn603du9epk57648c3j7q.apps.googleusercontent.com"
         },{
             scope: 'email',
             redirect_uri: 'redirect.html'
