@@ -218,9 +218,8 @@ switch ($func) {
 	default:
 		break;
 }
-#mysqli_close($conn);
 
-switch ($companyFunc) {
+/*switch ($companyFunc) {
 	case 'about-company':
 		
 		$query = "UPDATE company SET cDescription = '  $changedText  ' WHERE compID = ".$userID;
@@ -256,6 +255,7 @@ switch ($companyFunc) {
 		break;
 
 
-}
+}*/
+mysqli_close($conn);
 
 ?>
