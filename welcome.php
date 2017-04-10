@@ -122,9 +122,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 $( document ).ready(function() {
 	
     console.log( "ready!" );
-    var linkedin = hello('linkedin').getAuthResponse();
-    console.log("token:" + linkedin.access_token);
-    console.log("expires: " + linkedin.expires);
+   
 	console.log("network: " + document.getElementById('network').innerHTML);
 	console.log("profile Type: " + document.getElementById('profileType').innerHTML);
 	
