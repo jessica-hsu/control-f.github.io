@@ -253,7 +253,13 @@ switch ($companyFunc) {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
 		break;
-
+	case 'removeAds':
+		$query = "DELETE FROM advert WHERE advertID= " . $changedText[0] . " AND compID = ". $changedText[1];
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
 
 }
 mysqli_close($conn);
