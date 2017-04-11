@@ -414,5 +414,6 @@ if ($_SESSION['profileType'] == null) {
 			
 		}
 	</script>
+	<?php mysqli_close($conn); ?>
 </body>
 </html>
