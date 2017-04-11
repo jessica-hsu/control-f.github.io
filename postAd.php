@@ -204,6 +204,6 @@ $compName = $_SESSION['userName'];
 			
 		}
 	</script>
-
+<?php mysqli_close($conn);?>
 </body>
 </html>

@@ -200,8 +200,8 @@ switch ($func) {
 		$purpose = $text[2]; 
 		date_default_timezone_set('America/New_York');
 		$date = date('Y/m/d');
-		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES
-				(".$userID.", '".$description."', '".$date."', '".$purpose."', '".$type."')";
+		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type, status) VALUES
+				(".$userID.", '".$description."', '".$date."', '".$purpose."', '".$type."', 'looking for developer')";
 		echo $query;
 		if (mysqli_query($conn, $query)) {
 			echo "success" . "\n";
