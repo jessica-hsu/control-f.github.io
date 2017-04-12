@@ -1,7 +1,7 @@
 <?php session_start();
 
 $userID = $_SESSION['ID'];
-//$userID = 1;
+//$userID = 6;
 if (strcmp($_SESSION['profileType'], "dev")==0) {
 	header('Location: viewProfile.php');
 }
@@ -222,21 +222,24 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
         <table style="width:80%" id = "volunteers-table" class="table table-hover">
         <thead>
           <tr>
-            <th>Position</th>
+            <th>Title</th>
             <th>Description</th>
-
+            <th>Status</th>
+			<th>Remove</th>
           </tr>
         </thead>
 				<p id="awards-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = ".$userID;
+              $query = "SELECT advertID, title,post_date,aDescription,status FROM advert WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
               }
               while($row = mysqli_fetch_assoc($result) ) {
-                echo("<tr> <span contentEditable='false' class='facts-text '> <td>" . $row['title'] . "</td>");
-                echo("<td>" . $row['aDescription'] . "</td></tr></span>");
+                echo("<tr> <span contentEditable='false' class='facts-text'> <td>" . $row['title'] . "</td>");
+                echo("<td>" . $row['aDescription'] . "</td></span>");
+                echo("<td>" . $row['status'] . "</td></span>");
+                echo("<td><span class='glyphicon glyphicon-remove' onclick='removeAdvert(".$row['advertID'].",".$userID.")'></span></td></tr>");
               }
             ?>
 				</p>
@@ -340,6 +343,6 @@ function logout() {
 	
 }
 </script>
-
+<?php mysqli_close($conn); ?>
 </body>
 </html>

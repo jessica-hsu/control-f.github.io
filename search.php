@@ -1,8 +1,8 @@
 <?php 
-/*session_start();
+session_start();
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
-}*/
+}
 
 ?>
 <!DOCTYPE html>
@@ -414,5 +414,6 @@ if ($_SESSION['profileType'] == null) {
 			
 		}
 	</script>
+	<?php mysqli_close($conn); ?>
 </body>
 </html>

@@ -606,6 +606,6 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		
 	}
 </script>   
-			
+<?php mysqli_close($conn); ?>			
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include 'connectDB.php';
 
 if (isset($_POST['func'])) {
@@ -145,14 +145,14 @@ switch ($func) {
 		} else if (strcmp($menu, "ad") == 0) { #query to search for ads using given product type and/or focus
 			
 			if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") == 0 )  {
-				$query = "SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
 							WHERE a.compID = c.compID";
 			} else if (strcmp($sub_menu, "All") != 0 && strcmp($sub_menu2, "All") == 0 ) {
-				$query="SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+				$query="SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
 						WHERE a.compID = c.compID 
 						AND type LIKE '%".$sub_menu."%';";
 			} else if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") != 0 ) {
-				$query = "SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
 						WHERE a.compID = c.compID 
 						AND Focus = '".$sub_menu2."'";
 			} else {
@@ -200,8 +200,8 @@ switch ($func) {
 		$purpose = $text[2]; 
 		date_default_timezone_set('America/New_York');
 		$date = date('Y/m/d');
-		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type) VALUES
-				(".$userID.", '".$description."', '".$date."', '".$purpose."', '".$type."')";
+		$query = "INSERT INTO advert (compID, title, post_date, aDescription, type, status) VALUES
+				(".$userID.", '".$description."', '".$date."', '".$purpose."', '".$type."', 'looking for developer')";
 		echo $query;
 		if (mysqli_query($conn, $query)) {
 			echo "success" . "\n";
@@ -218,7 +218,6 @@ switch ($func) {
 	default:
 		break;
 }
-#mysqli_close($conn);
 
 switch ($companyFunc) {
 	case 'about-company':
@@ -254,8 +253,15 @@ switch ($companyFunc) {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
 		break;
-
+	case 'removeAds':
+		$query = "DELETE FROM advert WHERE advertID= " . $changedText[0] . " AND compID = ". $changedText[1];
+		if (mysqli_query($conn, $query)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
 
 }
+mysqli_close($conn);
 
 ?>

@@ -35,9 +35,6 @@ function save(id) {
       break;
   }
 
-
-
-
   $.ajax ({
     type: "POST",
     url: "ajax.php",
@@ -55,7 +52,23 @@ function save(id) {
 }
 
 
-
+function removeAdvert(adID, compID) {
+	f="removeAds";
+	changedText=[adID, compID]; console.log(changedText);
+	$.ajax ({
+	    type: "POST",
+	    url: "ajax.php",
+	    data: {companyFunc: f, textUpdateCompany: changedText},
+	    dataType: "html",
+	    success: function(data) {
+	      console.log("success");
+	      location.reload();
+	    },
+	    error: function(e) {
+	      console.log(e);
+	    }
+	  });
+}
 
 
 function editAbout(button) {
