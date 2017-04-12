@@ -348,8 +348,8 @@ if ($_SESSION['profileType'] == null) {
 							var cell_description = row.insertCell(4);
 							var cell_link = row.insertCell(5);
 							cell_company.innerHTML = obj[i][1];
-							cell_focus.innerHTML = obj[i][2];
-							cell_title.innerHTML = obj[i][3];
+							cell_focus.innerHTML = obj[i][3];
+							cell_title.innerHTML = obj[i][2];
 							cell_type.innerHTML = obj[i][4];
 							cell_description.innerHTML = obj[i][5];
 							cell_link.innerHTML = "<form action='readOnlyComp.php' target='_blank' method='get'><button type='submit' value='" + obj[i][0]+ "' class='btn btn-info' name='info'>View</button></form>";
