@@ -145,14 +145,14 @@ switch ($func) {
 		} else if (strcmp($menu, "ad") == 0) { #query to search for ads using given product type and/or focus
 			
 			if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") == 0 )  {
-				$query = "SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+				$query = "SELECT c.compID, advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
 							WHERE a.compID = c.compID";
 			} else if (strcmp($sub_menu, "All") != 0 && strcmp($sub_menu2, "All") == 0 ) {
-				$query="SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+				$query="SELECT c.compID, advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
 						WHERE a.compID = c.compID 
 						AND type LIKE '%".$sub_menu."%';";
 			} else if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") != 0 ) {
-				$query = "SELECT advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
+				$query = "SELECT c.compID, advertID, cName, title, post_date, aDescription, type FROM advert as a, company as c
 						WHERE a.compID = c.compID 
 						AND Focus = '".$sub_menu2."'";
 			} else {
