@@ -43,14 +43,14 @@ if (isset($_POST['textUpdateCompany'])) {
 	$changedText = $_POST['textUpdateCompany'];
 
 }
-/*For debugging purposes
-$userID = 6;
-$func = "postAd";
-//$urls = ["some web app", "sample"];
-//$size = 2;
-//$years = [2, 3];
-$text = ["example title", "des", "purp" ];*/
 
+if (isset($_POST['adId'])) {
+	$adId = $_POST['adId'];
+
+}
+//$companyFunc = 'editAd';
+//$userID = 6;
+//$adId = array(64); $changedText = array("In progress"); $size = 1;*/
 switch ($func) {
 	#Update the description of user
 	case 'about':
@@ -258,6 +258,21 @@ switch ($companyFunc) {
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
+		}
+		break;
+	case 'editAd':
+		echo ("in edit ad");
+		for ($i=0; $i<$size; $i++) {
+			if (strcmp($changedText[$i], "Completed") == 0) {
+				$query = "DELETE from advert WHERE advertID = ".$adId[$i]." AND compID = " . $userID;
+			} else {
+				$query = "UPDATE advert SET status = '".$changedText[$i]."' WHERE advertID = ".$adId[$i]." and compID = " . $userID;
+				
+			}
+			if (mysqli_query($conn, $query)) {
+			} else {
+				echo "Error updating record: " . mysqli_error($conn);
+			}
 		}
 		break;
 
