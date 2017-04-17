@@ -37,26 +37,26 @@ if ($_SESSION['profileType'] == null) {
 	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-            </button>
-        </div>
-        <div>
-            <div class="collapse navbar-collapse" id="theNav">
-              <ul class="nav navbar-nav">
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="welcome.php">Home</a></li>             
-                <li><a href="viewProfile.php">Profile</a></li>
-                <li><a href="search.php">Search</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
-                <li><a id="logout" onclick="logout()" >Logout</a></li>
-              </ul>
-            </div>
-        </div>
-      </nav>
+       			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>                        
+      			</button>
+    		</div>
+    		<div>
+      			<div class="collapse navbar-collapse" id="theNav">
+       			 	<ul class="nav navbar-nav">
+         			</ul>
+         			<ul class="nav navbar-nav navbar-right">
+         				<li><a href="welcome.php">Home</a></li>         		
+         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="search.php">Search</a></li>
+         				<li><a href="contact.php">Contact Us</a></li>
+         				<li><a id="logout" onclick="logout()" >Logout</a></li>
+         			</ul>
+      			</div>
+    		</div>
+    	</nav>
     	
     	
       <h1 id="header">
