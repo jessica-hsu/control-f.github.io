@@ -1,6 +1,7 @@
 <?php session_start();
 $compID = $_SESSION['ID'];
 $compName = $_SESSION['userName'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
