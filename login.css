@@ -26,12 +26,13 @@ body {
 
   background-color: #f4f4f4;
 
-  width: 36vw;
-  height: 78vh;
+  width: 60%;
+  height: auto;
   position: absolute;
+  padding-top: 3%;
   top: 50%;
   left: 50%;
-  margin-top: 20px;
+  margin-top: 2%;
   text-align: center;
   transform: translate(-50%, -50%);
 
@@ -41,32 +42,30 @@ body {
 #bottom-text {
 
 
-  text-align: justify;
+  text-align: center;
   font-size: 1rem;
-  margin-top: 20%;
+  margin-top: 5%;
 
 }
 
 h1 {
   font-size: 3.5rem;
-  padding-top: 4px;
   color:#777777;
 }
 
 h2 {
   font-size: 1.5rem;
   color: #828282;
-  margin-bottom: 15%;
 }
 
 .buttons {
   border: none;
   text-align: left;
-  padding: 10px;
-  width: 80%;
-  height: 10%;
+  width: 50%;
+ padding: 3%;
+  height: auto;
 
-  margin: 3px;
+  margin: 2px;
   color: white;
   vertical-align: middle;
   font-size: 1.5rem;
@@ -116,36 +115,11 @@ h2 {
 
 /*adding the media screen resizing to match homepage. */
 
-@media screen and (max-width: 1196px) {
 
-	#banner {
-		padding: 18%;
-		margin-top: 6%;
-	}
-
-}
-@media screen and (max-width: 1178px) {
-
-	#login-box {
-    width: 40vw;
-  }
-
-   h1 {
-     font-size: 3.4rem;
-   }
-
-}
 
 
 @media screen and (max-width: 1065px) {
-	#banner {
-		padding: 21%;
-		margin-top: 8%;
-	}
-  #login-box {
-    width: 43vw;
-  }
-
+	
   h1 {
     font-size: 3rem;
   }
@@ -156,15 +130,10 @@ h2 {
 }
 
 @media screen and (max-width: 880px) {
-
-	#banner {
-		padding: 25%;
-		margin-top: 10%;
-	}
-  #login-box {
-    width: 46vw;
-  }
-
+ #login-box {
+ 	width: 80%;
+ }
+ 
   h1 {
     font-size: 2.8rem;
   }
@@ -174,101 +143,16 @@ h2 {
 
 }
 
-@media screen and (max-width: 761px) {
-
-	body {
-
+@media screen and (max-width: 740px) {
+	#login-box {
+		padding-top: 20%;
 	}
-	.navbar-default {
-		padding: 0.5% 5%;
-		background: #F8F8F8;
-	}
-
-
-	#banner {
-		background-image: url("img/IconWhite.png");
-		background-repeat: no-repeat;
-		background-size: 40%;
-		padding: 15%;
-		margin-top: 20%;
-	}
-
-	#landing-page-title {
-		font-size: 400%;
-	}
-
-	#title {
-		margin-bottom: 5%;
-	}
-
-	#overlay1 span {
-		font-size: 130%;
-	}
-
-	#small-line {
-		font-size: 150%;
-	}
-
-	#overlay2 {
-		margin: 5% 0;
-		padding: 0 5% 5%;
-		font-size: 120%;
-	}
-
-  #login-box {
-    background-color: #e8e9ea;
-    width: 100vw;
-    border: none;
-  }
-
-  .right-half {
-    width: 100vw;
-
-  }
-
-  h2 {
-    font-size: 1.3rem;
-
-
-  }
-
-  h1 {
-    font-size: 3.5rem;
-    padding-left: -20px;
-    padding-right: -20px;
-
-  }
-
-
-  .navbar-default {
-		padding: 0.5% 5%;
-		background: #F8F8F8;
-	}
-
-	#navLogo {
-		display: none;
-	}
-
 }
 
+@media screen and (max-width: 570px) {
+	.buttons {
 
-@media screen and (max-width: 404px) {
+  		width: 100%;
 
-  h1 {
-    font-size: 3rem;
-    padding-left: -20px;
-    padding-right: -20px;
-
-  }
-
-  h2 {
-    font-size: 1.1rem;
-
-
-  }
-
-<<<<<<< HEAD
+	}
 }
-=======
-}
->>>>>>> control-f/master
