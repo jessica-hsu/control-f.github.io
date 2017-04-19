@@ -279,11 +279,26 @@ switch ($companyFunc) {
 	break;
 	case 'change-company-pic':
 
-		$query = "UPDATE ImageTable SET imageURL = '  $changedText[0]  ' WHERE compID = ".$userID;
+		$query = "SELECT * FROM ImageTable WHERE ImageTable.compId = " .$userID;
+		if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			echo("Error: %s\n"+ mysqli_error($conn));
+			exit(1);
+        	}
+		
+		if (mysql_num_rows($result) <1) {
+			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . "," .  $changedText[0] . "') ";
+		}
+		else {
+			$queryUpdate = "UPDATE ImageTable SET imageURL = ' . $changedText[0] . ' WHERE compID = ".$userID;
+			
+		}
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
+		
+		
+		
 		break;
 
 	default:
