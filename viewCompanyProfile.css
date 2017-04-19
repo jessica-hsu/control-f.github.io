@@ -78,14 +78,34 @@ width:100vw;
 
 #profile-image {
 
-	margin-top: -9%;
+	margin-top: -7vw;
 	margin-left:7%;
-	width: 20%;
-	height: 16%;
+	width: 20vw;
+	height: 14vw;
 	border: 4px solid #e8e9ea;
 	z-index: 3;
 	border-radius: 10px;
+	background-color: #e8e9ea;
+	color: white;
 
+}
+
+#profile-pic {
+	width:100%;
+	height:100%;
+}
+
+
+
+#profile-image:hover {
+	opacity: 0.8;
+
+}
+
+
+
+#change-image-button {
+	margin-top
 }
 
 .row {

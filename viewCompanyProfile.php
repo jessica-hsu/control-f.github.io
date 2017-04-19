@@ -21,8 +21,14 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
   <link rel="stylesheet" type="text/css" href="viewCompanyProfile.css">
   <script src="viewCompanyProfile.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+  <!-- jquery plugin for upload image -->
+  <script type="text/javascript" src="bootstrap-filestyle-1.2.1/src/bootstrap-filestyle.min.js"> </script>
+
 	<script src="hello.all.js"></script>
-<link rel='icon' href='img/icon.ico' type='image/x-icon'>
+  <link rel='icon' href='img/icon.ico' type='image/x-icon'>
+
 
 
 </head>
@@ -56,10 +62,12 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
     	</nav>
 	<!---for the profile backimage-->
 	<div class = "container-fluid" id = "top-background">
+
 		<div id = "title-text">
       <?php #query to get user information#
    				$query = "SELECT cName FROM company WHERE compID = ".$userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
+
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
    				}
@@ -69,7 +77,33 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 
     </div>
 	</div>
-	<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
+
+  <div id = "profile-image">
+     <img id ="profile-pic" onclick="editImage(this);" src ="<?php #query to get user information#
+        $query = "SELECT imageURL FROM ImageTable WHERE " .$userID;
+        if ( ! ( $result = mysqli_query($conn, $query)) ) {
+          echo("Error: %s\n"+ mysqli_error($conn));
+          exit(1);
+        }
+        $row = mysqli_fetch_assoc($result);
+        echo($row['imageURL']);
+      ?> ">
+  </div>
+  <script>
+    function editImage(Image) {
+      var url = prompt("Please provide a bitly link to the image file", 'Enter link here');
+      Image.src = url;
+      console.log(url);
+      save("profile-pic");
+
+    }
+
+
+
+
+  </script>
+
+
 
 
 	<div class="container-fluid">
@@ -355,7 +389,7 @@ function logout() {
 	hello( network ).logout({force:true},function(e){
 		console.log("force logout of " + network);
 	});
-	
+
 	$.ajax({
         url: 'ajax.php',
         data: {func: f},
@@ -367,12 +401,12 @@ function logout() {
             } else {
                	window.location.href = "loginComp.php";
             }
-        }, 
+        },
         error: function(result) {
         	console.log(result);
         }
     });
-	
+
 }
 </script>
 <?php mysqli_close($conn); ?>

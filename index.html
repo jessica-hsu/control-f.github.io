@@ -21,6 +21,7 @@
 	
 	<title>Control-F</title>
 </head>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
@@ -77,21 +78,10 @@
 	</div>
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <script> /*for the fancy scrolling function*/
 $(document).ready(function() {		//do this when document has finished loading
-	$("#flip").click(function() {
-		$("#panel").slideToggle("slow");
-	});
-	
-	$('a').click(function() {
-	    var href = $.attr(this, 'href');
-	    $("html, body").animate({
-	        scrollTop: $(href).offset().top
-	    }, 1500, function () {
-	        window.location.hash = href;
-	    });
-	    return false;
-	});
+	window.location.href="http://control-f.us-west-2.elasticbeanstalk.com/";
 	
 });
 </script>
