@@ -83,7 +83,7 @@ if (isset($_POST['network'])) {
 
         <br>
 
-          <button id="top-button" class ="buttons" style=" background-color:black; color:#f2f2f2" onclick="userEmail('github', 'email');"><i id ="top-icon" class="fa fa-github icons" style="font-size:4rem;color:#f2f2f2;" onclick="userEmail('github', 'email');"></i> Access with Github</button>
+           <button id="top-button" class ="buttons" style=" background-color:#dd4b39; color:#f2f2f2" onclick="hello('google').login()"><i id ="top-icon" class="fa fa-google icons" style="font-size:4rem;color:#f2f2f2; "></i> Access with Google</button>
 
           <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
 
@@ -123,14 +123,14 @@ hello.on('auth.login', function(auth) {
 
 </script> 
         <script class="pre">
+        <script>
         hello.init({
-           github: "ffe1c437297f06e9e275"
+          google: "73862463897-ofr3bic69njtn603du9epk57648c3j7q.apps.googleusercontent.com"
         },{
             scope: 'email',
             redirect_uri: 'redirect.html'
           });
-      </script>
-
+       </script>
         <script>
         hello.init({
            linkedin: "86eqyv837hjh0w"
