@@ -113,7 +113,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
          			</ul>
       			</div>
     		</div>
-		</nav>
+    	</nav>
     	<?php echo("<h1 id='banner'>Welcome back, " . $_SESSION['userName'] . "!</h1>")?>
 	<p>Make a profile <a href="viewProfile.php" id="here">here</a> to get started!</p>
    </div> 	
@@ -122,9 +122,7 @@ if (strcmp($_SESSION['profileType'], "dev") == 0) {		#user is a DEVELOPER
 $( document ).ready(function() {
 	
     console.log( "ready!" );
-    var linkedin = hello('linkedin').getAuthResponse();
-    console.log("token:" + linkedin.access_token);
-    console.log("expires: " + linkedin.expires);
+   
 	console.log("network: " + document.getElementById('network').innerHTML);
 	console.log("profile Type: " + document.getElementById('profileType').innerHTML);
 	
@@ -170,6 +168,6 @@ function logout() {
 }
 
 </script>
-
+<?php mysqli_close($conn); ?>
 </body>
 </html>

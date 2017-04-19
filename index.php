@@ -23,9 +23,6 @@
 	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-			<a id="navLogo" class="navbar-brand" href="index.html">
-            	<img  src="img/IconWhite.png" class="d-inline-block align-top" alt="" style="width: 40%; margin:0;">
-          	</a>
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
           			<span class="icon-bar"></span>

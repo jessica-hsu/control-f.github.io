@@ -19,6 +19,9 @@ if (isset($_POST['network'])) {
 }
 
 
+if ($_SESSION['profileType'] != null) {
+	header('Location: welcome.php');
+}  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +52,6 @@ if (isset($_POST['network'])) {
 	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-			<a id="navLogo" class="navbar-brand" href="index.html" style="padding:0;">
-          	</a>
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
           			<span class="icon-bar"></span>
@@ -62,7 +63,7 @@ if (isset($_POST['network'])) {
        			 	<ul class="nav navbar-nav">
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
-         				<li><a href="index.html">How it works</a></li>
+         				<li><a href="index.php">How it works</a></li>
          				<li><a href="about.php">About Us</a></li>
          				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Login/Register<span class="caret"></span></a>
          					<ul class="dropdown-menu">
@@ -83,9 +84,12 @@ if (isset($_POST['network'])) {
 
         <br>
 
-           <button id="top-button" class ="buttons" style=" background-color:#dd4b39; color:#f2f2f2" onclick="hello('google').login()"><i id ="top-icon" class="fa fa-google icons" style="font-size:4rem;color:#f2f2f2; "></i> Access with Google</button>
 
-          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
+          <button id="top-button" class ="buttons" style=" background-color:#dd4b39; color:#f2f2f2" onclick="hello('google').login()"><i id ="top-icon" class="fa fa-google icons" style="font-size:4rem;color:#f2f2f2; "></i> Access with Google</button>
+
+
+          <button class ="buttons login" style="background-color:rgb(0, 119, 181); color:#f2f2f2" onclick="hello('linkedin').login()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Access with Linkedin</button>
+          <button class ="buttons" style="background-color:rgb(0, 119, 181); color:#f2f2f2; display:none;" onclick="logout()"><i id ="bottom-icon" class="fa fa-linkedin icons" style="font-size:4rem;color:#f2f2f2"></i> Logout</button>
 
         <p id = "bottom-text">
 
@@ -111,6 +115,10 @@ hello.on('auth.login', function(auth) {
             type: 'post',
             success: function(result) {
                 console.log("action performed successfully");
+                $(".login").hide();
+                window.location.href='welcome.php';
+                
+                
             }, 
             error: function(result) {
             	console.log(result);
@@ -122,8 +130,10 @@ hello.on('auth.login', function(auth) {
 
 
 </script> 
-        <script class="pre">
-        <script>
+
+
+     <script class="pre">
+
         hello.init({
           google: "73862463897-ofr3bic69njtn603du9epk57648c3j7q.apps.googleusercontent.com"
         },{

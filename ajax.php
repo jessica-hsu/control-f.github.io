@@ -20,20 +20,28 @@ if (isset($_POST['s'])) {
 }
 if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
+
 } else {
 	$userID = $_SESSION['ID'];
 }
+
 if (isset($_POST['companyFunc'])) {
 	$companyFunc = $_POST['companyFunc'];
+
 }
+
 if (isset($_POST['textUpdateCompany'])) {
 	$changedText = $_POST['textUpdateCompany'];
+
 }
+
 if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
+
 }
 //$companyFunc = 'editAd';
-$userID = 6;
+//$userID = 6;
+
 //$adId = array(64); $changedText = array("In progress"); $size = 1;*/
 switch ($func) {
 	#Update the description of user
@@ -107,6 +115,8 @@ switch ($func) {
 		$sub_menu2 = $text[2];	//for the 2nd drop down if ad is selected (the company focus)
 		if (strcmp($menu, "dev") == 0) {
 
+			
+
 			if (strcmp($sub_menu, "All") == 0) {
 				$query = "SELECT userID, CONCAT(firstName,' ',lastName) AS person FROM user";
 			} else {
@@ -114,7 +124,10 @@ switch ($func) {
 				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
 			}
 
+
+			
 		} else if (strcmp($menu, "comp") == 0) { #query to search for company using given focus
+			
 
 			if (strcmp($sub_menu, "All") == 0 ) {
 				$query="SELECT compID, cName FROM company";
@@ -122,29 +135,34 @@ switch ($func) {
 				$query="SELECT compID, cName FROM company WHERE Focus LIKE '%" . $sub_menu . "%'";
 			}
 
+
+			
 		} else if (strcmp($menu, "skill") == 0) { #query to search for developers using given skill
 			$query = "SELECT user.userID AS userID, CONCAT(firstName,' ',lastName) AS person, skillName FROM user, userSkill
 				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
-
+			
 		} else if (strcmp($menu, "ad") == 0) { #query to search for ads using given product type and/or focus
+			
 
 			if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") == 0 )  {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
 							WHERE a.compID = c.compID";
 			} else if (strcmp($sub_menu, "All") != 0 && strcmp($sub_menu2, "All") == 0 ) {
 				$query="SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-						WHERE a.compID = c.compID
+
+						WHERE a.compID = c.compID 
 						AND type LIKE '%".$sub_menu."%';";
 			} else if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") != 0 ) {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-						WHERE a.compID = c.compID
+						WHERE a.compID = c.compID 
 						AND Focus = '".$sub_menu2."'";
 			} else {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-				WHERE a.compID = c.compID
+				WHERE a.compID = c.compID 
 				AND type LIKE '%".$sub_menu."%'
 				AND Focus = '".$sub_menu2."'";
 			}
+			
 
 		}
 		if (! ( $result = mysqli_query($conn, $query))) {
@@ -200,6 +218,7 @@ switch ($func) {
 		break;
 	default:
 		break;
+
 }
 
 
@@ -271,4 +290,5 @@ switch ($companyFunc) {
 		break;
 }
 mysqli_close($conn);
+
 ?>

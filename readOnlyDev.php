@@ -1,9 +1,16 @@
 <?php 
-session_start();
+
+session_start();	
+
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
 }
 
+$userID = $_GET['info'];
+//$userID = 1;
+if (strcmp($_SESSION['profileType'], "comp")==0) {
+	header('Location: viewCompanyProfile.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +19,6 @@ if ($_SESSION['profileType'] == null) {
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -30,14 +36,10 @@ if ($_SESSION['profileType'] == null) {
 	<link rel="stylesheet" href="viewProfile.css">
 	<link rel="icon" href="img\icon.ico" type="image/x-icon">
 	<title>Control-F</title>
-	
-		
 
 </head>
-<?php include "connectDB.php";
-$userID = $_GET['info'];
-
-?>
+<?php include "connectDB.php"?>
+<span id="currentUser" hidden><?php echo $userID?></span>
 <span id="network" hidden><?php echo $_SESSION['network']?></span>
 <span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 
@@ -65,11 +67,10 @@ $userID = $_GET['info'];
     		</div>
     	</nav>
     	<!--- for the profile backimage -->
-	
 		<div class = "container-fluid" id = "top-background">
 			<div id = "title-text">
 			<?php #query to get user information#
-   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID =" . $userID;
+   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID = " . $userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
@@ -77,16 +78,16 @@ $userID = $_GET['info'];
    				$row = mysqli_fetch_assoc($result);
    				echo($row['firstName'] . " " . $row['lastName']);
    			?>
-			
 			</div>	 
 		</div>
 		<div class = "container-fluid" id = "division-bar"> 
 		</div>
 		<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
-		<div class="container-fluid"
+		<div class="container-fluid">
 		<div class="row">
-
-		  	<!--first row-->
+		
+			
+			<div class="row" id="row1"> 
 		  	<div class="col-sm-4 col-sm-offset-2 left-box left-box" id = "about-box">
 		  		
 				<p class = "sub-heading" > About Developer </p>
@@ -117,22 +118,21 @@ $userID = $_GET['info'];
    					exit(1);
    				} 
    				while($row = mysqli_fetch_assoc($result)) {
-   					echo("Age: &nbsp; <span contentEditable='false' class='facts-text' id='myAge'>" . $row['age'] . "</span><br>");
-   					echo("Email: &nbsp; <span contentEditable='false' class='facts-text' id='myEmail'>" . $row['email'] . "</span><br>");
-   					echo("Phone: &nbsp; <span contentEditable='false' class='facts-text' id='myPhone'>" . $row['phone'] . "</span><br>");
+   					echo("Age: &nbsp; <span id='myAge'>" . $row['age'] . "</span><br>");
+   					echo("Phone: &nbsp; <span contentEditable='false' id='myPhone'>" . $row['phone'] . "</span><br>");
+   					echo("Email: &nbsp; <span id='myEmail'>" . $row['email'] . "</span><br>");
    				}
    				
    				?>	 
 				</p>
-
 			</div>
+			</div> <!-- end row -->
 
-			<!-- 3rd row -->
-
+			<div class="row" id="row2">
 			<div class="col-sm-9 col-sm-offset-2 left-box " id = "skills-box"> 
-			
+				
 				<p class = "sub-heading" >Skills </p>
-				<p>
+				<p> <span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="skill-table">
 						<thead><tr>
@@ -148,10 +148,10 @@ $userID = $_GET['info'];
 							exit(1);
 						}
 						while($row = mysqli_fetch_assoc($result)) {
-							echo("<tr class='skillz'><td class='skills-text' contentEditable='false'>" . $row['skillName'] . 
-									"</td><td class='skills-text' contentEditable='false'>" . $row['yearsExp'] . 
+							echo("<tr class='skillz'><td class='skills-text-name'>" . $row['skillName'] . 
+									"</td><td class='skills-text-yrs'>" . $row['yearsExp'] . 
 									"</td><td class='skills-text' contentEditable='false'>" . $row['portfolioURL'] . 
-									"</td></tr>");
+									"</td><td><span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span></tr>");
 						}
 
 						?>
@@ -162,11 +162,13 @@ $userID = $_GET['info'];
 				</p>
 
 			</div>
+			</div> <!-- end row -->
 			
+			<div class="row" id="row3">
 			<div class="col-sm-9  col-sm-offset-2 left-box " id = "social-media"> 
 				
 				<p class = "sub-heading" > Other Places to Find Developer </p> 
-				<p>
+				<p><span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="link-table">
 						<thead><tr>
@@ -176,60 +178,59 @@ $userID = $_GET['info'];
 						</thead>
 						<tbody>
 						<?php 
-						$query = "SELECT name, links FROM links WHERE id=" . $userID;
+						$query = "SELECT name, links FROM links WHERE id = " . $userID;
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
 							exit(1);
 						}
 						while($row = mysqli_fetch_assoc($result)) {
-							echo("<tr class='linkz'><td class='link-text' contentEditable='false'>" . $row['name'] .
-									"</td><td class='link-text' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
-									</td></tr>");
+							echo("<tr class='linkz'><td class='link-text'>" . $row['name'] .
+									"</td><td class='link-url' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
+									</td><td><span class='glyphicon glyphicon-remove' onclick='removeLink(this)'></span></tr>");
 						}
-						
-
 						?>
 						</tbody>
 					</table>
 				</div>
 				</p>
 
-			</div>
-		  	
+			</div> <!-- end column -->
+		  	</div> <!-- end row -->
 		</div>
 		  	
 	</div>	
+<?php mysqli_close($conn); ?>
 <script>
-function logout() {
-	console.log("logging out ... ");
-	f="logout";
-	network = document.getElementById('network').innerHTML;
-	console.log(network);
-	profileType = document.getElementById('profileType').innerHTML;
-	console.log(profileType);
-	hello( network ).logout({force:true},function(e){
-		console.log("force logout of " + network);
-	});
-	
-	$.ajax({
-        url: 'ajax.php',
-        data: {func: f},
-       	type: 'post',
-        success: function(result) {
-            console.log("action performed successfully");
-            if (profileType == "dev") {
-            	window.location.href = "loginDev.php";
-            } else {
-               	window.location.href = "loginComp.php";
-            }
-        }, 
-        error: function(result) {
-        	console.log(result);
-        }
-    });
-	
-}
-</script>
-<?php mysqli_close($conn); ?>	
+	function logout() {
+		console.log("logging out ... ");
+		f="logout";
+		network = document.getElementById('network').innerHTML;
+		console.log(network);
+		profileType = document.getElementById('profileType').innerHTML;
+		console.log(profileType);
+		hello( network ).logout({force:true},function(e){
+			console.log("force logout of " + network);
+		});
+		
+		$.ajax({
+	        url: 'ajax.php',
+	        data: {func: f},
+	       	type: 'post',
+	        success: function(result) {
+	            console.log("action performed successfully");
+	            if (profileType == "dev") {
+	            	window.location.href = "loginDev.php";
+	            } else {
+	               	window.location.href = "loginComp.php";
+	            }
+	        }, 
+	        error: function(result) {
+	        	console.log(result);
+	        }
+	    });
+		
+	}
+</script>   
+			
 </body>
 </html>

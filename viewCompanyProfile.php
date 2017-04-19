@@ -1,8 +1,16 @@
-<?php session_start(); ?>
+<?php session_start();
+
+$userID = $_SESSION['ID'];
+//$userID = 6;
+if (strcmp($_SESSION['profileType'], "dev")==0) {
+	header('Location: viewProfile.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Company</title>
+  <title>Control-F</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,50 +22,52 @@
   <script src="viewCompanyProfile.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
+
   <!-- jquery plugin for upload image -->
   <script type="text/javascript" src="bootstrap-filestyle-1.2.1/src/bootstrap-filestyle.min.js"> </script>
+
+	<script src="hello.all.js"></script>
+  <link rel='icon' href='img/icon.ico' type='image/x-icon'>
 
 
 
 </head>
 <?php include "connectDB.php"?>
+<span id="currentUser" hidden><?php echo $userID?></span>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 <body>
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
-			<a id="navLogo" class="navbar-brand" href="index.html">
-		    		<img  src="img/Icon-title.png" class="d-inline-block align-top" alt="" style="width: 10%; margin:0;">
-		  	</a>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div>
-			<div class="collapse navbar-collapse" id="theNav">
-			 	<ul class="nav navbar-nav">
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="viewCompanyProfile.php">Profile</a></li>
-					<li><a href="search.php">Search</a></li>
-					<li><a href="postAd.php">Post Ad</a></li>
-					<li><a href="about.php">About Us</a></li>
-					<li><a href="contact.php">Contact Us</a></li>
-
-					<li><a id="logout" onclick="logout()" >Logout</a></li>
-
-				</ul>
-			</div>
-		</div>
-	</nav>
+			<div class="navbar-header">
+       			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>                        
+      			</button>
+    		</div>
+    		<div>
+      			<div class="collapse navbar-collapse" id="theNav">
+       			 	<ul class="nav navbar-nav">
+         			</ul>
+         			<ul class="nav navbar-nav navbar-right">
+         				<li><a href="welcome.php">Home</a></li>         		
+         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="search.php">Search</a></li>
+         				<li><a href="contact.php">Contact Us</a></li>
+         				<li><a id="logout" onclick="logout()" >Logout</a></li>
+         			</ul>
+      			</div>
+    		</div>
+    	</nav>
 	<!---for the profile backimage-->
 	<div class = "container-fluid" id = "top-background">
-		<div id="title-text">
 
-          <?php #query to get user information#
-   				$query = "SELECT cName FROM company WHERE compID = 6 ";
-   				if ( !( $result = mysqli_query($conn, $query)) ) {
+		<div id = "title-text">
+      <?php #query to get user information#
+   				$query = "SELECT cName FROM company WHERE compID = ".$userID;
+   				if ( ! ( $result = mysqli_query($conn, $query)) ) {
+
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
    				}
@@ -70,7 +80,7 @@
 
   <div id = "profile-image">
      <img id ="profile-pic" onclick="editImage(this);" src ="<?php #query to get user information#
-        $query = "SELECT imageURL FROM ImageTable WHERE compID = 6 ;";
+        $query = "SELECT imageURL FROM ImageTable WHERE " .$userID;
         if ( ! ( $result = mysqli_query($conn, $query)) ) {
           echo("Error: %s\n"+ mysqli_error($conn));
           exit(1);
@@ -97,7 +107,21 @@
 
 
 	<div class="container-fluid">
+		<div class="row">
 
+			<!-- post ad row --> 
+			<div class="col-lg-2 col-lg-offset-9">
+				<button class="btn" type="button" id="postAd" onclick="postAd()">
+					Post Ad
+				</button>
+			</div>
+			<script>
+				function postAd() {
+					window.location.href = 'postAd.php';
+				}
+			</script>
+
+    		</div>
 		<div class="row">
 
 			<!--first row-->
@@ -113,7 +137,7 @@
 				<p class = "sub-heading" > About Company </p> <br>
 				<p id="about-text" contentEditable="false">
           <?php #query to get user information#
-       				$query = "SELECT cDescription FROM company WHERE compID = 6 ";
+       				$query = "SELECT cDescription FROM company WHERE compID = ".$userID;
        				if ( ! ( $result = mysqli_query($conn, $query)) ) {
        					echo("Error: %s\n"+ mysqli_error($conn));
        					exit(1);
@@ -144,7 +168,7 @@
 
           <p id="facts-text" contentEditable="false">
             <?php #query to get user information#
-                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = 6";
+                $query = "SELECT Founder, Location, Focus FROM company WHERE compID = ".$userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -177,7 +201,7 @@
 				<p class = "sub-heading" > What We're Proud Of </p> <br>
 				<p id="skills-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT companycol FROM company WHERE compID = 6 ";
+              $query = "SELECT companycol FROM company WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -203,7 +227,7 @@
         <p id="projects-text" contentEditable="false">
         <table style="width:60%" id = "quick-facts-table">
           <?php #query to get user information#
-              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = 6;";
+              $query = "SELECT cEmail, cPhoneNumber FROM company WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
@@ -223,27 +247,35 @@
 			<div class="col-lg-9 col-lg-offset-2 left-box " id = "awards-box">
 				<button onclick="editAwards(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
-		  	</button> <br>
+		  	</button>
+		  	<button onclick="save('volunteers-box');" class="save-icon">
+            <span class="glyphicon glyphicon-floppy-saved" id = "save-volunteers"></span>
+          </button> <br>
 				<p class = "sub-heading" > Volunteers Needed </p>
 
         <table style="width:80%" id = "volunteers-table" class="table table-hover">
         <thead>
           <tr>
-            <th>Position</th>
+          	<th> Advert ID</th>
+            <th>Title</th>
             <th>Description</th>
-
+            <th>Status</th>
+			<th>Remove</th>
           </tr>
         </thead>
 				<p id="awards-text" contentEditable="false">
           <?php #query to get user information#
-              $query = "SELECT title,post_date,aDescription FROM advert WHERE compID = 6;";
+              $query = "SELECT advertID, title,post_date,aDescription,status FROM advert WHERE compID = ".$userID;
               if ( ! ( $result = mysqli_query($conn, $query)) ) {
                 echo("Error: %s\n"+ mysqli_error($conn));
                 exit(1);
               }
               while($row = mysqli_fetch_assoc($result) ) {
-                echo("<tr> <span contentEditable='false' class='facts-text '> <td>" . $row['title'] . "</td>");
-                echo("<td>" . $row['aDescription'] . "</td></tr></span>");
+              	echo("<tr><td class='adID'>".$row['advertID']."</td>");
+                echo("<span contentEditable='false' class='facts-text'> <td>" . $row['title'] . "</td>");
+                echo("<td>" . $row['aDescription'] . "</td></span>");
+                echo("<td class='adStatus'>" . $row['status'] . "</td></span>");
+                echo("<td><span class='glyphicon glyphicon-remove' onclick='removeAdvert(".$row['advertID'].",".$userID.")'></span></td></tr>");
               }
             ?>
 				</p>
@@ -254,16 +286,46 @@
 			  	function editAwards(button) {
 			    	var text = document.getElementById("awards-text");
 			    	var box = document.getElementById("awards-box");
+			    	var save = document.getElementById('save-volunteers');
+			    	var adStatus = document.getElementsByClassName("adStatus");
 				    if (text.contentEditable == "true") {
+				    	save.style.display ="none";
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
-				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
-				    } else {
+				       	box.style.border = "none";
+                 		$(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
+                 		var theLink = document.getElementsByClassName("pickStatus");
+             			var selected=[];
+		       	 
+		       			for (var i=0; i<theLink.length; i++) {
+		       				selected.push(theLink[i].options[theLink[i].selectedIndex].text);
+		       			}
+		       			for (var i =0; i<adStatus.length; i++) {
+			       			adStatus[i].innerHTML = selected[i];
+		       			}
+				    } else { //editing view
+				    	save.style.display ="block";
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
+                		$(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
+                		var tempName ="";
+                		for (var i=0; i<adStatus.length; i++) {
+                    		tempName = adStatus[i].innerHTML;
+                    		adStatus[i].innerHTML = "<select class='pickStatus'>\
+													<option value='looking'>Looking for developer</option>\
+													<option value='progress'>In progress</option>\
+													<option value='complete'>Completed</option>\
+                        							</select>";
+                        	var o = adStatus[i].getElementsByTagName('option');
+                        	for (var j=0; j<o.length; j++) {
+                        		if (o[j].innerHTML == tempName) {
+                        			o[j].selected = "selected";
+                        		}
+                        	}
+                    		
+                		}
+                		
 				    }
 				}
 		  		</script>
@@ -347,6 +409,6 @@ function logout() {
 
 }
 </script>
-
+<?php mysqli_close($conn); ?>
 </body>
 </html>

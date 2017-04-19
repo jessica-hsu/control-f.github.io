@@ -17,7 +17,12 @@ if (isset($_POST['profile'])) {
 if (isset($_POST['network'])) {
 	$_SESSION['network'] = $_POST['network'];
 }
+
+if ($_SESSION['profileType'] != null) {
+	header('Location: welcome.php');
+}  
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +51,6 @@ if (isset($_POST['network'])) {
 	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
-			<a id="navLogo" class="navbar-brand" href="index.html" style="padding:0;">
-            	<img  src="img/Icon-title.png" class="d-inline-block align-top" alt="" style="width: 10%; margin:0; padding:2.5% 0;">
-          	</a>
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
           			<span class="icon-bar"></span>
@@ -103,11 +105,14 @@ hello.on('auth.login', function(auth) {
        	var p = "comp";
        	var n = auth.network;
         $.ajax({
-            url: 'loginDev.php',
+            url: 'loginComp.php',
             data: {name: r.name, email: r.email, profile: p, network: n},
             type: 'post',
             success: function(result) {
                 console.log("action performed successfully");
+                $(".login").hide();
+                window.location.href = 'welcome.php';
+                
             }, 
             error: function(result) {
             	console.log(result);
@@ -118,10 +123,7 @@ hello.on('auth.login', function(auth) {
 });
 </script> 
 
-      <pre class="response"></pre>
-
-      <script src="hello.all.js"></script>
-      <script>
+      <script class="pre">
         hello.init({
           google: "73862463897-ofr3bic69njtn603du9epk57648c3j7q.apps.googleusercontent.com"
         },{

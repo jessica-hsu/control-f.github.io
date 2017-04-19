@@ -1,11 +1,14 @@
 <?php session_start();
 $compID = $_SESSION['ID'];
 $compName = $_SESSION['userName'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <span id="user" hidden><?php echo $compID?></span>
 <span id="mahName" hidden><?php echo $compName; ?></span>
+<span id="network" hidden><?php echo $_SESSION['network']?></span>
+<span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
 <head>
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
@@ -20,6 +23,7 @@ $compName = $_SESSION['userName'];
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="hello.all.js"></script>
 
 	<!-- jQUERY -->
 	
@@ -48,7 +52,7 @@ $compName = $_SESSION['userName'];
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
          				<li><a href="welcome.php">Home</a></li>         		
-         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="viewCompanyProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          				<li><a id="logout" onclick="logout()" >Logout</a></li>
@@ -56,7 +60,6 @@ $compName = $_SESSION['userName'];
       			</div>
     		</div>
     	</nav>
-	</div>
 
 
 	<h1>Post an Advertisement</h1>
@@ -119,7 +122,7 @@ $compName = $_SESSION['userName'];
 			</div>
 		</div>
 	</div>
-
+</div>
 	<script>
 		function p() {
 			var text=[]; //this is where we store the dev/comp option and the selected product type/company focus
@@ -161,9 +164,7 @@ $compName = $_SESSION['userName'];
 			$.ajax({
 	            url: 'ajax.php',
 	            data: {func: f, textUpdate: text, id: user},
-	            type: 'post',
-				dataType: "json",
-	            
+	            type: 'post',	            
 	            success: function(result) {
 	                console.log("action performed successfully");
 	               	window.location.href = 'viewCompanyProfile.php';
@@ -203,6 +204,6 @@ $compName = $_SESSION['userName'];
 			
 		}
 	</script>
-
+<?php mysqli_close($conn);?>
 </body>
 </html>

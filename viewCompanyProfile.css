@@ -37,6 +37,26 @@ background-color: #f4f4f4;
 	z-index:-1;
 }
 
+a .action_box {
+	text-decoration: none;
+}
+
+#postAd {
+	background-color: #47ffd1; /* For browsers that do not support gradients */
+    background-color: -webkit-linear-gradient( #50edbb,#47FFC2); /* For Safari 5.1 to 6.0 */
+    background-color: -o-linear-gradient( #50edbb, #47FFC2); /* For Opera 11.1 to 12.0 */
+    background-color: -moz-linear-gradient( #50edbb, #47FFC2); /* For Firefox 3.6 to 15 */
+    background-color: linear-gradient( #50edbb, #47FFC2); /* Standard syntax */
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    text-decoration: none;
+    float:right;
+    margin-right: 2%;
+    cursor: pointer;
+    margin-bottom: -20px;
+}
+
 #title-text {
 
  margin-left: 29%;
@@ -149,7 +169,7 @@ width:100vw;
 
 }
 
-#save-about-text{
+#save-about-text, #save-volunteers{
 	display:none;
 }
 

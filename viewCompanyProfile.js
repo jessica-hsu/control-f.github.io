@@ -4,7 +4,7 @@ function save(id) {
   var changedText = "";
   var text = document.getElementById("about-text");
   var f = "";
-
+  var ads=[]; var size="";
 
   switch(id) {
     case 'about-text':
@@ -31,20 +31,35 @@ function save(id) {
       changedText = [tel.innerHTML];
       console.log(changedText);
       break;
+
     case 'profile-pic':
       f ='change-company-pic';
       var url = document.getElementById('profile-pic');
       changedText = [url.src];
+  
+    case 'volunteers-box':
+    	f = 'editAd';
+    	params = []; changedText=[];
+ 		var theLink = document.getElementsByClassName("pickStatus");
+    	var adID = document.getElementsByClassName("adID"); 
+ 		var adStatus = document.getElementsByClassName("adStatus");
+ 		
+    	for (var i=0; i<adStatus.length; i++) {
+    		status = theLink[i].options[theLink[i].selectedIndex].text;
+    		id = adID[i].innerHTML;
+    		ads.push(id);
+    		changedText.push(status);
+    	}
+    	size = adStatus.length; 
+    	break;
     default :
       break;
-
-}
-
+  }
 
   $.ajax ({
     type: "POST",
     url: "ajax.php",
-    data: {companyFunc: f, textUpdateCompany: changedText},
+    data: {companyFunc: f, textUpdateCompany: changedText, adId: ads, s:size},
     dataType: "html",
     success: function(data) {
       console.log("success");
@@ -58,7 +73,23 @@ function save(id) {
 
 }
 
-
+function removeAdvert(adID, compID) {
+	f="removeAds";
+	changedText=[adID, compID]; console.log(changedText);
+	$.ajax ({
+	    type: "POST",
+	    url: "ajax.php",
+	    data: {companyFunc: f, textUpdateCompany: changedText},
+	    dataType: "html",
+	    success: function(data) {
+	      console.log("success");
+	      location.reload();
+	    },
+	    error: function(e) {
+	      console.log(e);
+	    }
+	  });
+}
 
 
 function editAbout(button) {
