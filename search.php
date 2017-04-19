@@ -1,8 +1,8 @@
 <?php 
-session_start();
+/*session_start();
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
-}
+}*/
 
 ?>
 <!DOCTYPE html>
@@ -62,8 +62,9 @@ if ($_SESSION['profileType'] == null) {
     	</nav>
 
 		<div class="row">
-			<div class="col-sm-12">
-		  		<div id="searchbox">
+			<div class="col-sm-12" id="searchbox">
+				<div class="col-sm-3">
+					<!-- First drop down menu -->
     				<label for="search">Search for developers/company/skill/Ads:</label>
 	    			<select id="search" onchange="changeSubMenu()">
 	    				<option value="dev" selected>Developer</option>
@@ -71,7 +72,8 @@ if ($_SESSION['profileType'] == null) {
 	    				<option value="skill">Skills</option>
 	    				<option value="ad">Ads</option>
 	    			</select>
-	    			
+	    		</div>
+	    		<div class="col-sm-3">	
 	    			<!--  hide secondary drop down menu at first. Display depends on developer or company selected -->
 	    			<label class="dev" for="product" >Select a desired product:</label>
 	    			<select class="dev" id="product" >
@@ -141,7 +143,8 @@ if ($_SESSION['profileType'] == null) {
 	    				<option value="graphic">Graphic Design</option>
 	    				<option value="support">IT Support</option>
 	    			</select>
-	    			
+	    		</div>
+	    		<div id="thirdcol" class="col-sm-3">
 	    			<label class="ads-focus" for="ads-focus" >Select an ad focus:</label>
 	    			<select class="ads-focus" id="ads-focus" >
 	    				<option value="all" selected>All</option>
@@ -176,13 +179,13 @@ if ($_SESSION['profileType'] == null) {
 	    				<option value="29">Women</option>
 						<option value="30">Other</option>
 	    			</select>
-	    			
-	    			
+	    		</div>	
+	    		<div class="col-sm-3">	
 	    			<button id="submit" type="button" class="btn btn-info" onclick="search()">
 	    				<span class="glyphicon glyphicon-search"></span>
 	    			</button>
-	   			</div> <!-- end of search box -->
-	   		</div> <!-- end of column -->
+	    		</div>
+	   		</div> <!-- end of column & search box -->
 		</div> <!-- end of row -->
 		<div class = "row" id="result-table">
 			<div class="col-sm-10">
@@ -210,6 +213,7 @@ if ($_SESSION['profileType'] == null) {
 			var skillz = document.getElementsByClassName('skills');
 			var adz = document.getElementsByClassName('ads');
 			var adFocus = document.getElementsByClassName('ads-focus');
+			var thirdcol = document.getElementById('thirdcol');
 			if (menu_selected == "dev") {		//show the product menu if developers selected
 				products[0].style.display = "inline";
 				products[1].style.display = "inline";
@@ -221,6 +225,7 @@ if ($_SESSION['profileType'] == null) {
 				adz[1].style.display = "none";
 				adFocus[0].style.display = "none";
 				adFocus[1].style.display = "none";
+				thirdcol.style.display = "none";
 				
 			} else if (menu_selected == "comp") {	//show company type if company selected
 				products[0].style.display = "none";
@@ -233,6 +238,7 @@ if ($_SESSION['profileType'] == null) {
 				adz[1].style.display = "none";
 				adFocus[0].style.display = "none";
 				adFocus[1].style.display = "none";
+				thirdcol.style.display = "none";
 				
 			} else if (menu_selected == "skill") {	//show skillz type if company selected
 				products[0].style.display = "none";
@@ -245,6 +251,7 @@ if ($_SESSION['profileType'] == null) {
 				adz[1].style.display = "none";
 				adFocus[0].style.display = "none";
 				adFocus[1].style.display = "none";
+				thirdcol.style.display = "none";
 				
 			} else if (menu_selected == "ad") {	//show adz type if company selected
 				products[0].style.display = "none";
@@ -257,12 +264,13 @@ if ($_SESSION['profileType'] == null) {
 				adz[1].style.display = "inline";
 				adFocus[0].style.display = "inline";
 				adFocus[1].style.display = "inline";
+				thirdcol.style.display = "block";
 			}
 		
 		}
 
 		/*ajax to display profile when you click VIEW button*/
-		function viewProfile(profile) {
+		/*function viewProfile(profile) {
 			var text=[];
 			var compID = profile.id.charAt(profile.id.length-1);
 			var menu = document.getElementById('search');
@@ -299,7 +307,7 @@ if ($_SESSION['profileType'] == null) {
 				}	
 			});
 			
-		}
+		}*/
 
 		/*ajax to search user and company*/
 		function search() {
