@@ -79,7 +79,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	</div>
 
   <div id = "profile-image">
-     <img id ="profile-pic" onclick="editImage(this);" src ="<?php #query to get user information#
+     <img id ="profile-pic" alt = "img/blank-profile-picture.png"  onclick="editImage(this);" src ="<?php #query to get user information#
         $query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
         if ( ! ( $result = mysqli_query($conn, $query)) ) {
           echo("Error: %s\n"+ mysqli_error($conn));
