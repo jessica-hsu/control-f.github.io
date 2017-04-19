@@ -31,11 +31,14 @@ function save(id) {
       changedText = [tel.innerHTML];
       console.log(changedText);
       break;
+    case 'profile-pic':
+      f ='change-company-pic';
+      var url = document.getElementById('profile-pic');
+      changedText = [url.src];
     default :
       break;
-  }
 
-
+}
 
 
   $.ajax ({
@@ -52,8 +55,8 @@ function save(id) {
     }
   });
 
-}
 
+}
 
 
 
@@ -141,8 +144,6 @@ function editContact(button) {
        $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
        tel.contentEditable= false;
        save.style.display ="none";
-
-
   } else {
       text.contentEditable = "true";
       box.style.backgroundColor ="#f2f2f2";
