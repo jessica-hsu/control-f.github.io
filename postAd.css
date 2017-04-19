@@ -103,9 +103,14 @@ button {
 	}
 }
 
-
-
+@media screen and (max-width: 420px){
+	h1 {
+		padding-top: 15%; 
+	}
 }
+
+
+
 
 
 

@@ -41,7 +41,9 @@
 .ads-focus {
 	display: none;
 }
-
+#thirdcol {
+	display: none;
+}
 #result-table {
 	display: none;
 	

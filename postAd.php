@@ -1,6 +1,7 @@
 <?php session_start();
 $compID = $_SESSION['ID'];
 $compName = $_SESSION['userName'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +52,7 @@ $compName = $_SESSION['userName'];
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
          				<li><a href="welcome.php">Home</a></li>         		
-         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="viewCompanyProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          				<li><a id="logout" onclick="logout()" >Logout</a></li>
@@ -59,7 +60,6 @@ $compName = $_SESSION['userName'];
       			</div>
     		</div>
     	</nav>
-	</div>
 
 
 	<h1>Post an Advertisement</h1>
@@ -122,7 +122,7 @@ $compName = $_SESSION['userName'];
 			</div>
 		</div>
 	</div>
-
+</div>
 	<script>
 		function p() {
 			var text=[]; //this is where we store the dev/comp option and the selected product type/company focus

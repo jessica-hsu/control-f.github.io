@@ -30,30 +30,27 @@ $userID = $_GET['info'];
 <body>
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
-			<a id="navLogo" class="navbar-brand" href="index.php">
-		  	</a>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div>
-			<div class="collapse navbar-collapse" id="theNav">
-			 	<ul class="nav navbar-nav">
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="welcome.php">Home</a></li>
-					<li><a href="viewCompanyProfile.php">Profile</a></li>
-					<li><a href="search.php">Search</a></li>
-					<li><a href="contact.php">Contact Us</a></li>
-					<li><a id="logout" onclick="logout()" >Logout</a></li>
-
-				</ul>
-			</div>
-		</div>
-	</nav>
+			<div class="navbar-header">
+       			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>                        
+      			</button>
+    		</div>
+    		<div>
+      			<div class="collapse navbar-collapse" id="theNav">
+       			 	<ul class="nav navbar-nav">
+         			</ul>
+         			<ul class="nav navbar-nav navbar-right">
+         				<li><a href="welcome.php">Home</a></li>         		
+         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="search.php">Search</a></li>
+         				<li><a href="contact.php">Contact Us</a></li>
+         				<li><a id="logout" onclick="logout()" >Logout</a></li>
+         			</ul>
+      			</div>
+    		</div>
+    	</nav>
 	<!---for the profile backimage-->
 	<div class = "container-fluid" id = "top-background">
 		<div id = "title-text">

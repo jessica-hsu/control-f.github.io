@@ -33,30 +33,27 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 <body>
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="navbar-header">
-			<a id="navLogo" class="navbar-brand" href="index.html">
-		  	</a>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-		<div>
-			<div class="collapse navbar-collapse" id="theNav">
-			 	<ul class="nav navbar-nav">
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="welcome.php">Home</a></li>
-					<li><a href="viewCompanyProfile.php">Profile</a></li>
-					<li><a href="search.php">Search</a></li>
-					<li><a href="contact.php">Contact Us</a></li>
-					<li><a id="logout" onclick="logout()" >Logout</a></li>
-
-				</ul>
-			</div>
-		</div>
-	</nav>
+			<div class="navbar-header">
+       			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>
+          			<span class="icon-bar"></span>                        
+      			</button>
+    		</div>
+    		<div>
+      			<div class="collapse navbar-collapse" id="theNav">
+       			 	<ul class="nav navbar-nav">
+         			</ul>
+         			<ul class="nav navbar-nav navbar-right">
+         				<li><a href="welcome.php">Home</a></li>         		
+         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="search.php">Search</a></li>
+         				<li><a href="contact.php">Contact Us</a></li>
+         				<li><a id="logout" onclick="logout()" >Logout</a></li>
+         			</ul>
+      			</div>
+    		</div>
+    	</nav>
 	<!---for the profile backimage-->
 	<div class = "container-fluid" id = "top-background">
 		<div id = "title-text">
@@ -216,12 +213,16 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 			<div class="col-lg-9 col-lg-offset-2 left-box " id = "awards-box">
 				<button onclick="editAwards(this);" class="edit-icon">
 		  			<span class="glyphicon glyphicon-pencil "></span>
-		  	</button> <br>
+		  	</button>
+		  	<button onclick="save('volunteers-box');" class="save-icon">
+            <span class="glyphicon glyphicon-floppy-saved" id = "save-volunteers"></span>
+          </button> <br>
 				<p class = "sub-heading" > Volunteers Needed </p>
 
         <table style="width:80%" id = "volunteers-table" class="table table-hover">
         <thead>
           <tr>
+          	<th> Advert ID</th>
             <th>Title</th>
             <th>Description</th>
             <th>Status</th>
@@ -236,9 +237,10 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                 exit(1);
               }
               while($row = mysqli_fetch_assoc($result) ) {
-                echo("<tr> <span contentEditable='false' class='facts-text'> <td>" . $row['title'] . "</td>");
+              	echo("<tr><td class='adID'>".$row['advertID']."</td>");
+                echo("<span contentEditable='false' class='facts-text'> <td>" . $row['title'] . "</td>");
                 echo("<td>" . $row['aDescription'] . "</td></span>");
-                echo("<td>" . $row['status'] . "</td></span>");
+                echo("<td class='adStatus'>" . $row['status'] . "</td></span>");
                 echo("<td><span class='glyphicon glyphicon-remove' onclick='removeAdvert(".$row['advertID'].",".$userID.")'></span></td></tr>");
               }
             ?>
@@ -250,16 +252,46 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 			  	function editAwards(button) {
 			    	var text = document.getElementById("awards-text");
 			    	var box = document.getElementById("awards-box");
+			    	var save = document.getElementById('save-volunteers');
+			    	var adStatus = document.getElementsByClassName("adStatus");
 				    if (text.contentEditable == "true") {
+				    	save.style.display ="none";
 				        text.contentEditable = "false";
 				       	box.style.backgroundColor="#e8e9ea";
-				       	 box.style.border = "none";
-                 $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
-				    } else {
+				       	box.style.border = "none";
+                 		$(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
+                 		var theLink = document.getElementsByClassName("pickStatus");
+             			var selected=[];
+		       	 
+		       			for (var i=0; i<theLink.length; i++) {
+		       				selected.push(theLink[i].options[theLink[i].selectedIndex].text);
+		       			}
+		       			for (var i =0; i<adStatus.length; i++) {
+			       			adStatus[i].innerHTML = selected[i];
+		       			}
+				    } else { //editing view
+				    	save.style.display ="block";
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
+                		$(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
+                		var tempName ="";
+                		for (var i=0; i<adStatus.length; i++) {
+                    		tempName = adStatus[i].innerHTML;
+                    		adStatus[i].innerHTML = "<select class='pickStatus'>\
+													<option value='looking'>Looking for developer</option>\
+													<option value='progress'>In progress</option>\
+													<option value='complete'>Completed</option>\
+                        							</select>";
+                        	var o = adStatus[i].getElementsByTagName('option');
+                        	for (var j=0; j<o.length; j++) {
+                        		if (o[j].innerHTML == tempName) {
+                        			o[j].selected = "selected";
+                        		}
+                        	}
+                    		
+                		}
+                		
 				    }
 				}
 		  		</script>
