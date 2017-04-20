@@ -285,7 +285,7 @@ switch ($companyFunc) {
 			exit(1);
         	}
 		
-		if (mysql_num_rows($result) <1) {
+		if (mysqli_num_rows($result) <1) {
 			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . "," .  $changedText[0] . "') ";
 			if (mysqli_query($conn, $queryNew)) {
 			} else {
