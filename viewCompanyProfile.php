@@ -86,7 +86,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
           exit(1);
         }
 	if (mysqli_num_rows($result) <1) {
-		 echo("img/blank-profile-picture.png");
+		 echo("img/jessica.jpg");
 	}
 	else {						    
 		$row = mysqli_fetch_assoc($result);
