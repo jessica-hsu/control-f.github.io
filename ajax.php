@@ -286,14 +286,14 @@ switch ($companyFunc) {
         	}
 		
 		if (mysqli_num_rows($result) <1) {
-			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . "," .  $changedText[0] . "') "";
+			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . ", '" .  $changedText[0] . "') ";
 			if (mysqli_query($conn, $queryNew)) {
 			} else {
 			echo "Error updating record: " . mysqli_error($conn);
 			}
 		}
 		else {
-			$queryUpdate = "UPDATE ImageTable SET imageURL = ' . $changedText[0] . ' WHERE compID = ".$userID;
+			$queryUpdate = "UPDATE ImageTable SET imageURL = '" . $changedText[0] . "' WHERE compID = ".$userID
 			if (mysqli_query($conn, $queryUpdate)) {
 			} else {
 			echo "Error updating record: " . mysqli_error($conn);
