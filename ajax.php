@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include 'connectDB.php';
 if (isset($_POST['func'])) {
 	$func = $_POST['func'];
@@ -39,9 +39,14 @@ if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
 
 }
+<<<<<<< Updated upstream
 //$companyFunc = 'editAd';
 //$userID = 6;
 
+=======
+$companyFunc = 'editAd';
+$userID = 6;
+>>>>>>> Stashed changes
 //$adId = array(64); $changedText = array("In progress"); $size = 1;*/
 switch ($func) {
 	#Update the description of user
