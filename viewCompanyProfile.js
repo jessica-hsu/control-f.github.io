@@ -35,8 +35,8 @@ function save(id) {
     case 'profile-pic':
       f ='change-company-pic';
       var url = document.getElementById('profile-pic');
-      changedText = [];
-      changedText.push(url.src);
+      
+      changedText = url.src;
     break;
     case 'volunteers-box':
     	f = 'editAd';
