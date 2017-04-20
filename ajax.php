@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include 'connectDB.php';
 if (isset($_POST['func'])) {
 	$func = $_POST['func'];
@@ -39,15 +39,11 @@ if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
 
 }
-<<<<<<< Updated upstream
-//$companyFunc = 'editAd';
-//$userID = 6;
 
-=======
-$companyFunc = 'editAd';
-$userID = 6;
->>>>>>> Stashed changes
-//$adId = array(64); $changedText = array("In progress"); $size = 1;*/
+
+//$companyFunc = 'change-company-pic';
+//$userID = 6;
+//$changedText = 'https://s-media-cache-ak0.pinimg.com/originals/bc/4b/e1/bc4be1415b23183d5e26465da6426f9e.png';
 switch ($func) {
 	#Update the description of user
 	case 'about':
@@ -283,22 +279,29 @@ switch ($companyFunc) {
 		}
 	break;
 	case 'change-company-pic':
-
+		echo $changedText;
+		
 		$query = "SELECT * FROM ImageTable WHERE ImageTable.compId = " .$userID;
+		echo $query . "\n";
+				
 		if ( ! ( $result = mysqli_query($conn, $query)) ) {
 			echo("Error: %s\n"+ mysqli_error($conn));
 			exit(1);
         	}
 		
 		if (mysqli_num_rows($result) <1) {
-			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . ", '" .  $changedText[0] . "') ";
+			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
+			echo $queryNew . "\n";
+				
 			if (mysqli_query($conn, $queryNew)) {
 			} else {
 			echo "Error updating record: " . mysqli_error($conn);
 			}
 		}
 		else {
-			$queryUpdate = "UPDATE ImageTable SET imageURL = '" . $changedText[0] . "' WHERE compID = ".$userID
+			$queryUpdate = "UPDATE ImageTable SET imageURL = '" . $changedText . "' WHERE compID = ".$userID;
+			echo $queryUpdate . "\n";
+				
 			if (mysqli_query($conn, $queryUpdate)) {
 			} else {
 			echo "Error updating record: " . mysqli_error($conn);
