@@ -82,7 +82,35 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		</div>
 		<div class = "container-fluid" id = "division-bar"> 
 		</div>
-		<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
+		<div id = "profile-image">
+		     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
+			$query = "SELECT imageURL FROM ImageTable-Developer WHERE compID = " .$userID;
+			if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			  echo("Error: %s\n"+ mysqli_error($conn));
+			  exit(1);
+			}
+			$row = mysqli_fetch_assoc($result);
+			echo($row['imageURL']);
+
+		      ?> ">
+  		</div>
+		<script>
+		    function editImage(Image) {
+		      var url = prompt("Please provide a bitly link to the image file", 'Enter link here');
+		      if(url==null)
+			      return;
+		      Image.src = url;    
+		      console.log(url);
+		      save("profile-pic");
+		    }
+
+		   function imgError(image) {
+		    image.onerror = "";
+		    image.src = "/img/blank-profile-picture.png";
+		    return true;
+		   }
+		</script>
+
 		<div class="container-fluid">
 		<div class="row">
 			<div class="alert alert-success alert-dismissable" id="updateYes" style="display: none;">
