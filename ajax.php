@@ -211,6 +211,42 @@ switch ($func) {
 			echo "Error inserting record: " . mysqli_error($conn);
 		}
 		break;
+	#to change profile picture
+	case 'change-company-pic':
+		echo $changedText;
+		
+		$query = "SELECT * FROM ImageTable-Developer WHERE ImageTable.devId = " .$userID;
+		echo $query . "\n";
+				
+		if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			echo("Error: %s\n"+ mysqli_error($conn));
+			exit(1);
+        	}
+		
+		if (mysqli_num_rows($result) <1) {
+			$queryNew = "INSERT INTO ImageTable-Developer (devID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
+			echo $queryNew . "\n";
+				
+			if (mysqli_query($conn, $queryNew)) {
+			} else {
+			echo "Error updating record: " . mysqli_error($conn);
+			}
+		}
+		else {
+			$queryUpdate = "UPDATE ImageTable-Developer SET imageURL = '" . $changedText . "' WHERE devID = ".$userID;
+			echo $queryUpdate . "\n";
+				
+			if (mysqli_query($conn, $queryUpdate)) {
+			} else {
+			echo "Error updating record: " . mysqli_error($conn);
+			}
+			
+		}
+		
+		
+		
+		
+		break;
 
 	#kill session when user clicks logout
 	case 'logout':
