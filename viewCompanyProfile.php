@@ -76,7 +76,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	</div>
 
   <div id = "profile-image">
-     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" src ="<?php #query to get user information#
+     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
         $query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
         if ( ! ( $result = mysqli_query($conn, $query)) ) {
           echo("Error: %s\n"+ mysqli_error($conn));
@@ -93,6 +93,12 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
       Image.src = url;
       console.log(url);
       save("profile-pic");
+    }
+	  
+   function imgError(image) {
+    image.onerror = "";
+    image.src = "/img/blank-profile-picture.png";
+    return true;
     }
   </script>
 
