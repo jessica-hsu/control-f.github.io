@@ -90,7 +90,9 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
   <script>
     function editImage(Image) {
       var url = prompt("Please provide a bitly link to the image file", 'Enter link here');
-      Image.src = url;
+      if(url==null)
+	      return;
+      Image.src = url;    
       console.log(url);
       save("profile-pic");
     }
