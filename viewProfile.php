@@ -569,6 +569,11 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				
 				size = text.length;
 				break;
+			case 'profile-pic':
+			      f ='change-company-pic';
+			      var url = document.getElementById('profile-pic');
+			      changedText = url.src;
+			break;
 			default:
 				alert("Error");
 				break;
