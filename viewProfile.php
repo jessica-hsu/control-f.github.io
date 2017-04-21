@@ -1,17 +1,13 @@
 <?php 
-
 session_start();	
-
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
 }
-
 $userID = $_SESSION['ID'];
 //$userID = 1;
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,35 +78,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		</div>
 		<div class = "container-fluid" id = "division-bar"> 
 		</div>
-		<div id = "profile-image">
-		     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
-			$query = "SELECT imageURL FROM ImageTable-Developer WHERE compID = " .$userID;
-			if ( ! ( $result = mysqli_query($conn, $query)) ) {
-			  echo("Error: %s\n"+ mysqli_error($conn));
-			  exit(1);
-			}
-			$row = mysqli_fetch_assoc($result);
-			echo($row['imageURL']);
-
-		      ?> ">
-  		</div>
-		<script>
-		    function editImage(Image) {
-		      var url = prompt("Please provide a bitly link to the image file", 'Enter link here');
-		      if(url==null)
-			      return;
-		      Image.src = url;    
-		      console.log(url);
-		      save("profile-pic");
-		    }
-
-		   function imgError(image) {
-		    image.onerror = "";
-		    image.src = "/img/blank-profile-picture.png";
-		    return true;
-		   }
-		</script>
-
+		<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
 		<div class="container-fluid">
 		<div class="row">
 			<div class="alert alert-success alert-dismissable" id="updateYes" style="display: none;">
@@ -165,8 +133,6 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		  		</script>
 			</div>
 		  	
-
-
 		  	<div class="col-sm-4  col-sm-offset-1 right-box top-box" id = "quick-facts-box"> 
 				<button onclick="editFacts(this);" class="edit-icon"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
@@ -255,7 +221,6 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 									"</td><td class='skills-text' contentEditable='false'>" . $row['portfolioURL'] . 
 									"</td><td><span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span></tr>");
 						}
-
 						?>
 												
 						<button type="button" id="add-skill" class="btn btn-info addMe" onclick="addSkill()"><span class="glyphicon glyphicon-plus"></span></button>
@@ -263,7 +228,6 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 					</table>
 				</div>
 				</p>
-
 				<script>
 			  	function editSkills(button) {
 			    	var box = document.getElementById("skills-box");
@@ -483,13 +447,11 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		cell3.innerHTML = "sample website";
 		cell4.innerHTML = "<span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span>";
 	}
-
 	function removeSkill(skill) {
 		var j = skill.parentNode.parentNode.rowIndex;
 	    document.getElementById("skill-table").deleteRow(j);
 		
 	}
-
 	function addLink() {
 		var table = document.getElementById('link-table');
 		var row = table.insertRow(-1);
@@ -514,7 +476,6 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		cell2.innerHTML = "URL";
 		cell3.innerHTML = "<span class='glyphicon glyphicon-remove' onclick='removeLink(this)'></span>";
 	}
-
 	function removeLink(link) {
 		var j = link.parentNode.parentNode.rowIndex;
 	    document.getElementById("link-table").deleteRow(j);
@@ -603,7 +564,6 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		
 		
 	}
-
 	function logout() {
 		console.log("logging out ... ");
 		f="logout";
