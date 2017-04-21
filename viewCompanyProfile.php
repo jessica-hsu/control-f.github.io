@@ -6,6 +6,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	header('Location: viewProfile.php');
 }
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,6 +37,19 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 <span id="currentUser" hidden><?php echo $userID?></span>
 <span id="network" hidden><?php echo $_SESSION['network']?></span>
 <span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
+<?php 
+	$query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
+        if ( ! ( $result = mysqli_query($conn, $query)) ) {
+          echo("Error: %s\n"+ mysqli_error($conn));
+          exit(1);
+        }
+	$row = mysqli_fetch_assoc($result);
+	if ($row == null) {
+	 $_SESSION['imagePic'] = "http://bit.ly/2hYIT3g";
+	} else {	
+	$_SESSION['imagePic'] = $row['imageURL']);
+	}
+?>
 <body>
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -79,19 +93,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	</div>
 
   <div id = "profile-image">
-     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" src ="<?php #query to get user information#
-        $query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
-        if ( ! ( $result = mysqli_query($conn, $query)) ) {
-          echo("Error: %s\n"+ mysqli_error($conn));
-          exit(1);
-        }
-	$row = mysqli_fetch_assoc($result);
-	if ($row == null) {
-	 echo("NO IMAGE!");
-	} else {	
-	echo($row['imageURL']);
-	}
-      ?> ">
+     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" src ="<?php $_SESSION['imagePic']?>">
   </div>
   <script>
     function editImage(Image) {
