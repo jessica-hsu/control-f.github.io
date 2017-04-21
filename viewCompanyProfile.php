@@ -47,7 +47,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	if ($row == null) {
 	 $_SESSION['imagePic'] = "http://bit.ly/2hYIT3g";
 	} else {	
-	$_SESSION['imagePic'] = $row['imageURL']);
+	$_SESSION['imagePic'] = $row['imageURL'];
 	}
 ?>
 <body>
