@@ -80,7 +80,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		</div>
 		<div id = "profile-image">
 		     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
-			$query = "SELECT imageURL FROM ImageTable-Developer WHERE devID = " .$userID;
+			$query = "SELECT imageURL FROM ImageTableDeveloper WHERE devID = " .$userID;
 			if ( ! ( $result = mysqli_query($conn, $query)) ) {
 			  echo("Error: %s\n"+ mysqli_error($conn));
 			  exit(1);
@@ -126,7 +126,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		  			<span id='save-about-text' class="glyphicon glyphicon-floppy-disk""></span> 
 		  		</button>
 		  		<br>
-				<p class = "sub-heading" > About Developer </p>
+				<p class = "sub-heading"> About Developer </p>
 				<p id="about-text" contentEditable="false">
 				<?php #query to get user information#
    					$query = "SELECT uDescription FROM user WHERE userID = " . $userID;
