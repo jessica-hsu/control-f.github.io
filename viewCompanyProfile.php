@@ -86,8 +86,11 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
           exit(1);
         }
 	$row = mysqli_fetch_assoc($result);
+	if ($row == null) {
+	 echo("NO IMAGE!");
+	} else {	
 	echo($row['imageURL']);
-	
+	}
       ?> ">
   </div>
   <script>
