@@ -1,12 +1,9 @@
 <?php session_start();
-
 $userID = $_SESSION['ID'];
 //$userID = 6;
 if (strcmp($_SESSION['profileType'], "dev")==0) {
 	header('Location: viewProfile.php');
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,19 +34,6 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 <span id="currentUser" hidden><?php echo $userID?></span>
 <span id="network" hidden><?php echo $_SESSION['network']?></span>
 <span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
-<?php 
-	$query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
-        if ( ! ( $result = mysqli_query($conn, $query)) ) {
-          echo("Error: %s\n"+ mysqli_error($conn));
-          exit(1);
-        }
-	$row = mysqli_fetch_assoc($result);
-	if ($row == null) {
-	 $_SESSION['imagePic'] = "http://bit.ly/2hYIT3g";
-	} else {	
-	$_SESSION['imagePic'] = $row['imageURL'];
-	}
-?>
 <body>
 	<!--- navbar code -->
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -81,7 +65,6 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
       <?php #query to get user information#
    				$query = "SELECT cName FROM company WHERE compID = ".$userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
-
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
    				}
@@ -93,7 +76,16 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	</div>
 
   <div id = "profile-image">
-     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" src ="<?php $_SESSION['imagePic']?>">
+     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" src ="<?php #query to get user information#
+        $query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
+        if ( ! ( $result = mysqli_query($conn, $query)) ) {
+          echo("Error: %s\n"+ mysqli_error($conn));
+          exit(1);
+        }
+	$row = mysqli_fetch_assoc($result);
+	echo($row['imageURL']);
+	
+      ?> ">
   </div>
   <script>
     function editImage(Image) {
@@ -101,12 +93,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
       Image.src = url;
       console.log(url);
       save("profile-pic");
-
     }
-
-
-
-
   </script>
 
 
@@ -395,7 +382,6 @@ function logout() {
 	hello( network ).logout({force:true},function(e){
 		console.log("force logout of " + network);
 	});
-
 	$.ajax({
         url: 'ajax.php',
         data: {func: f},
@@ -412,7 +398,6 @@ function logout() {
         	console.log(result);
         }
     });
-
 }
 </script>
 <?php mysqli_close($conn); ?>
