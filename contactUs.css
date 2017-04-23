@@ -40,53 +40,78 @@
 	text-align: center;
 }
 
-#email {
-	color: #4ec996;
-}
-
-#qs {
-	font-family: Raleway;
-	font-size: 150;
-	text-align: center;
-	font-weight: normal;
-}
-
-#meetourteam {
-	margin-top: 10%;
-	font-family: Francois One;
-	font-size: 400%;
-	text-align: center;
-}
 
 #small-line {
 	text-align: center;
 	font-family: Raleway;
 	font-weight: bold;
 	font-size: 200%;
-	
+
 }
 
+.paypal {
+  margin-top: -5vh;
+  text-align: center;
+  margin-left: 10vw;
+}
 
 #info {
-	margin: 5% 0;
-	text-align: center;
-	padding: 0 5% 5%;
+
+
 	font-family: Raleway;
-	font-size: 150%;
-	
+  margin-left: 5vw;
+  margin-right: 2vw;
+  margin-bottom: 5vh;
+  font-size: 2.2rem;
+  color:black;
+  text-align: justify;
+
 }
+
 
 img {
-	width:auto; 
+	width:20vw;
 	height: auto;
+  border-radius: 15%;
 	z-index:2;
-	border-radius: 50%;
-	max-width: 235px;
-	max-height:235px;
+  margin: auto;
+  margin-bottom: 2vh;
+
+
+
+}
+
+img:hover {
+  opacity: 0.6;
+
+}
+
+.row-second {
+  margin-bottom: 10vh;
+}
+
+#division-bar {
+
+background-color: #47ffd1;
+
+height:1px;
+width:80vw;
+margin-bottom: 5vh;
+margin-left: 5vw;
+margin-right: 5vw;
+
+}
+
+.sub-title {
+  margin: 1vh;
+  text-align: center;
+
 }
 
 
-.left { 
+
+/*
+.left {
 	vertical-align:middle;
 	text-align: center;
 	border:  10px;
@@ -94,7 +119,7 @@ img {
 	height: 35vh;
 }
 
-.right { 
+.right {
 	margin-top: 1%;
 	height: 35vh;
 	text-align: left;
@@ -103,13 +128,17 @@ img {
 	line-height: 1.5;
 	font-family: Raleway;
 	font-size: 200%;
-	
-}
+
+}*/
 
 a:hover {
 	cursor: pointer;
     text-decoration: none;
 
+}
+
+.test {
+  background-color: blue;
 }
 
 @media screen and (max-width: 1196px) {
@@ -121,12 +150,14 @@ a:hover {
 	#info {
 		margin-top: 2%
 	}
-	
-	
+
+
 }
 
+
+
 @media screen and (max-width: 1065px) {
-	
+
 
 	#banner {
 		padding: 21%;
@@ -135,7 +166,7 @@ a:hover {
 }
 
 @media screen and (max-width: 880px) {
-	
+
 
 	#banner {
 		padding: 23%;
@@ -143,46 +174,72 @@ a:hover {
 
 }
 
-@media screen and (max-width: 761px) {
+@media screen and (max-width: 767px) {
 
 	.navbar-default {
 		padding: 0.5% 5%;
 		background: #F8F8F8;
 	}
-	
+
 	#navLogo {
 		display: none;
 	}
 
-	#banner {
-		background-image: url("img/friends.jpg");
-		background-repeat: no-repeat;
-		background-size: 40%;
-		padding: 14%;
+  img {
+    width: 35vw;
+    height: auto;
+    margin-bottom: 5vh;
+  }
+
+  #paypal {
+    margin-left: 20vw;
+  }
+
+  .sub-title {
+    margin: 1vh;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3vh;
+
+  }
+
+
+	#header {
+		margin-top: 15vh;
+    font-size: 4rem;
+
 	}
 
-	#landing-page-title {
-		font-size: 400%;
-	}
-	
-	#header {
-		margin-top: 15%;
-	}
-	
 	#title {
 		margin-bottom: 5%;
 	}
 
-
+  #info {
+    font-size: 1.8rem;
+    text-align: justify;
+  }
 }
 
+@media screen and (max-width: 387px) {
 
+  #paypal {
+    margin-top: 10vh;
+  }
+  .sub-title {
+    margin: 1vh;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3vh;
+
+  }
+
+}
 
 @media screen and (min-width: 1196px){
 	#banner{
 		padding: 15%;
 	}
-	
+
 	#info{
 		margin-top: 0%;
 	}
