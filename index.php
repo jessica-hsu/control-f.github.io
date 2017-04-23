@@ -60,7 +60,7 @@
 				</div>
 				<div id="description">
 					<span id="subheader">How does it work?</span><br>
-					<a href="about.html">Control-F</a> is an advertisement-free, neutral marketplace, connecting small-businesses with aspiring, innovative developers.<br>
+					<a href="about.php">Control-F</a> is an advertisement-free, neutral marketplace, connecting small-businesses with aspiring, innovative developers.<br>
 					Nonprofits can login with Google or LinkedIn and gain the ability to post help ads or search for developers with relevant skills. Developers
 					can login with LinkedIn or Github, add a profile, and search for opportunities to posted by nonprofits. Contact information will be available to both parties.<br><br>
 					<a href="loginComp.php"><button type="button" class="btn" id="loginNonprofit">login - nonprofits</button></a>
