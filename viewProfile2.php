@@ -1,5 +1,5 @@
 <?php 
-session_start();	
+/*session_start();	
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
 }
@@ -7,7 +7,8 @@ $userID = $_SESSION['ID'];
 //$userID = 1;
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
-}
+}*/
+$userID = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +16,9 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,22 +28,17 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="hello.all.js"></script>
 	
-	<!-- jQUERY -->
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" href="viewProfile2.css">
 	
-	<link rel="stylesheet" href="viewProfile.css">
-	<link rel="icon" href="img\icon.ico" type="image/x-icon">
 	<title>Control-F</title>
-
 </head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 <?php include "connectDB.php"?>
 <span id="currentUser" hidden><?php echo $userID?></span>
 <span id="network" hidden><?php echo $_SESSION['network']?></span>
 <span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
-
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
@@ -54,7 +53,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
          				<li><a href="welcome.php">Home</a></li>         		
-         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="viewProfile2.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          				<li><a id="logout" onclick="logout()" >Logout</a></li>
@@ -62,71 +61,31 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
       			</div>
     		</div>
     	</nav>
-    	<!--- for the profile backimage -->
-		<div class = "container-fluid" id = "top-background">
-			<div id = "title-text">
-			<?php #query to get user information#
-   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID = " . $userID;
+		<div class="row" id="bg1">
+			<div class="bg" id="name">
+				<?php #query to get user information#
+   				$query = "SELECT firstName, lastName FROM user WHERE userID = " . $userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
    				} 
    				$row = mysqli_fetch_assoc($result);
    				echo($row['firstName'] . " " . $row['lastName']);
-   			?>
-			</div>	 
-		</div>
-		<div class = "container-fluid" id = "division-bar"> 
-		</div>
-		<div id = "profile-image">
-		     <img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
-			$query = "SELECT imageURL FROM ImageTableDeveloper WHERE devID = " .$userID;
-			if ( ! ( $result = mysqli_query($conn, $query)) ) {
-			  echo("Error: %s\n"+ mysqli_error($conn));
-			  exit(1);
-			}
-			$row = mysqli_fetch_assoc($result);
-			echo($row['imageURL']);
-
-		      ?> ">
-		  </div>
-		  <script>
-		    function editImage(Image) {
-		      var url = prompt("Please provide a bitly link to the image file", 'Enter link here');
-		      if(url==null)
-			      return;
-		      Image.src = url;    
-		      console.log(url);
-		      save("profile-pic");
-		    }
-
-		   function imgError(image) {
-		    image.onerror = "";
-		    image.src = "/img/blank-profile-picture.png";
-		    return true;
-		    }
-  		  </script>
-		<div class="container-fluid">
-		<div class="row">
-			<div class="alert alert-success alert-dismissable" id="updateYes" style="display: none;">
-  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  				<strong>Profile updated.</strong>
-			</div>	  	
-	  		<div class="alert alert-danger alert-dismissable" id="updateNo" style="display: none;">
-  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  				<strong>ERROR: Profile failed to update.</strong>
+   				?>
+				<img id ="profile-pic" class="img-circle img-responsive" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="img/jessica.jpg">
+				
 			</div>
-			
-			<div class="row" id="row1"> 
-		  	<div class="col-sm-4 col-sm-offset-2 left-box left-box" id = "about-box">
-		  		<button onclick="editAbout(this);" class="edit-icon"> 
+		</div>
+		<div class="row" id="bg2">
+			<div class="section" id="s1">About
+		  		<button type="button" onclick="editAbout(this);" class="btn ourButton"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
-		  		<button onclick="update('about-text')" class="edit-icon"> 
+		  		<button class="btn ourButtonSave" onclick="update('about-text')"> 
 		  			<span id='save-about-text' class="glyphicon glyphicon-floppy-disk""></span> 
 		  		</button>
-		  		<br>
-				<p class = "sub-heading"> About Developer </p>
+		  	</div>
+			<div class="bg" id="about-box">
 				<p id="about-text" contentEditable="false">
 				<?php #query to get user information#
    					$query = "SELECT uDescription FROM user WHERE userID = " . $userID;
@@ -139,14 +98,14 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
    				?>	
 				</p>
 				<script>
-			  	function editAbout(button) {
-			    	var text = document.getElementById("about-text");
-			    	var box = document.getElementById("about-box");
-			    	var save = document.getElementById('save-about-text');
-			    	
+				function editAbout(button) {
+					var text = document.getElementById("about-text");
+					var box = document.getElementById("about-box");
+					var save = document.getElementById('save-about-text').parentElement;
+					
 				    if (text.contentEditable == "true") {
 				        text.contentEditable = "false";
-				       	box.style.backgroundColor="#e8e9ea";
+				       	box.style.backgroundColor="white";
 				       	 box.style.border = "none";
 				       	 save.style.display = 'none';
 				       
@@ -154,21 +113,22 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				        save.style.display = 'block';
+				        save.style.display = 'inline';
 				    }
 				}
-		  		</script>
+				</script>
 			</div>
-		  	
-		  	<div class="col-sm-4  col-sm-offset-1 right-box top-box" id = "quick-facts-box"> 
-				<button onclick="editFacts(this);" class="edit-icon"> 
+		</div>
+		<div class="row" id="bg3">
+			<div class="section" id="s2">Quick Facts
+		  		<button type="button" onclick="editFacts(this);" class="btn ourButton"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
-		  		<button onclick="update('quick-facts')" class="edit-icon"> 
+		  		<button type="button" onclick="update('quick-facts')" class="btn ourButtonSave"> 
 		  			<span id='save-quick-facts' class="glyphicon glyphicon-floppy-disk""></span> 
-		  		</button> <br>
-				<p class = "sub-heading" > Quick Facts </p>
-				<p id="quick-facts">
+		  		</button>
+			</div>
+			<div class="bg" id="quick-facts-box">
 				<?php #query to get user information#
    				$query = "SELECT email, phone, age FROM user WHERE userID = " . $userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
@@ -183,26 +143,25 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
    				
    				?>	 
 				</p>
-
 				<script>
 			  	function editFacts(button) {
 			    	var text = document.getElementById("myPhone");
 			    	var age = document.getElementById("myAge");
 			    	var box = document.getElementById("quick-facts-box");
-			    	var save = document.getElementById('save-quick-facts');
+			    	var save = document.getElementById('save-quick-facts').parentElement;
 				    if (text.contentEditable == "true") {
 				        text.contentEditable = "false";
 				        var s = document.getElementById('age');
 				        age.innerHTML = s.options[s.selectedIndex].value;
 				        save.style.display="none";
-				       	box.style.backgroundColor="#e8e9ea";
+				       	box.style.backgroundColor="white";
 				       	box.style.border = "none";
 				       
 				    } else {
 				        text.contentEditable = "true";
 				        box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				        save.style.display="block";
+				        save.style.display="inline";
 				        var temp = age.innerHTML;
 				        age.innerHTML = "<select id='age' name='age'></selected>";
 				        for (var i = 1; i<=100; i++) {
@@ -216,23 +175,23 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				}
 		  		</script>
 			</div>
-			</div> <!-- end row -->
-
-			<div class="row" id="row2">
-			<div class="col-sm-9 col-sm-offset-2 left-box " id = "skills-box"> 
-				<button onclick="editSkills(this);" class="edit-icon"> 
+		</div>
+		<div class="row" id="bg4">
+			<div class="section" id="s3">Skills
+				<button type="button" onclick="editSkills(this);" class="btn ourButton"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
-		  		<button  onclick="update('skills-facts')" class="edit-icon"> 
+		  		<button  type="button" onclick="update('skills-facts')" class="btn ourButtonSave"> 
 		  			<span id='save-skills-facts' class="glyphicon glyphicon-floppy-disk""></span> 
-		  		</button> <br>
-				<p class = "sub-heading" >Skills </p>
-				<p> <span id="temp" contentEditable="false" hidden></span>
+		  		</button>
+			</div>
+			<div class="bg" id="skills-box">
+				<span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="skill-table">
 						<thead><tr>
 							<th>Skill</th>
-							<th>Years of Experience</th>
+							<th>Years</th>
 							<th>Sample URL</th></tr>
 						</thead>
 						<tbody>
@@ -248,25 +207,25 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 									"</td><td class='skills-text' contentEditable='false'>" . $row['portfolioURL'] . 
 									"</td><td><span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span></tr>");
 						}
+
 						?>
 												
 						<button type="button" id="add-skill" class="btn btn-info addMe" onclick="addSkill()"><span class="glyphicon glyphicon-plus"></span></button>
 						</tbody>
 					</table>
 				</div>
-				</p>
 				<script>
 			  	function editSkills(button) {
 			    	var box = document.getElementById("skills-box");
 			    	var temp = document.getElementById('temp');
-			    	var save = document.getElementById('save-skills-facts');
+			    	var save = document.getElementById('save-skills-facts').parentElement;
 			    	var add = document.getElementById('add-skill');
 			    	var s = document.getElementsByClassName('skills-text-name');
 			    	var y = document.getElementsByClassName('skills-text-yrs');
 			    	var t = document.getElementsByClassName('skills-text');
 				    if (temp.contentEditable == "true") { //CLOSE EDITING VIEW
 				    	temp.contentEditable = "false";
-				       	box.style.backgroundColor="#e8e9ea";
+				       	box.style.backgroundColor="white";
 				       	box.style.border = "none";
 				       	save.style.display = "none";
 				       	add.style.display = "none";
@@ -298,7 +257,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				    	temp.contentEditable = "true";
 						box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				    	save.style.display = "block";
+				    	save.style.display = "inline";
 				    	add.style.display = "block";
 				    	for (var i=0; i<t.length; i++) { //for the website box
 					       	t[i].contentEditable = "true";
@@ -336,19 +295,19 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				}
 		  		</script>
 			</div>
-			</div> <!-- end row -->
-			
-			<div class="row" id="row3">
-			<div class="col-sm-9  col-sm-offset-2 left-box " id = "social-media"> 
-				<button onclick="editLinks(this);" class="edit-icon"> 
+		</div>
+		
+		<div class="row" id="bg5">
+			<div class="section" id="s3">Social Media
+		  		<button type="button" onclick="editLinks(this);" class="btn ourButton"> 
 		  			<span class="glyphicon glyphicon-pencil "></span> 
 		  		</button>
-		  		<button  onclick="update('links-facts')" class="edit-icon"> 
+		  		<button type="button" onclick="update('links-facts')" class="btn ourButtonSave"> 
 		  			<span id="save-links" class="glyphicon glyphicon-floppy-disk""></span> 
 		  		</button>
-		  		 <br>
-				<p class = "sub-heading" > Other Places to Find Developer </p> 
-				<p><span id="temp" contentEditable="false" hidden></span>
+		  	</div>
+			<div class="bg" id="social-media">
+				<span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="link-table">
 						<thead><tr>
@@ -358,7 +317,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 						</thead>
 						<tbody>
 						<?php 
-						/*$query = "SELECT name, links FROM links WHERE id = " . $userID;
+						$query = "SELECT name, links FROM links WHERE id = " . $userID;
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
 							exit(1);
@@ -367,19 +326,16 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 							echo("<tr class='linkz'><td class='link-text'>" . $row['name'] .
 									"</td><td class='link-url' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
 									</td><td><span class='glyphicon glyphicon-remove' onclick='removeLink(this)'></span></tr>");
-						}*/
+						}
 						?>
 						<button type="button" id='add-link' class="btn btn-info addMe" onclick="addLink()"><span class="glyphicon glyphicon-plus"></span></button>
 						</tbody>
 					</table>
-				</div>
-				</p>
-
-				<script>
+					<script>
 			  	function editLinks(button) {
 			    	var box = document.getElementById("social-media");
 			    	var temp = document.getElementById('temp');
-			    	var save = document.getElementById('save-links');
+			    	var save = document.getElementById('save-links').parentElement;
 			    	var add = document.getElementById('add-link');
 			    	var t = document.getElementsByClassName('link-url');
 			    	var s = document.getElementsByClassName('link-text');
@@ -387,7 +343,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 			    	
 				    if (temp.contentEditable == "true") { //CLOSE EDIT VIEW
 				    	temp.contentEditable = "false";
-				       	box.style.backgroundColor="#e8e9ea";
+				       	box.style.backgroundColor="white";
 				       	box.style.border = "none";
 				       	save.style.display = "none";
 				       	add.style.display = "none";
@@ -407,7 +363,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				    	temp.contentEditable = "true";
 						box.style.backgroundColor ="#f2f2f2";
 				        box.style.border = "2px dashed #cecece";
-				    	save.style.display = "block";
+				    	save.style.display = "inline";
 				    	add.style.display = "block";
 				    	for (var i=0; i<t.length; i++) { //for the website box
 					       	t[i].contentEditable = "true";
@@ -433,12 +389,12 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				    }
 				}
 		  		</script>
-			</div> <!-- end column -->
-		  	</div> <!-- end row -->
+				</div>
+			</div>
 		</div>
-		  	
-	</div>	
-<?php mysqli_close($conn); ?>
+	</div>
+
+<?php mysqli_close($conn); ?>			
 
 <script>
 	function addSkill() {
@@ -520,6 +476,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 			case 'about-text':
 				f = 'about';
 				text = box.innerHTML;
+				console.log(text);
 				break;
 			case 'quick-facts':
 				f = 'facts';
@@ -545,8 +502,14 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 					}	
 				}
 				size=text.length;
+				console.log(text);				
+				console.log(urls);
+				console.log(years);
+				console.log(size);
+				
+				
 				break;
-			case 'links-facts':
+			/*case 'links-facts':
 				f = 'links';
 				var linkName = document.getElementsByClassName('pickLink');
 				var linkz = document.getElementsByClassName('link-url');
@@ -568,7 +531,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				}
 				
 				size = text.length;
-				break;
+				break;*/
 			case 'profile-pic':
 			      f ='change-company-pic';
 			      var url = document.getElementById('profile-pic');
@@ -584,13 +547,15 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 			data: {func: f, textUpdate: text, tYear: years, tURL: urls, s: size, id: user},
 			dataType: "html",
 			success: function(data) {
-				var success = document.getElementById("updateYes");
-				success.style.display='block';
+				console.log("success");
+				//var success = document.getElementById("updateYes");
+				//success.style.display='block';
 				
 			},
 			error: function(e) {
-				var fail = document.getElementById("updateNo");
-				success.style.display='block';
+				console.log(e);
+				//var fail = document.getElementById("updateNo");
+				//success.style.display='block';
 			}	
 		});
 		
@@ -625,7 +590,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 	    });
 		
 	}
-</script>   
-<?php mysqli_close($conn); ?>			
+</script>  
+
 </body>
 </html>
