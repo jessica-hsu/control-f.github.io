@@ -30,10 +30,9 @@ if (isset($_POST['textUpdateCompany'])) {
 if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
 }
-//$companyFunc = 'change-social';
-$userID = 6;
-//$changedText = array("mylinkedin", "dsfa", "fdsa", "fdsaa", "fsdafa", "fsdfa", "fsadfa", "fdsaf");
-//$adId = array(64); $changedText = array("In progress"); $size = 1;*/
+//$companyFunc = 'change-company-pic';
+//$userID = 6;
+//$changedText = 'https://s-media-cache-ak0.pinimg.com/originals/bc/4b/e1/bc4be1415b23183d5e26465da6426f9e.png';
 switch ($func) {
 	#Update the description of user
 	case 'about':
@@ -97,46 +96,46 @@ switch ($func) {
 		$sub_menu = $text[1];
 		$sub_menu2 = $text[2];	//for the 2nd drop down if ad is selected (the company focus)
 		if (strcmp($menu, "dev") == 0) {
-
+			
 			if (strcmp($sub_menu, "All") == 0) {
 				$query = "SELECT userID, CONCAT(firstName,' ',lastName) AS person FROM user";
 			} else {
 				$query = "SELECT user.userID AS userID, CONCAT(firstName,' ',lastName) AS person, skillName FROM user, userSkill
 				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
 			}
-
+			
 		} else if (strcmp($menu, "comp") == 0) { #query to search for company using given focus
-
+			
 			if (strcmp($sub_menu, "All") == 0 ) {
 				$query="SELECT compID, cName FROM company";
 			} else {
 				$query="SELECT compID, cName FROM company WHERE Focus LIKE '%" . $sub_menu . "%'";
 			}
-
+			
 		} else if (strcmp($menu, "skill") == 0) { #query to search for developers using given skill
 			$query = "SELECT user.userID AS userID, CONCAT(firstName,' ',lastName) AS person, skillName FROM user, userSkill
 				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
-
+			
 		} else if (strcmp($menu, "ad") == 0) { #query to search for ads using given product type and/or focus
-
+			
 			if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") == 0 )  {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
 							WHERE a.compID = c.compID";
 			} else if (strcmp($sub_menu, "All") != 0 && strcmp($sub_menu2, "All") == 0 ) {
 				$query="SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-						WHERE a.compID = c.compID
+						WHERE a.compID = c.compID 
 						AND type LIKE '%".$sub_menu."%';";
 			} else if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") != 0 ) {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-						WHERE a.compID = c.compID
+						WHERE a.compID = c.compID 
 						AND Focus = '".$sub_menu2."'";
 			} else {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-				WHERE a.compID = c.compID
+				WHERE a.compID = c.compID 
 				AND type LIKE '%".$sub_menu."%'
 				AND Focus = '".$sub_menu2."'";
 			}
-
+			
 		}
 		if (! ( $result = mysqli_query($conn, $query))) {
 			echo "Error getting records: " . mysqli_error($conn);
@@ -180,6 +179,42 @@ switch ($func) {
 			echo "Error inserting record: " . mysqli_error($conn);
 		}
 		break;
+	#to change profile picture
+	case 'change-company-pic':
+		echo $changedText;
+		
+		$query = "SELECT * FROM ImageTable-Developer WHERE ImageTable.devId = " .$userID;
+		echo $query . "\n";
+				
+		if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			echo("Error: %s\n"+ mysqli_error($conn));
+			exit(1);
+        	}
+		
+		if (mysqli_num_rows($result) <1) {
+			$queryNew = "INSERT INTO ImageTable-Developer (devID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
+			echo $queryNew . "\n";
+				
+			if (mysqli_query($conn, $queryNew)) {
+			} else {
+			echo "Error updating record: " . mysqli_error($conn);
+			}
+		}
+		else {
+			$queryUpdate = "UPDATE ImageTable-Developer SET imageURL = '" . $changedText . "' WHERE devID = ".$userID;
+			echo $queryUpdate . "\n";
+				
+			if (mysqli_query($conn, $queryUpdate)) {
+			} else {
+			echo "Error updating record: " . mysqli_error($conn);
+			}
+			
+		}
+		
+		
+		
+		
+		break;
 	#kill session when user clicks logout
 	case 'logout':
 		$_SESSION = array();
@@ -188,7 +223,6 @@ switch ($func) {
 	default:
 		break;
 }
-
 switch ($companyFunc) {
 	case 'about-company':
 		$query = "UPDATE company SET cDescription = '  $changedText  ' WHERE compID = ".$userID;
@@ -243,26 +277,40 @@ switch ($companyFunc) {
 		}
 	break;
 	case 'change-company-pic':
-		$query = "UPDATE ImageTable SET imageURL = '".$changedText[0].  "' WHERE compID = ".$userID;
-		if (mysqli_query($conn, $query)) {
-		} else {
+		echo $changedText;
+		
+		$query = "SELECT * FROM ImageTable WHERE ImageTable.compId = " .$userID;
+		echo $query . "\n";
+				
+		if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			echo("Error: %s\n"+ mysqli_error($conn));
+			exit(1);
+        	}
+		
+		if (mysqli_num_rows($result) <1) {
+			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
+			echo $queryNew . "\n";
+				
+			if (mysqli_query($conn, $queryNew)) {
+			} else {
 			echo "Error updating record: " . mysqli_error($conn);
+			}
 		}
-		break;
-
-	case 'change-social':
-	$query = "UPDATE links SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
-						"', facebook ='".$changedText[3]."', insta = '".$changedText[4]."', paypal = '".$changedText[5]."',
-						website = '".$changedText[6]."', twitter = '".$changedText[7]."' WHERE id = ".$userID;
-		echo $query;
-		if (mysqli_query($conn, $query)) {
-		} else {
+		else {
+			$queryUpdate = "UPDATE ImageTable SET imageURL = '" . $changedText . "' WHERE compID = ".$userID;
+			echo $queryUpdate . "\n";
+				
+			if (mysqli_query($conn, $queryUpdate)) {
+			} else {
 			echo "Error updating record: " . mysqli_error($conn);
+			}
+			
 		}
 		
+		
+		
+		
 		break;
-
-
 	default:
 		break;
 }
