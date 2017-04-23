@@ -15,8 +15,8 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="index.css">
-	
+	<link rel="stylesheet" href="index2.css">
+	<link rel='icon' href='img\icon.ico' type='image/x-icon'>
 	<title>Control-F</title>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -34,8 +34,8 @@
        			 	<ul class="nav navbar-nav">
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
-         				<li><a href="#description">What We Do</a></li>
-         				<li><a href="about.php">About Us</a></li>
+         				<li><a href="#description">How it works</a></li>
+         				<li><a href="about.about">About Us</a></li>
          				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Login/Register<span class="caret"></span></a>
          					<ul class="dropdown-menu">
          						<li><a href="loginDev.php">Login - developers</a></li>
@@ -47,26 +47,27 @@
       			</div>
     		</div>
     	</nav>
-		<div class="row"  id="banner"></div>
-		<div class="row" id=title>
-			<div class="col-sm-12" id="overlay1">
-				<div id="landing-page-title">Control-F</div>
-				<span>Finding a freelancer or gaining experience should be as easy as a keystroke.</span>
+		<div class="row">
+			<div class="col-sm-4" id="banner">					
+				<center><img class="img-responsive" src="img/Icon-title.png"></center>
 			</div>
-		</div>
-		
-		<div class="row" id="line">
-			<div class="col-sm-12" id="small-line">
-				<p>How it works</p>
-			</div>
-		</div>
-		<div class="row" id="description">
-			<div class="col-sm-12" id="overlay2">
-				<p> Control-F is an advertisement-free, neutral marketplace, connecting small-businesses with aspiring, innovative developers.
+			<div class="col-sm-8" id="words">
+				
+				<div id="taglines">
+					<div id="title">CONTROL-F</div>
+					<div>Finding a <span id="freelance">freelancer</span> or <span id="gain">gaining experience</span> should be as easy as a keyboard command.</div>
+				<br>
+				</div>
+				<div id="description">
+					<span id="subheader">How does it work?</span><br>
+					<a href="about.html">Control-F</a> is an advertisement-free, neutral marketplace, connecting small-businesses with aspiring, innovative developers.<br>
 					Nonprofits can login with Google or LinkedIn and gain the ability to post help ads or search for developers with relevant skills. Developers
-					can login with LinkedIn or Github, add a profile, and search for opportunities to posted by nonprofits. Contact information will be available to both parties
-				</p>
-			</div> 
+					can login with LinkedIn or Github, add a profile, and search for opportunities to posted by nonprofits. Contact information will be available to both parties.<br><br>
+					<a href="loginComp.php"><button type="button" class="btn" id="loginNonprofit">login - nonprofits</button></a>
+					<a href="loginDev.php"><button type="button" class="btn" id="loginDev">login - developers</button></a>
+					
+				</div>
+			</div>
 		</div>
 		
 		
