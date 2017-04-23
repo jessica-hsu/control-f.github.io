@@ -3,11 +3,9 @@ session_start();
 include 'connectDB.php';
 if (isset($_POST['func'])) {
 	$func = $_POST['func'];
-
 }
 if (isset($_POST['textUpdate'])) {
 	$text = $_POST['textUpdate'];
-
 }
 if (isset($_POST['tYear'])) {
 	$years = $_POST['tYear'];
@@ -20,30 +18,22 @@ if (isset($_POST['s'])) {
 }
 if (isset($_POST['id'])) {
 	$userID = $_POST['id'];
-
 } else {
 	$userID = $_SESSION['ID'];
 }
-
 if (isset($_POST['companyFunc'])) {
 	$companyFunc = $_POST['companyFunc'];
-
 }
-
 if (isset($_POST['textUpdateCompany'])) {
 	$changedText = $_POST['textUpdateCompany'];
-
 }
-
 if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
-
 }
-
-
-//$companyFunc = 'change-company-pic';
-//$userID = 6;
-//$changedText = 'https://s-media-cache-ak0.pinimg.com/originals/bc/4b/e1/bc4be1415b23183d5e26465da6426f9e.png';
+//$companyFunc = 'change-social';
+$userID = 6;
+//$changedText = array("mylinkedin", "dsfa", "fdsa", "fdsaa", "fsdafa", "fsdfa", "fsadfa", "fdsaf");
+//$adId = array(64); $changedText = array("In progress"); $size = 1;*/
 switch ($func) {
 	#Update the description of user
 	case 'about':
@@ -53,7 +43,6 @@ switch ($func) {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
 		break;
-
 	#Update the email, age, phone of user
 	case 'facts':
 		$age = $text[0]; $phone = $text[1];
@@ -63,7 +52,6 @@ switch ($func) {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
 		break;
-
 	#Update, add, delete skills
 	case 'skills':
 		#Delete all skills from table where userID = id of current user
@@ -73,7 +61,6 @@ switch ($func) {
 		} else {
 			echo "Error deleting records: " . mysqli_error($conn);
 		}
-
 		#insert all listed skills back
 		for ($i = 0; $i<$size; $i++) {
 			$query = "INSERT INTO userSkill (skillName, userID, yearsExp, portfolioURL)
@@ -85,9 +72,7 @@ switch ($func) {
 				echo "Error inserting record: " . mysqli_error($conn);
 			}
 		}
-
 		break;
-
 	#Update, add, delete social media of user
 	case 'links':
 		#Delete all links from table where userID = id of current user
@@ -100,23 +85,18 @@ switch ($func) {
 		for ($i=0; $i < $size; $i++) {
 			$query = "INSERT INTO links (id, name, links)
 				VALUES (". $userID .", '" . $text[$i] . "', '" . $urls[$i] . "')";
-
 			if (mysqli_query($conn, $query)) {
 			} else {
 				echo "Error inserting record: " . mysqli_error($conn);
 			}
-
 		}
 		break;
-
 	#Search for developers/company
 	case 'search':
 		$menu = $text[0];
 		$sub_menu = $text[1];
 		$sub_menu2 = $text[2];	//for the 2nd drop down if ad is selected (the company focus)
 		if (strcmp($menu, "dev") == 0) {
-
-			
 
 			if (strcmp($sub_menu, "All") == 0) {
 				$query = "SELECT userID, CONCAT(firstName,' ',lastName) AS person FROM user";
@@ -125,10 +105,7 @@ switch ($func) {
 				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
 			}
 
-
-			
 		} else if (strcmp($menu, "comp") == 0) { #query to search for company using given focus
-			
 
 			if (strcmp($sub_menu, "All") == 0 ) {
 				$query="SELECT compID, cName FROM company";
@@ -136,34 +113,29 @@ switch ($func) {
 				$query="SELECT compID, cName FROM company WHERE Focus LIKE '%" . $sub_menu . "%'";
 			}
 
-
-			
 		} else if (strcmp($menu, "skill") == 0) { #query to search for developers using given skill
 			$query = "SELECT user.userID AS userID, CONCAT(firstName,' ',lastName) AS person, skillName FROM user, userSkill
 				WHERE user.userID = userSkill.userID AND skillName LIKE '%" . $sub_menu . "%'";
-			
+
 		} else if (strcmp($menu, "ad") == 0) { #query to search for ads using given product type and/or focus
-			
 
 			if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") == 0 )  {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
 							WHERE a.compID = c.compID";
 			} else if (strcmp($sub_menu, "All") != 0 && strcmp($sub_menu2, "All") == 0 ) {
 				$query="SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-
-						WHERE a.compID = c.compID 
+						WHERE a.compID = c.compID
 						AND type LIKE '%".$sub_menu."%';";
 			} else if (strcmp($sub_menu, "All") == 0 && strcmp($sub_menu2, "All") != 0 ) {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-						WHERE a.compID = c.compID 
+						WHERE a.compID = c.compID
 						AND Focus = '".$sub_menu2."'";
 			} else {
 				$query = "SELECT c.compID, cName, Focus, title, type, aDescription FROM advert as a, company as c
-				WHERE a.compID = c.compID 
+				WHERE a.compID = c.compID
 				AND type LIKE '%".$sub_menu."%'
 				AND Focus = '".$sub_menu2."'";
 			}
-			
 
 		}
 		if (! ( $result = mysqli_query($conn, $query))) {
@@ -173,10 +145,8 @@ switch ($func) {
 		while($row = mysqli_fetch_array($result)) {
    			$data[] = $row;
 		}
-
 		print json_encode($data); //must have this for php to return json object
 		break;
-
 	#view a read-only profile of a user
 	case 'view':
 		$menu = $text[0];
@@ -194,7 +164,6 @@ switch ($func) {
 		$data[] = $row;
 		print json_encode($data); //must have this for php to return json object
 		break;
-
 	#for companies to post ad
 	case 'postAd':
 		$type = $text[0];
@@ -211,43 +180,6 @@ switch ($func) {
 			echo "Error inserting record: " . mysqli_error($conn);
 		}
 		break;
-	#to change profile picture
-	case 'change-company-pic':
-		echo $changedText;
-		
-		$query = "SELECT * FROM ImageTable-Developer WHERE ImageTable.devId = " .$userID;
-		echo $query . "\n";
-				
-		if ( ! ( $result = mysqli_query($conn, $query)) ) {
-			echo("Error: %s\n"+ mysqli_error($conn));
-			exit(1);
-        	}
-		
-		if (mysqli_num_rows($result) <1) {
-			$queryNew = "INSERT INTO ImageTable-Developer (devID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
-			echo $queryNew . "\n";
-				
-			if (mysqli_query($conn, $queryNew)) {
-			} else {
-			echo "Error updating record: " . mysqli_error($conn);
-			}
-		}
-		else {
-			$queryUpdate = "UPDATE ImageTable-Developer SET imageURL = '" . $changedText . "' WHERE devID = ".$userID;
-			echo $queryUpdate . "\n";
-				
-			if (mysqli_query($conn, $queryUpdate)) {
-			} else {
-			echo "Error updating record: " . mysqli_error($conn);
-			}
-			
-		}
-		
-		
-		
-		
-		break;
-
 	#kill session when user clicks logout
 	case 'logout':
 		$_SESSION = array();
@@ -255,13 +187,10 @@ switch ($func) {
 		break;
 	default:
 		break;
-
 }
-
 
 switch ($companyFunc) {
 	case 'about-company':
-
 		$query = "UPDATE company SET cDescription = '  $changedText  ' WHERE compID = ".$userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
@@ -306,7 +235,6 @@ switch ($companyFunc) {
 				$query = "DELETE from advert WHERE advertID = ".$adId[$i]." AND compID = " . $userID;
 			} else {
 				$query = "UPDATE advert SET status = '".$changedText[$i]."' WHERE advertID = ".$adId[$i]." and compID = " . $userID;
-
 			}
 			if (mysqli_query($conn, $query)) {
 			} else {
@@ -315,44 +243,28 @@ switch ($companyFunc) {
 		}
 	break;
 	case 'change-company-pic':
-		echo $changedText;
-		
-		$query = "SELECT * FROM ImageTable WHERE ImageTable.compId = " .$userID;
-		echo $query . "\n";
-				
-		if ( ! ( $result = mysqli_query($conn, $query)) ) {
-			echo("Error: %s\n"+ mysqli_error($conn));
-			exit(1);
-        	}
-		
-		if (mysqli_num_rows($result) <1) {
-			$queryNew = "INSERT INTO ImageTable (compID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
-			echo $queryNew . "\n";
-				
-			if (mysqli_query($conn, $queryNew)) {
-			} else {
+		$query = "UPDATE ImageTable SET imageURL = '".$changedText[0].  "' WHERE compID = ".$userID;
+		if (mysqli_query($conn, $query)) {
+		} else {
 			echo "Error updating record: " . mysqli_error($conn);
-			}
 		}
-		else {
-			$queryUpdate = "UPDATE ImageTable SET imageURL = '" . $changedText . "' WHERE compID = ".$userID;
-			echo $queryUpdate . "\n";
-				
-			if (mysqli_query($conn, $queryUpdate)) {
-			} else {
+		break;
+
+	case 'change-social':
+	$query = "UPDATE links SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
+						"', facebook ='".$changedText[3]."', insta = '".$changedText[4]."', paypal = '".$changedText[5]."',
+						website = '".$changedText[6]."', twitter = '".$changedText[7]."' WHERE id = ".$userID;
+		echo $query;
+		if (mysqli_query($conn, $query)) {
+		} else {
 			echo "Error updating record: " . mysqli_error($conn);
-			}
-			
 		}
-		
-		
-		
 		
 		break;
+
 
 	default:
 		break;
 }
 mysqli_close($conn);
-
 ?>
