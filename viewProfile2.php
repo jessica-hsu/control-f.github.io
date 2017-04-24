@@ -116,14 +116,11 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 			  echo("Error: %s\n"+ mysqli_error($conn));
 			  exit(1);
 			}
-			if (mysqli_num_fields($result) < 1) {
-				echo("img/blank-profile-picture.png");
-			} else {
-				$row = mysqli_fetch_assoc($result);
-				echo($row['imageURL']);
-			}
+			$row = mysqli_fetch_assoc($result);
+			echo($row['imageURL']);
+
 		      ?> ">
-				<script>
+			<script>
 		    function editImage(Image) {
 		      var url = prompt("Please provide a url to insert a profile picture!", 'Enter link here');
 		      if(url==null)

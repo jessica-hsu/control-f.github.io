@@ -75,15 +75,26 @@ $userID = $_GET['info'];
 			  echo("Error: %s\n"+ mysqli_error($conn));
 			  exit(1);
 			}
-if (mysqli_num_fields($result) < 1) {
-				echo("img/blank-profile-picture.png");
-			} else {
-				$row = mysqli_fetch_assoc($result);
-				echo($row['imageURL']);
-			}
+			$row = mysqli_fetch_assoc($result);
+			echo($row['imageURL']);
 
 		      ?> ">
-				
+				<script>
+		    function editImage(Image) {
+		      var url = prompt("Please provide a url to insert a profile picture!", 'Enter link here');
+		      if(url==null)
+			      return;
+		      Image.src = url;    
+		      console.log(url);
+		      save("profile-pic");
+		    }
+
+		   function imgError(image) {
+		    image.onerror = "";
+		    image.src = "/img/blank-profile-picture.png";
+		    return true;
+		    }
+  		  </script>
 			</div>
 		</div>
 		<div class="row" id="bg2">
