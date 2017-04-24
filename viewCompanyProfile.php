@@ -574,7 +574,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                 text.style.display="inline-block";
                 box.style.backgroundColor ="#f2f2f2";
                 box.style.border = "2px dashed #cecece";
-                save.style.display = "block";
+                save.style.display = "inline";
                 $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
             }
 
