@@ -28,7 +28,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-	<link rel="stylesheet" href="viewProfile2.css">
+	<link rel="stylesheet" href="viewProfile.css">
 	
 	<title>Control-F</title>
 </head>
