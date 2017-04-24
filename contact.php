@@ -140,9 +140,9 @@ if ($_SESSION['profileType'] == null) {
 					<div class="row" id="description">
 						<div class="col-sm-10" id="info">
 
-							This website was developed as a project for our Computer Science Practicum class at Emory. The theme for our class was social justice, and we thought of our experiences working with companies who were doing amazing work, but didn't have the recources to higher developers.
+							This website was developed as a project for our Computer Science Practicum class at Emory. The theme for our class was social justice, and we thought of our experiences working with companies who were doing amazing work, but didn't have the resources to hire developers.
 							As students at Emory, we knew first hand the difficult paradox many beginning programmers face: to find a job, you need
-							experience; but without experience, its extremely difficult to find a job.  We wanted to create a marketplace that would address both these problems. Control-f isn't designed to make a profit, just solve a solution to a problem. Being promotion free and ad free is important for us, so that we can be fair to our users. Any contributions go directly to keeping our servers running.
+							experience; but without experience, it's extremely difficult to find a job.  We wanted to create a marketplace that would address both these problems. Control-f isn't designed to make a profit, just solve a solution to a problem. Being promotion free and ad free is important for us, so that we can be fair to our users. Any contributions go directly to keeping our servers running.
 
 						</div>
 
