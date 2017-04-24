@@ -182,6 +182,7 @@ td {
 		width:100%;
 	}
 	
+	
 	#name {
 		padding-top: 20%;
 		font-size: 300%;
@@ -202,8 +203,15 @@ td {
 
 @media screen and (max-width: 321px) {
 	
-	#skills-box, #social-media,  #contact-us{
+	#skills-box, #social-media{
 		font-size: 80%;
 	}
+	
+	#contact-us {
+		margin: 2px;
+		padding:0px;
+		font-size:75%;
+	}
+
 	
 }
