@@ -311,7 +311,6 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 		
 		<div class="row" id="bg6">
 			<div class="section" id="s6">Social Media
-<<<<<<< HEAD
 				<button onclick="editSocial(this);" class="btn ourButton">
             		<span class="glyphicon glyphicon-pencil "></span>
         		</button>
@@ -321,7 +320,6 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 		  	</div>
 		  	<div id="social-media">
 		  	<p id="links-text" contentEditable="false">
-=======
         		<button onclick="editSocial(this);" class="btn ourButton" type="button">
             		<span class="glyphicon glyphicon-pencil "></span>
        			 </button>
@@ -331,7 +329,6 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 			</div>
 			<div class="bg" id="social-media">
 			<p id="links-text" contentEditable="false">
->>>>>>> origin/master
         <div class="table-responsive">
           <table class="table table-striped" id="link-table">
             <thead>
