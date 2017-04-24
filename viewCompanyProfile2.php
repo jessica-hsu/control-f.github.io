@@ -1,10 +1,9 @@
 <?php 
-/*session_start();	
+session_start();	
 $userID = $_SESSION['ID'];
 if (strcmp($_SESSION['profileType'], "dev")==0) {
 	header('Location: viewProfile.php');
-}*/
-$userID = 6;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
