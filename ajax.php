@@ -215,6 +215,35 @@ switch ($func) {
 		
 		
 		break;
+	case 'change-social':
+		$query = "SELECT * FROM links WHERE id = " .$userID;
+		echo $query . "\n";
+				
+		if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			echo("Error: %s\n"+ mysqli_error($conn));
+			exit(1);
+        	}
+		
+		if (mysqli_num_rows($result) <1) {
+			$queryNew = "INSERT INTO links (id ) VALUES (" . $userID . ") ";
+			echo $queryNew . "\n";
+				
+			if (mysqli_query($conn, $queryNew)) {
+			} else {
+			echo "Error updating record: " . mysqli_error($conn);
+			}
+		}
+		$queryUpdate = "UPDATE links SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
+						"', facebook ='".$changedText[3]."', insta = '".$changedText[4]."', paypal = '".$changedText[5]."',
+						website = '".$changedText[6]."', twitter = '".$changedText[7]."' WHERE id = ".$userID;
+		echo $queryUpdate;
+		if (mysqli_query($conn, $queryUpdate)) {
+		} else {
+			echo "Error updating record: " . mysqli_error($conn);
+		}
+		
+		
+		break;
 	#kill session when user clicks logout
 	case 'logout':
 		$_SESSION = array();
