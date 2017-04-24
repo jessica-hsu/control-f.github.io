@@ -120,9 +120,9 @@ nav {
 .table {
 	margin: 0;
    	 width:100%;
-   	 white-space: nowrap;
-	overflow:scroll;
-	table-layout: fixed;
+   	 
+	
+	
 }
 td {
 	overflow:scroll;
