@@ -312,22 +312,13 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 		<div class="row" id="bg6">
 			<div class="section" id="s6">Social Media
 				<button onclick="editSocial(this);" class="btn ourButton">
-            		<span class="glyphicon glyphicon-pencil "></span>
-        		</button>
-        		<button onclick="update('links-facts')" class="save-icon btn">
-            		<span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
-        		</button>
+            				<span class="glyphicon glyphicon-pencil "></span>
+        			</button>
+        			<button onclick="update('links-facts')" class="save-icon btn">
+            				<span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
+        			</button>
 		  	</div>
-		  	<div id="social-media">
-		  	<p id="links-text" contentEditable="false">
-        		<button onclick="editSocial(this);" class="btn ourButton" type="button">
-            		<span class="glyphicon glyphicon-pencil "></span>
-       			 </button>
-       			 <button onclick="update('links-facts')" class="btn save-icon" type="button">
-            		<span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
-        		</button>
-			</div>
-			<div class="bg" id="social-media">
+		<div class="bg" id="social-media">
 			<p id="links-text" contentEditable="false">
         <div class="table-responsive">
           <table class="table table-striped" id="link-table">
