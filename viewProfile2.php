@@ -116,9 +116,12 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 			  echo("Error: %s\n"+ mysqli_error($conn));
 			  exit(1);
 			}
-			$row = mysqli_fetch_assoc($result);
-			echo($row['imageURL']);
-
+			if (mysqli_num_fields($result) < 1) {
+				echo("img/blank-profile-picture.png");
+			} else {
+				$row = mysqli_fetch_assoc($result);
+				echo($row['imageURL']);
+			}
 		      ?> ">
 				<script>
 		    function editImage(Image) {
