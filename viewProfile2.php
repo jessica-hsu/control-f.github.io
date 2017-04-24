@@ -7,6 +7,7 @@ $userID = $_SESSION['ID'];
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
 }
+//$userID = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -624,7 +625,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		  f ='change-company-pic';
 		  var url = document.getElementById('profile-pic');
 		  changedText = url.src;
-
+		  console.log(changedText);
 		  $.ajax ({
 		    type: "POST",
 		    url: "ajax.php",

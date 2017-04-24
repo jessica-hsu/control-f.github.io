@@ -30,9 +30,9 @@ if (isset($_POST['textUpdateCompany'])) {
 if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
 }
-//$companyFunc = 'change-company-pic';
+//$func = 'change-company-pic';
 //$userID = 1;
-//$changedText = 'https://s-media-cache-ak0.pinimg.com/originals/bc/4b/e1/bc4be1415b23183d5e26465da6426f9e.png';
+//$changedText = 'http://i0.kym-cdn.com/photos/images/newsfeed/000/674/934/422.jpg';
 switch ($func) {
 	#Update the description of user
 	case 'about':
