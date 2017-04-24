@@ -12,7 +12,6 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
-<<<<<<< HEAD
 
 #top-background {
     background: #47ffd1; /* For browsers that do not support gradients */
@@ -49,8 +48,7 @@ background-color: #e8e9ea;
 
 height:4px;
 width:100vw;
-
-=======
+}
 	
 .row {
   	background-attachment: fixed;
@@ -60,7 +58,6 @@ width:100vw;
  	margin: 0;
  	padding: 0;
  	z-index: 0;
->>>>>>> origin/master
 }
 
 .bg {
