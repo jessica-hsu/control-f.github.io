@@ -6,7 +6,7 @@ if ($_SESSION['profileType'] == null) {
 $userID = $_SESSION['ID'];
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
-}*
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
