@@ -1,17 +1,9 @@
 <?php 
-
-session_start();	
-
-if ($_SESSION['profileType'] == null) {
-	header('Location: index.php');
-}
-
+/*session_start();	
 $userID = $_GET['info'];
-//$userID = 1;
-if (strcmp($_SESSION['profileType'], "comp")==0) {
-	header('Location: viewCompanyProfile.php');
-}
 
+}*/
+$userID=2;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +11,10 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="hello.all.js"></script>
+	
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,22 +24,17 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="hello.all.js"></script>
 	
-	<!-- jQUERY -->
-	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" href="readOnly.css">
 	
-	<link rel="stylesheet" href="viewProfile.css">
-	<link rel="icon" href="img\icon.ico" type="image/x-icon">
 	<title>Control-F</title>
-
 </head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 <?php include "connectDB.php"?>
 <span id="currentUser" hidden><?php echo $userID?></span>
 <span id="network" hidden><?php echo $_SESSION['network']?></span>
 <span id="profileType" hidden><?php echo $_SESSION['profileType']?></span>
-
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	<div class="container-fluid">
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
@@ -58,7 +49,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
          				<li><a href="welcome.php">Home</a></li>         		
-         				<li><a href="viewProfile.php">Profile</a></li>
+         				<li><a href="viewProfile2.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          				<li><a id="logout" onclick="logout()" >Logout</a></li>
@@ -66,31 +57,28 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
       			</div>
     		</div>
     	</nav>
-    	<!--- for the profile backimage -->
-		<div class = "container-fluid" id = "top-background">
-			<div id = "title-text">
-			<?php #query to get user information#
-   				$query = "SELECT firstName, lastName, email, phone, age, uDescription FROM user WHERE userID = " . $userID;
+    	
+		
+		<div class="row" id="bg1">
+			<div class="bg" id="name">
+				<?php #query to get user information#
+   				$query = "SELECT firstName, lastName FROM user WHERE userID = " . $userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
    					echo("Error: %s\n"+ mysqli_error($conn));
    					exit(1);
    				} 
    				$row = mysqli_fetch_assoc($result);
    				echo($row['firstName'] . " " . $row['lastName']);
-   			?>
-			</div>	 
+   				?>
+				<img id ="profile-pic" class="img-circle img-responsive" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="img/jessica.jpg">
+				
+			</div>
 		</div>
-		<div class = "container-fluid" id = "division-bar"> 
-		</div>
-		<img src="puppies.jpg" class="img-fluid" alt="Responsive image" id = "profile-image">
-		<div class="container-fluid">
-		<div class="row">
-		
-			
-			<div class="row" id="row1"> 
-		  	<div class="col-sm-4 col-sm-offset-2 left-box left-box" id = "about-box">
+		<div class="row" id="bg2">
+			<div class="section" id="s1">About
 		  		
-				<p class = "sub-heading" > About Developer </p>
+		  	</div>
+			<div class="bg" id="about-box">
 				<p id="about-text" contentEditable="false">
 				<?php #query to get user information#
    					$query = "SELECT uDescription FROM user WHERE userID = " . $userID;
@@ -104,13 +92,12 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 				</p>
 				
 			</div>
-		  	
-
-
-		  	<div class="col-sm-4  col-sm-offset-1 right-box top-box" id = "quick-facts-box"> 
-				
-				<p class = "sub-heading" > Quick Facts </p>
-				<p id="quick-facts">
+		</div>
+		<div class="row" id="bg3">
+			<div class="section" id="s2">Quick Facts
+		  		
+			</div>
+			<div class="bg" id="quick-facts-box">
 				<?php #query to get user information#
    				$query = "SELECT email, phone, age FROM user WHERE userID = " . $userID;
    				if ( ! ( $result = mysqli_query($conn, $query)) ) {
@@ -125,19 +112,20 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
    				
    				?>	 
 				</p>
+			
 			</div>
-			</div> <!-- end row -->
-
-			<div class="row" id="row2">
-			<div class="col-sm-9 col-sm-offset-2 left-box " id = "skills-box"> 
+		</div>
+		<div class="row" id="bg4">
+			<div class="section" id="s3">Skills
 				
-				<p class = "sub-heading" >Skills </p>
-				<p> <span id="temp" contentEditable="false" hidden></span>
+			</div>
+			<div class="bg" id="skills-box">
+				<span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="skill-table">
 						<thead><tr>
 							<th>Skill</th>
-							<th>Years of Experience</th>
+							<th>Years</th>
 							<th>Sample URL</th></tr>
 						</thead>
 						<tbody>
@@ -151,7 +139,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 							echo("<tr class='skillz'><td class='skills-text-name'>" . $row['skillName'] . 
 									"</td><td class='skills-text-yrs'>" . $row['yearsExp'] . 
 									"</td><td class='skills-text' contentEditable='false'>" . $row['portfolioURL'] . 
-									"</td><td><span class='glyphicon glyphicon-remove' onclick='removeSkill(this)'></span></tr>");
+									"</td></tr>");
 						}
 
 						?>
@@ -159,16 +147,16 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 						</tbody>
 					</table>
 				</div>
-				</p>
-
-			</div>
-			</div> <!-- end row -->
-			
-			<div class="row" id="row3">
-			<div class="col-sm-9  col-sm-offset-2 left-box " id = "social-media"> 
 				
-				<p class = "sub-heading" > Other Places to Find Developer </p> 
-				<p><span id="temp" contentEditable="false" hidden></span>
+			</div>
+		</div>
+		
+		<div class="row" id="bg5">
+			<div class="section" id="s3">Social Media
+		  		
+		  	</div>
+			<div class="bg" id="social-media">
+				<span id="temp" contentEditable="false" hidden></span>
 				<div class="table-responsive">
 					<table class="table table-striped" id="link-table">
 						<thead><tr>
@@ -177,7 +165,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 							</tr>
 						</thead>
 						<tbody>
-						<?php 
+						<?php /*
 						$query = "SELECT name, links FROM links WHERE id = " . $userID;
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
@@ -187,20 +175,20 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 							echo("<tr class='linkz'><td class='link-text'>" . $row['name'] .
 									"</td><td class='link-url' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
 									</td><td><span class='glyphicon glyphicon-remove' onclick='removeLink(this)'></span></tr>");
-						}
+						}*/
 						?>
 						</tbody>
 					</table>
+					
 				</div>
-				</p>
-
-			</div> <!-- end column -->
-		  	</div> <!-- end row -->
+			</div>
 		</div>
-		  	
-	</div>	
-<?php mysqli_close($conn); ?>
+	</div>
+
+<?php mysqli_close($conn); ?>			
+
 <script>
+	
 	function logout() {
 		console.log("logging out ... ");
 		f="logout";
@@ -230,7 +218,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 	    });
 		
 	}
-</script>   
-			
+</script>  
+
 </body>
 </html>
