@@ -31,7 +31,7 @@ if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
 }
 //$companyFunc = 'change-company-pic';
-//$userID = 6;
+//$userID = 1;
 //$changedText = 'https://s-media-cache-ak0.pinimg.com/originals/bc/4b/e1/bc4be1415b23183d5e26465da6426f9e.png';
 switch ($func) {
 	#Update the description of user
@@ -241,8 +241,8 @@ switch ($companyFunc) {
 			echo "Error updating record: " . mysqli_error($conn);
 		}
 		break;
-	case 'skills-company':
-		$query = "UPDATE company SET companycol = '  $changedText  ' WHERE compID = ".$userID;
+	case 'proud-company':
+		$query = "UPDATE company SET companycol = '".  $changedText . "' WHERE compID = ".$userID;
 		if (mysqli_query($conn, $query)) {
 		} else {
 			echo "Error updating record: " . mysqli_error($conn);

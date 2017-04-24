@@ -1,14 +1,12 @@
 <?php 
-/*session_start();	
+session_start();	
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
 }
 $userID = $_SESSION['ID'];
-//$userID = 1;
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
-}*/
-$userID = 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +59,45 @@ $userID = 1;
       			</div>
     		</div>
     	</nav>
+    	
+    	<!--Modal for successful profile update-->
+    	<div id="successModal" class="modal fade" role="dialog">
+ 			 <div class="modal-dialog">
+   			 	<!-- Modal content-->
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">&times;</button>
+        				<h4 class="modal-title">Success</h4>
+      				</div>
+      				<div class="modal-body">
+        				<p>Profile updated. Refresh to see the changes.</p>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      				</div>
+    			</div>
+  			</div>
+		</div>
+		
+		<!--Modal for failed profile update-->
+    	<div id="failModal" class="modal fade" role="dialog">
+ 			 <div class="modal-dialog">
+   			 	<!-- Modal content-->
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal">&times;</button>
+        				<h4 class="modal-title">Error</h4>
+      				</div>
+      				<div class="modal-body">
+        				<p>Profile failed to update. Please contact an administrator.</p>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      				</div>
+    			</div>
+  			</div>
+		</div>
+		
 		<div class="row" id="bg1">
 			<div class="bg" id="name">
 				<?php #query to get user information#
@@ -501,12 +538,6 @@ $userID = 1;
 						urls.push(links[i].innerHTML);
 					}	
 				}
-				size=text.length;
-				console.log(text);				
-				console.log(urls);
-				console.log(years);
-				console.log(size);
-				
 				
 				break;
 			/*case 'links-facts':
@@ -548,14 +579,12 @@ $userID = 1;
 			dataType: "html",
 			success: function(data) {
 				console.log("success");
-				//var success = document.getElementById("updateYes");
-				//success.style.display='block';
+				$('#successModal').modal('show');
 				
 			},
 			error: function(e) {
 				console.log(e);
-				//var fail = document.getElementById("updateNo");
-				//success.style.display='block';
+				$('#failModal').modal('show');
 			}	
 		});
 		
