@@ -1,9 +1,10 @@
-<?php 
+<?php
 session_start();
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
 }
 
+//$userID = 6;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +12,8 @@ if ($_SESSION['profileType'] == null) {
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	
+
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -21,11 +22,11 @@ if ($_SESSION['profileType'] == null) {
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
 	<!-- jQUERY -->
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script src="hello.all.js"></script>
-	
+
 	<link rel="stylesheet" href="search.css">
 
 	<link rel='icon' href='img/icon.ico' type='image/x-icon'>
@@ -43,7 +44,7 @@ if ($_SESSION['profileType'] == null) {
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
           			<span class="icon-bar"></span>
-          			<span class="icon-bar"></span>                        
+          			<span class="icon-bar"></span>
       			</button>
     		</div>
     		<div>
@@ -51,7 +52,7 @@ if ($_SESSION['profileType'] == null) {
        			 	<ul class="nav navbar-nav">
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
-         				<li><a href="welcome.php">Home</a></li>         		
+         				<li><a href="welcome.php">Home</a></li>
          				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
@@ -61,22 +62,38 @@ if ($_SESSION['profileType'] == null) {
     		</div>
     	</nav>
 
-		<div class="row">
-			<div class="col-sm-12" id="searchbox">
-				<div class="col-sm-3">
+</head>
+<body>
+<div class = "container search-background">
+
+
+		<div class="row top-row">
+			<div class="col-sm-12 searchbox" >
+
 					<!-- First drop down menu -->
-    				<label for="search">Search for developers/company/skill/Ads:</label>
-	    			<select id="search" onchange="changeSubMenu()">
-	    				<option value="dev" selected>Developer</option>
-	    				<option value="comp">Company</option>
-	    				<option value="skill">Skills</option>
-	    				<option value="ad">Ads</option>
+    				<label class = "subtitles" for="search">What do you want to search for?</label>
+			</div>
+
+
+
+			<div class="col-sm-12 searchbox ">
+	    			<select id="search" class = "select-box " onchange="changeSubMenu()">
+	    				<option class = "option" value="dev" selected>Developer</option>
+	    				<option class = "option" value="comp">Company</option>
+	    				<option class = "option" value="skill">Skills</option>
+	    				<option class = "option" value="ad">Ads</option>
 	    			</select>
-	    		</div>
-	    		<div class="col-sm-3">	
+
+	    </div>
+
+
+
+	    <div  class="col-sm-12 searchbox">
 	    			<!--  hide secondary drop down menu at first. Display depends on developer or company selected -->
-	    			<label class="dev" for="product" >Select a desired product:</label>
-	    			<select class="dev" id="product" >
+	    			<label class="dev subtitles" for="product" >Select a desired product:</label>
+			</div>
+			<div  class="col-sm-12 searchbox ">
+	    			<select class="dev select-box" id="product" >
 	    				<option value="All" selected>All</option>
 	    				<option value="web">Website/Web application</option>
 	    				<option value="android">Mobile - android application</option>
@@ -86,67 +103,13 @@ if ($_SESSION['profileType'] == null) {
 	    				<option value="graphic">Graphic Design</option>
 	    				<option value="support">IT Support</option>
 	    			</select>
-	    				
-	    			<label class="comp" for="company-types" >Select company focus:</label>
-	    			<select class="comp" id="company-types" >
-	    				<option value="all" selected>All</option>	    				
-	    				<option value="1">Advocacy & Human Rights</option>
-	    				<option value="2">Animals</option>
-	    				<option value="3">Arts & Culture</option>
-	    				<option value="4">Board Development</option>
-	    				<option value="5">Children & Youth</option>
-	    				<option value="6">Community</option>
-	    				<option value="7">Computers & Technology</option>
-	    				<option value="8">Crisis Support</option>
-	    				<option value="9">Disaster Relief</option>
-	    				<option value="10">Education & Literacy</option>
-	    				<option value="11">Emergency & Safety</option>
-	    				<option value="12">Employment</option>
-	    				<option value="13">Environment</option>
-	    				<option value="14">Faith-based</option>
-	    				<option value="15">Health & Medicine</option>
-	    				<option value="16">Homeless & Housing</option>
-	    				<option value="17">Hunger</option>
-	    				<option value="18">Immigrants & Refugees</option>
-	    				<option value="19">International</option>
-	    				<option value="20">Justice & Legal</option>
-	    				<option value="21">LGBT</option>
-	    				<option value="22">Media & Broadcasting</option>
-	    				<option value="23">People with Disabilities</option>
-	    				<option value="24">Politics</option>
-	    				<option value="25">Race & Ethnicity</option>
-	    				<option value="26">Seniors</option>
-	    				<option value="27">Sports & Recreation</option>
-	    				<option value="28">Veterans & Military Families</option>
-	    				<option value="29">Women</option>
-						<option value="30">Other</option>
-	    			</select>
-	    			
-	    			<label class="skills" for="skills" >Select a skill:</label>
-	    			<select class="skills" id="skills" >
-	    				<option value='html'>HTML</option>
-						<option value='sql'>SQL</option>
-						<option value='java'>Java</option>
-						<option value='python'>Python</option>
-						<option value='php'>PHP</option>
-						<option value='swift'>Swift</option>
-	    			</select>
-	    			
-	    			<label class="ads" for="ads" >Select a type of ad:</label>
-	    			<select class="ads" id="ads" >
-	    				<option value="All" selected>All</option>
-	    				<option value="web">Website/Web application</option>
-	    				<option value="android">Mobile - android application</option>
-	    				<option value="ios">Mobile - iOS application</option>
-	    				<option value="social">Social Media</option>
-	    				<option value="game">Game development</option>
-	    				<option value="graphic">Graphic Design</option>
-	    				<option value="support">IT Support</option>
-	    			</select>
-	    		</div>
-	    		<div id="thirdcol" class="col-sm-3">
-	    			<label class="ads-focus" for="ads-focus" >Select an ad focus:</label>
-	    			<select class="ads-focus" id="ads-focus" >
+
+			</div>
+			<div  class="col-sm-12 searchbox">
+	    			<label class="comp subtitles" for="company-types" >Select company focus:</label>
+			</div>
+			<div  class="col-sm-12 searchbox ">
+	    			<select class="comp select-box" id="company-types" >
 	    				<option value="all" selected>All</option>
 	    				<option value="1">Advocacy & Human Rights</option>
 	    				<option value="2">Animals</option>
@@ -179,29 +142,114 @@ if ($_SESSION['profileType'] == null) {
 	    				<option value="29">Women</option>
 						<option value="30">Other</option>
 	    			</select>
-	    		</div>	
-	    		<div class="col-sm-3">	
-	    			<button id="submit" type="button" class="btn btn-info" onclick="search()">
+
+ 				</div>
+				<div  class="col-sm-12 searchbox">
+    			<label class="skills subtitles" for="skills" >Select a skill:</label>
+				</div>
+				<div  class="col-sm-12 searchbox ">
+    			<select class="skills select-box" id="skills" >
+    				<option value='html'>HTML</option>
+					<option value='sql'>SQL</option>
+					<option value='java'>Java</option>
+					<option value='python'>Python</option>
+					<option value='php'>PHP</option>
+					<option value='swift'>Swift</option>
+    			</select>
+
+				</div>
+				<div  class="col-sm-12 searchbox">
+    			<label class="ads subtitles" for="ads" >Select a type of ad:</label>
+				</div>
+				<div  class="col-sm-12 searchbox ">
+    			<select class="ads select-box" id="ads" >
+    				<option value="All" selected>All</option>
+    				<option value="web">Website/Web application</option>
+    				<option value="android">Mobile - android application</option>
+    				<option value="ios">Mobile - iOS application</option>
+    				<option value="social">Social Media</option>
+    				<option value="game">Game development</option>
+    				<option value="graphic">Graphic Design</option>
+    				<option value="support">IT Support</option>
+    			</select>
+
+	    	</div>
+
+    		<div  class="col-sm-12 searchbox">
+    			<label class="ads-focus subtitles" for="ads-focus" >Select an ad focus:</label>
+				</div>
+				<div  class="col-sm-12 searchbox ">
+					<div class="ads-focus">
+	    			<select class = "select-box" id="ads-focus" >
+	    				<option value="all" selected>All</option>
+	    				<option value="1">Advocacy & Human Rights</option>
+	    				<option value="2">Animals</option>
+	    				<option value="3">Arts & Culture</option>
+	    				<option value="4">Board Development</option>
+	    				<option value="5">Children & Youth</option>
+	    				<option value="6">Community</option>
+	    				<option value="7">Computers & Technology</option>
+	    				<option value="8">Crisis Support</option>
+	    				<option value="9">Disaster Relief</option>
+	    				<option value="10">Education & Literacy</option>
+	    				<option value="11">Emergency & Safety</option>
+	    				<option value="12">Employment</option>
+	    				<option value="13">Environment</option>
+	    				<option value="14">Faith-based</option>
+	    				<option value="15">Health & Medicine</option>
+	    				<option value="16">Homeless & Housing</option>
+	    				<option value="17">Hunger</option>
+	    				<option value="18">Immigrants & Refugees</option>
+	    				<option value="19">International</option>
+	    				<option value="20">Justice & Legal</option>
+	    				<option value="21">LGBT</option>
+	    				<option value="22">Media & Broadcasting</option>
+	    				<option value="23">People with Disabilities</option>
+	    				<option value="24">Politics</option>
+	    				<option value="25">Race & Ethnicity</option>
+	    				<option value="26">Seniors</option>
+	    				<option value="27">Sports & Recreation</option>
+	    				<option value="28">Veterans & Military Families</option>
+	    				<option value="29">Women</option>
+						<option value="30">Other</option>
+	    			</select>
+
+					</div>
+	    	</div> <!-- shuts searchbox-->
+
+	    	<div  class="col-sm-12 searchbox">
+	    			<button id="submit" type="button" class="btn " onclick="search()">
 	    				<span class="glyphicon glyphicon-search"></span>
 	    			</button>
-	    		</div>
-	   		</div> <!-- end of column & search box -->
+	    	</div>
+
+
 		</div> <!-- end of row -->
-		<div class = "row" id="result-table">
-			<div class="col-sm-10">
-			<h4>Search Results:</h4>
-				<div class="table-responsive">
-					<table class="table table-striped" id="profiles">
-						<thead>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
+</div>
+<div class = "container-fluid">
+		<div id = "results">
+
+			<div  id="result-table"  >
+				<h4>Search Results:</h4>
+
+						<table class="table table-hover" id="profiles">
+							<div class = "row">
+							<thead>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+
 			</div>
 		</div>
-	</div> <!-- end of container-fluid -->
-	
+		<button onclick="topFunction()" id="myBtn" title="Go to top">
+			<span class="glyphicon glyphicon-triangle-top"></span>
+		</button>
+ <!-- end of container-fluid -->
+</div>
+
+
 	<!-- Javascript code begins here -->
 	<script>
 		/*change second drop down menu depending on what is selected in the first one */
@@ -214,7 +262,9 @@ if ($_SESSION['profileType'] == null) {
 			var adz = document.getElementsByClassName('ads');
 			var adFocus = document.getElementsByClassName('ads-focus');
 			var thirdcol = document.getElementById('thirdcol');
+
 			if (menu_selected == "dev") {		//show the product menu if developers selected
+
 				products[0].style.display = "inline";
 				products[1].style.display = "inline";
 				focus[0].style.display = "none";
@@ -226,7 +276,7 @@ if ($_SESSION['profileType'] == null) {
 				adFocus[0].style.display = "none";
 				adFocus[1].style.display = "none";
 				thirdcol.style.display = "none";
-				
+
 			} else if (menu_selected == "comp") {	//show company type if company selected
 				products[0].style.display = "none";
 				products[1].style.display = "none";
@@ -239,7 +289,7 @@ if ($_SESSION['profileType'] == null) {
 				adFocus[0].style.display = "none";
 				adFocus[1].style.display = "none";
 				thirdcol.style.display = "none";
-				
+
 			} else if (menu_selected == "skill") {	//show skillz type if company selected
 				products[0].style.display = "none";
 				products[1].style.display = "none";
@@ -252,7 +302,7 @@ if ($_SESSION['profileType'] == null) {
 				adFocus[0].style.display = "none";
 				adFocus[1].style.display = "none";
 				thirdcol.style.display = "none";
-				
+
 			} else if (menu_selected == "ad") {	//show adz type if company selected
 				products[0].style.display = "none";
 				products[1].style.display = "none";
@@ -266,7 +316,7 @@ if ($_SESSION['profileType'] == null) {
 				adFocus[1].style.display = "inline";
 				thirdcol.style.display = "block";
 			}
-		
+
 		}
 
 		/*ajax to display profile when you click VIEW button*/
@@ -281,7 +331,7 @@ if ($_SESSION['profileType'] == null) {
 				text=["company", compID];
 			}
 			var f="view";
-						
+
 			$.ajax ({
 				type: "POST",
 				url: "ajax.php",
@@ -304,9 +354,9 @@ if ($_SESSION['profileType'] == null) {
 				error: function(e) {
 					var table = document.getElementById('result-table');
 					table.style.display= "none";
-				}	
+				}
 			});
-			
+
 		}*/
 
 		/*ajax to search user and company*/
@@ -314,7 +364,7 @@ if ($_SESSION['profileType'] == null) {
 			var text=[]; 	//this is where we store the dev/comp option and the selected product type/company focus
 			var menu = document.getElementById('search');
 			var menu_selected = menu.options[menu.selectedIndex].value;
-			var sub_menu; var sub_menu_selected; var sub_menu2; 
+			var sub_menu; var sub_menu_selected; var sub_menu2;
 			var sub_menu_selected2 = "";
 			if (menu_selected == "dev") {
 				sub_menu = document.getElementById('product');
@@ -360,7 +410,7 @@ if ($_SESSION['profileType'] == null) {
 							cell_title.innerHTML = obj[i][2];
 							cell_type.innerHTML = obj[i][4];
 							cell_description.innerHTML = obj[i][5];
-							cell_link.innerHTML = "<form action='readOnlyComp.php' target='_blank' method='get'><button type='submit' value='" + obj[i][0]+ "' class='btn btn-info' name='info'>View</button></form>";
+							cell_link.innerHTML = "<form action='readOnlyComp.php' target='_blank' method='get'><button type='submit' value='" + obj[i][0]+ "' class='btn btn-profile' name='info'>View</button></form>";
 						}
 
 					} else {
@@ -373,23 +423,44 @@ if ($_SESSION['profileType'] == null) {
 							var cell_link = row.insertCell(1);
 							cell_name.innerHTML = obj[i][1];
 							if (menu_selected == "dev" || menu_selected == "skill") {
-								cell_link.innerHTML = "<form action='readOnlyDev.php' target='_blank' method='get'><button type='submit' value='" + obj[i][0]+ "' class='btn btn-info' name='info'>View</button></form>";
+								cell_link.innerHTML = "<form action='readOnlyDev.php' target='_blank' method='get'><button type='submit' value='" + obj[i][0]+ "' class='btn btn-profile' name='info'>View</button></form>";
 							} else if (menu_selected == "comp") {
-								cell_link.innerHTML = "<form action='readOnlyComp.php' target='_blank' method='get'><button type='submit' value='" + obj[i][0]+ "' class='btn btn-info' name='info'>View</button></form>";
+								cell_link.innerHTML = "<form action='readOnlyComp.php' target='_blank' method='get'><button type='submit' value='" + obj[i][0]+ "' class='btn btn-profile' name='info'>View</button></form>";
 							}
 						}
 					}
 
 					var table = document.getElementById('result-table');
+
 					table.style.display= "block";
+					$('html, body').animate({
+                    scrollTop: $("#results").offset().top
+                }, 1000);
 				},
 				error: function(e) {
 					console.log("ajax failed"); console.log(e);
 					var table = document.getElementById('result-table');
 					table.style.display= "none";
-				}	
+				}
 			});
-			
+
+		}
+
+		/*javascript for scroll to top button */
+		window.onscroll = function() {scrollFunction()};
+
+		function scrollFunction() {
+		    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 20) {
+		        document.getElementById("myBtn").style.display = "block";
+		    } else {
+		        document.getElementById("myBtn").style.display = "none";
+		    }
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		    document.body.scrollTop = 0; // For Chrome, Safari and Opera
+		    document.documentElement.scrollTop = 0; // For IE and Firefox
 		}
 
 		function logout() {
@@ -402,7 +473,7 @@ if ($_SESSION['profileType'] == null) {
 			hello( network ).logout({force:true},function(e){
 				console.log("force logout of " + network);
 			});
-			
+
 			$.ajax({
 		        url: 'ajax.php',
 		        data: {func: f},
@@ -414,12 +485,12 @@ if ($_SESSION['profileType'] == null) {
 		            } else {
 		               	window.location.href = "loginComp.php";
 		            }
-		        }, 
+		        },
 		        error: function(result) {
 		        	console.log(result);
 		        }
 		    });
-			
+
 		}
 	</script>
 	<?php mysqli_close($conn); ?>
