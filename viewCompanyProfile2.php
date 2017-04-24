@@ -113,6 +113,11 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 				<button class="btn" type="button" id="postAd" onclick="postAd()">
 					Post Ad
 				</button>
+				<script>
+					function postAd() {
+						window.location.href = 'postAd.php';
+					}
+				</script>
 			</div>
 		</div>
 		<div class="row" id="bg2">
