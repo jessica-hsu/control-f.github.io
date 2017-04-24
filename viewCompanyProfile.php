@@ -563,7 +563,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                   links.item(i).contentEditable = "false";
                 }
                 text.style.display="none";
-                box.style.backgroundColor="#e8e9ea";
+                box.style.backgroundColor="white";
                 box.style.border = "none";
                 save.style.display = "none";
                 $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
