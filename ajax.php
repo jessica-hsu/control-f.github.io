@@ -308,7 +308,24 @@ switch ($companyFunc) {
 		}
 		
 		case 'change-social':
-	$query = "UPDATE links SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
+		$query = "SELECT * FROM links WHERE id = " .$userID;
+		echo $query . "\n";
+				
+		if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			echo("Error: %s\n"+ mysqli_error($conn));
+			exit(1);
+        	}
+		
+		if (mysqli_num_rows($result) <1) {
+			$queryNew = "INSERT INTO ImageTable (id, ) VALUES (" . $userID . ") ";
+			echo $queryNew . "\n";
+				
+			if (mysqli_query($conn, $queryNew)) {
+			} else {
+			echo "Error updating record: " . mysqli_error($conn);
+			}
+		}
+		$query = "UPDATE links SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
 						"', facebook ='".$changedText[3]."', insta = '".$changedText[4]."', paypal = '".$changedText[5]."',
 						website = '".$changedText[6]."', twitter = '".$changedText[7]."' WHERE id = ".$userID;
 		echo $query;
