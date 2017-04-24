@@ -607,10 +607,13 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                 dataType: "html",
                 success: function(result) {
                   console.log("yay");
-                  console.log(result.responseText);
+                  $('#successModal').modal('show');
+
                 },
                 error: function(result) {
                   console.log(result);
+		  $('#failModal').modal('show');
+
                 }
             });
           }
