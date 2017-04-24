@@ -193,7 +193,104 @@ $userID = $_GET['info'];
 		  		
 		  	</div>
 			<div class="bg" id="social-media">
-				
+				<center>
+
+              <a href = "<?php
+                $query = "SELECT linkedIn FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['linkedIn']);
+                ?>">
+                  <i class="fa fa-linkedin-square" id="linkedinicon" style="font-size:48px;color:#007bb6"></i> &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT googlePlus FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['googlePlus']);
+                ?>">
+                  <i class="fa fa-google" style="font-size:48px;color:#d34836"></i> &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT github FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['github']);
+                ?>">
+                  <i class="fa fa-github-square" style="font-size:48px;color:black"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT facebook FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['facebook']);
+                ?>">
+                  <i class="fa fa-facebook-official" style="font-size:48px;color:#3b5998"></i> &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT insta FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['insta']);
+                ?>">
+                  <i class="fa fa-instagram" style="font-size:48px;color:#cd486b"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT twitter FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['twitter']);
+                ?>">
+                <i class="fa fa-twitter" style="font-size:48px;color:# 00aced"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT paypal FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['paypal']);
+                ?>">
+                  <i class="fa fa-paypal" style="font-size:48px;color:#003087"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT website FROM links WHERE id = " . $userID;
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['website']);
+                ?>">
+                  <i class="fa fa-globe" style="font-size:48px;color:#47ffd1"></i>
+              </a>
+            </center>
 			</div>
 		</div>
 		

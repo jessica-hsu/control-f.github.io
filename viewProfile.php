@@ -384,7 +384,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>LinkedIn</td>
                 <td id="linkedinurl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT linkedIn FROM links WHERE id = " . $userID;
+                  $query = "SELECT linkedIn FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -399,7 +399,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>Google Plus</td>
                 <td id="googleurl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT googlePlus FROM links WHERE id = " . $userID;
+                  $query = "SELECT googlePlus FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -413,7 +413,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>Github</td>
                 <td id="githuburl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT github FROM links WHERE id = " . $userID;
+                  $query = "SELECT github FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -427,7 +427,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>Facebook</td>
                 <td id="fburl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT facebook FROM links WHERE id = " . $userID;
+                  $query = "SELECT facebook FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -441,7 +441,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>Instagram</td>
                 <td id="instaurl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT insta FROM links WHERE id = " . $userID;
+                  $query = "SELECT insta FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -455,7 +455,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>Twitter</td>
                 <td id="twitterurl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT twitter FROM links WHERE id = " . $userID;
+                  $query = "SELECT twitter FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -469,7 +469,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>PayPal</td>
                 <td id="paypalurl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT paypal FROM links WHERE id = " . $userID;
+                  $query = "SELECT paypal FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -483,7 +483,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
                 <td>Personal Website</td>
                 <td id="websiteurl" class = "social-links" contentEditable="false">
                   <?php
-                  $query = "SELECT website FROM links WHERE id = " . $userID;
+                  $query = "SELECT website FROM linksDev WHERE id = " . $userID;
                   if ( ! ( $result = mysqli_query($conn, $query)) ) {
                     echo("Error: %s\n"+ mysqli_error($conn));
                     exit(1);
@@ -498,7 +498,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
            <center>
 
               <a href = "<?php
-                $query = "SELECT linkedIn FROM links WHERE id = " . $userID;
+                $query = "SELECT linkedIn FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -510,7 +510,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
               </a>
 
               <a href = "<?php
-                $query = "SELECT googlePlus FROM links WHERE id = " . $userID;
+                $query = "SELECT googlePlus FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -522,7 +522,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
               </a>
 
               <a href = "<?php
-                $query = "SELECT github FROM links WHERE id = " . $userID;
+                $query = "SELECT github FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -534,7 +534,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
               </a>
 
               <a href = "<?php
-                $query = "SELECT facebook FROM links WHERE id = " . $userID;
+                $query = "SELECT facebook FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -546,7 +546,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
               </a>
 
               <a href = "<?php
-                $query = "SELECT insta FROM links WHERE id = " . $userID;
+                $query = "SELECT insta FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -558,7 +558,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
               </a>
 
               <a href = "<?php
-                $query = "SELECT twitter FROM links WHERE id = " . $userID;
+                $query = "SELECT twitter FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -570,7 +570,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
               </a>
 
               <a href = "<?php
-                $query = "SELECT paypal FROM links WHERE id = " . $userID;
+                $query = "SELECT paypal FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
@@ -582,7 +582,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
               </a>
 
               <a href = "<?php
-                $query = "SELECT website FROM links WHERE id = " . $userID;
+                $query = "SELECT website FROM linksDev WHERE id = " . $userID;
                 if ( ! ( $result = mysqli_query($conn, $query)) ) {
                   echo("Error: %s\n"+ mysqli_error($conn));
                   exit(1);
