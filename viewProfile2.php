@@ -7,7 +7,6 @@ $userID = $_SESSION['ID'];
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
 }
-//$userID = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -629,7 +628,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		  $.ajax ({
 		    type: "POST",
 		    url: "ajax.php",
-		    data: {companyFunc: f, textUpdateCompany: changedText},
+		    data: {func: f, textUpdateCompany: changedText},
 		    dataType: "html",
 		    success: function(data) {
 		      console.log("success");

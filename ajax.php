@@ -30,9 +30,6 @@ if (isset($_POST['textUpdateCompany'])) {
 if (isset($_POST['adId'])) {
 	$adId = $_POST['adId'];
 }
-//$func = 'change-company-pic';
-//$userID = 1;
-//$changedText = 'http://i0.kym-cdn.com/photos/images/newsfeed/000/674/934/422.jpg';
 switch ($func) {
 	#Update the description of user
 	case 'about':
@@ -181,30 +178,33 @@ switch ($func) {
 		break;
 	#to change profile picture
 	case 'change-company-pic':
-		echo $changedText;
 		
-		$query = "SELECT * FROM ImageTable-Developer WHERE ImageTable.devId = " .$userID;
+		$query = "SELECT * FROM ImageTableDeveloper WHERE devId = " .$userID;
 		echo $query . "\n";
 				
 		if ( ! ( $result = mysqli_query($conn, $query)) ) {
 			echo("Error: %s\n"+ mysqli_error($conn));
 			exit(1);
+        	} else {
+        		echo "after insert";
         	}
 		
 		if (mysqli_num_rows($result) <1) {
-			$queryNew = "INSERT INTO ImageTable-Developer (devID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
+			$queryNew = "INSERT INTO ImageTableDeveloper (devID, ImageURL) VALUES (" . $userID . ", '" .  $changedText . "') ";
 			echo $queryNew . "\n";
 				
 			if (mysqli_query($conn, $queryNew)) {
+				echo ("insert worked");
 			} else {
 			echo "Error updating record: " . mysqli_error($conn);
 			}
 		}
 		else {
-			$queryUpdate = "UPDATE ImageTable-Developer SET imageURL = '" . $changedText . "' WHERE devID = ".$userID;
+			$queryUpdate = "UPDATE ImageTableDeveloper SET imageURL = '" . $changedText . "' WHERE devID = ".$userID;
 			echo $queryUpdate . "\n";
 				
 			if (mysqli_query($conn, $queryUpdate)) {
+				echo "update worked";
 			} else {
 			echo "Error updating record: " . mysqli_error($conn);
 			}
