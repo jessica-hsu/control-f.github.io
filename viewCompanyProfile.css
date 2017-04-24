@@ -202,7 +202,7 @@ td {
 
 @media screen and (max-width: 321px) {
 	
-	#skills-box, #social-media {
+	#skills-box, #social-media,  #contact-us{
 		font-size: 80%;
 	}
 	
