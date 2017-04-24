@@ -110,8 +110,32 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
    				$row = mysqli_fetch_assoc($result);
    				echo($row['firstName'] . " " . $row['lastName']);
    				?>
-				<img id ="profile-pic" class="img-circle img-responsive" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="img/jessica.jpg">
-				
+				<img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
+			$query = "SELECT imageURL FROM ImageTableDeveloper WHERE devID = " .$userID;
+			if ( ! ( $result = mysqli_query($conn, $query)) ) {
+			  echo("Error: %s\n"+ mysqli_error($conn));
+			  exit(1);
+			}
+			$row = mysqli_fetch_assoc($result);
+			echo($row['imageURL']);
+
+		      ?> ">
+				<script>
+		    function editImage(Image) {
+		      var url = prompt("Please provide a url to insert a profile picture!", 'Enter link here');
+		      if(url==null)
+			      return;
+		      Image.src = url;    
+		      console.log(url);
+		      save("profile-pic");
+		    }
+
+		   function imgError(image) {
+		    image.onerror = "";
+		    image.src = "/img/blank-profile-picture.png";
+		    return true;
+		    }
+  		  </script>
 			</div>
 		</div>
 		<div class="row" id="bg2">
