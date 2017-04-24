@@ -1,13 +1,12 @@
 <?php 
-/*session_start();	
+session_start();	
 if ($_SESSION['profileType'] == null) {
 	header('Location: index.php');
 }
 $userID = $_SESSION['ID'];
 if (strcmp($_SESSION['profileType'], "comp")==0) {
 	header('Location: viewCompanyProfile.php');
-}*/
-$userID = 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
