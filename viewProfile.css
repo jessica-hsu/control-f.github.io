@@ -37,6 +37,12 @@ background-color: #f4f4f4;
 	z-index:-1;
 }
 
+.table {
+	margin-left: 25%;
+   	width:100%;
+	display: none;	
+}
+
 #title-text {
 
  margin-left: 29%;
