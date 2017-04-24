@@ -78,34 +78,14 @@ width:100vw;
 
 #profile-image {
 
-	margin-top: -7vw;
+	margin-top: -9%;
 	margin-left:7%;
-	width: 20vw;
-	height: 14vw;
+	width: 20%;
+	height: 16%;
 	border: 4px solid #e8e9ea;
 	z-index: 3;
 	border-radius: 10px;
-	background-color: #e8e9ea;
-	color: white;
 
-}
-
-#profile-pic {
-	width:100%;
-	height:100%;
-}
-
-
-
-#profile-image:hover {
-	opacity: 0.8;
-
-}
-
-
-
-#change-image-button {
-	margin-top
 }
 
 .row {
@@ -169,7 +149,7 @@ width:100vw;
 
 }
 
-#save-about-text, #save-volunteers{
+#save-about-text{
 	display:none;
 }
 
@@ -220,6 +200,11 @@ border-bottom: solid 1px #66FFC0;
 
 .glyphicon-floppy-disk {
 	display: none;
+}
+
+#link-table {
+	display: none;
+	margin-left: 25%;
 }
 
 .addMe {
@@ -306,6 +291,7 @@ padding-right: 2%;
 padding-bottom: 2%;
 
 }
+
 
 @media screen and (max-width: 767px) {
 
