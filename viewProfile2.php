@@ -353,7 +353,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 							</tr>
 						</thead>
 						<tbody>
-						<?php 
+						<?php /*
 						$query = "SELECT name, links FROM links WHERE id = " . $userID;
 						if ( ! ( $result = mysqli_query($conn, $query)) ) {
 							echo("Error: %s\n"+ mysqli_error($conn));
@@ -363,7 +363,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 							echo("<tr class='linkz'><td class='link-text'>" . $row['name'] .
 									"</td><td class='link-url' contentEditable='false'><a href='" . $row['links'] . "'>" . $row['links'] . "</a>
 									</td><td><span class='glyphicon glyphicon-remove' onclick='removeLink(this)'></span></tr>");
-						}
+						}*/
 						?>
 						<button type="button" id='add-link' class="btn btn-info addMe" onclick="addLink()"><span class="glyphicon glyphicon-plus"></span></button>
 						</tbody>
