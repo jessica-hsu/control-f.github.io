@@ -71,7 +71,7 @@ $userID = $_GET['info'];
    				$row = mysqli_fetch_assoc($result);
    				echo($row['cName']);
    				?>
-				<img id ="profile-pic" class="img-circle img-responsive" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
+				<img id ="profile-pic" class="img-circle img-responsive" alt="Please upload profile picture." onError="imgError(this)" src ="<?php #query to get user information#
         		$query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
         		if ( ! ( $result = mysqli_query($conn, $query)) ) {
           		echo("Error: %s\n"+ mysqli_error($conn));
@@ -81,15 +81,7 @@ $userID = $_GET['info'];
 				echo($row['imageURL']);
       			?> ">
 				<script>
-		    function editImage(Image) {
-		      var url = prompt("Please provide a url to insert a profile picture!", 'Enter link here');
-		      if(url==null)
-			      return;
-		      Image.src = url;    
-		      console.log(url);
-		      save("profile-pic");
-		    }
-
+		
 		   function imgError(image) {
 		    image.onerror = "";
 		    image.src = "/img/blank-profile-picture.png";
