@@ -319,8 +319,9 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
         </button>
         <br>
         <p class = "sub-heading" > Social Media </p>
-
-        <p id="links-text" contentEditable="false">
+		  	</div>
+			<div class="bg" id="social-media">
+			<p id="links-text" contentEditable="false">
         <div class="table-responsive">
           <table class="table table-striped" id="link-table">
             <thead>
@@ -652,10 +653,7 @@ function logout() {
     });
 
 }
-</script>
-		  	</div>
-			<div class="bg" id="social-media">
-				
+</script>	
 			</div>
 		</div>
 		
