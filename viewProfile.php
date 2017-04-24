@@ -92,7 +92,7 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		  </div>
 		  <script>
 		    function editImage(Image) {
-		      var url = prompt("Please provide a bitly link to the image file", 'Enter link here');
+		      var url = prompt("Please provide a url to insert a profile picture!", 'Enter link here');
 		      if(url==null)
 			      return;
 		      Image.src = url;    
