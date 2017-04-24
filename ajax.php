@@ -311,18 +311,6 @@ switch ($companyFunc) {
 		
 		
 		break;
-		
-		case 'change-social':
-	$query = "UPDATE links SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
-						"', facebook ='".$changedText[3]."', insta = '".$changedText[4]."', paypal = '".$changedText[5]."',
-						website = '".$changedText[6]."', twitter = '".$changedText[7]."' WHERE id = ".$userID;
-		echo $query;
-		if (mysqli_query($conn, $query)) {
-		} else {
-			echo "Error updating record: " . mysqli_error($conn);
-		}
-
-		break;
 	default:
 		break;
 }
