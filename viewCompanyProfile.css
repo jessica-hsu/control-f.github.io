@@ -118,8 +118,9 @@ nav {
 }
 
 .table {
-	margin: 0;
+	margin-left: 25%;
    	 width:100%;
+	display: none;
    	 
 	
 	
