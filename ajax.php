@@ -306,7 +306,7 @@ switch ($companyFunc) {
 			}
 			
 		}
-		
+	break;
 		case 'change-social':
 		$query = "SELECT * FROM links WHERE id = " .$userID;
 		echo $query . "\n";
