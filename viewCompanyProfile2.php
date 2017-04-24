@@ -27,6 +27,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<link rel="stylesheet" href="viewCompanyProfile2.css">
+	<script src="hello.all.js"></script>
 	
 	<title>Control-F</title>
 </head>
