@@ -616,6 +616,34 @@ if (strcmp($_SESSION['profileType'], "comp")==0) {
 		
 		
 	}
+
+	function save(id) {
+		  console.log("entered function");
+		  var box = document.getElementById(id);
+		  var changedText = "";
+		  f ='change-company-pic';
+		  var url = document.getElementById('profile-pic');
+		  changedText = url.src;
+
+		  $.ajax ({
+		    type: "POST",
+		    url: "ajax.php",
+		    data: {companyFunc: f, textUpdateCompany: changedText},
+		    dataType: "html",
+		    success: function(data) {
+		      console.log("success");
+		      $('#successModal').modal('show');
+
+		    },
+		    error: function(e) {
+		      console.log(e);
+		      $('#failModal').modal('show');
+		    }
+		  });
+
+
+}
+	
 	function logout() {
 		console.log("logging out ... ");
 		f="logout";
