@@ -555,7 +555,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
             var googleurl = document.getElementById("googleurl");
 
             var box = document.getElementById("social-media");
-            var save = document.getElementById('save-links');
+            var save = document.getElementById('save-links').parentElement;
             var linkedinicon = document.getElementById('linkedinicon');
 
             if (linkedinurl.contentEditable == "true") {
