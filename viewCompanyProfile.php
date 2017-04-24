@@ -311,27 +311,15 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 		
 		<div class="row" id="bg6">
 			<div class="section" id="s6">Social Media
-<<<<<<< HEAD
 				<button onclick="editSocial(this);" class="btn ourButton">
-            		<span class="glyphicon glyphicon-pencil "></span>
-        		</button>
-        		<button onclick="update('links-facts')" class="save-icon btn">
-            		<span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
-        		</button>
+            				<span class="glyphicon glyphicon-pencil "></span>
+        			</button>
+        			<button onclick="update('links-facts')" class="save-icon btn">
+            				<span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
+        			</button>
 		  	</div>
-		  	<div id="social-media">
-		  	<p id="links-text" contentEditable="false">
-=======
-        		<button onclick="editSocial(this);" class="btn ourButton" type="button">
-            		<span class="glyphicon glyphicon-pencil "></span>
-       			 </button>
-       			 <button onclick="update('links-facts')" class="btn save-icon" type="button">
-            		<span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
-        		</button>
-			</div>
-			<div class="bg" id="social-media">
+		<div class="bg" id="social-media">
 			<p id="links-text" contentEditable="false">
->>>>>>> origin/master
         <div class="table-responsive">
           <table class="table table-striped" id="link-table">
             <thead>
@@ -567,7 +555,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
             var googleurl = document.getElementById("googleurl");
 
             var box = document.getElementById("social-media");
-            var save = document.getElementById('save-links');
+            var save = document.getElementById('save-links').parentElement;
             var linkedinicon = document.getElementById('linkedinicon');
 
             if (linkedinurl.contentEditable == "true") {
@@ -575,7 +563,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                   links.item(i).contentEditable = "false";
                 }
                 text.style.display="none";
-                box.style.backgroundColor="#e8e9ea";
+                box.style.backgroundColor="white";
                 box.style.border = "none";
                 save.style.display = "none";
                 $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
@@ -586,7 +574,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                 text.style.display="inline-block";
                 box.style.backgroundColor ="#f2f2f2";
                 box.style.border = "2px dashed #cecece";
-                save.style.display = "block";
+                save.style.display = "inline";
                 $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
             }
 
@@ -619,10 +607,13 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                 dataType: "html",
                 success: function(result) {
                   console.log("yay");
-                  console.log(result.responseText);
+                  $('#successModal').modal('show');
+
                 },
                 error: function(result) {
                   console.log(result);
+		  $('#failModal').modal('show');
+
                 }
             });
           }

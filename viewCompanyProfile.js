@@ -102,7 +102,7 @@ function editAbout(button) {
   var save = document.getElementById('save-about-text').parentElement;
   if (text.contentEditable == "true") {
       text.contentEditable = "false";
-      box.style.backgroundColor="#e8e9ea";
+      box.style.backgroundColor="white";
       box.style.border = "none";
       $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
       save.style.display ="none";
