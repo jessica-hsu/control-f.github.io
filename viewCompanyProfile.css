@@ -178,6 +178,7 @@ td {
 
 	#about-box, #quick-facts-box, #skills-box, #proud, #volunteers, #social-media, #contact-us {
 		font-size: 90%;
+		width:100%;
 	}
 	
 	#name {
