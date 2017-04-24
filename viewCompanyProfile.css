@@ -66,7 +66,7 @@ nav {
 	margin-right: 42.5%;
 	margin-top: 1%;
 }
-#profile-pic {
+#profile-pic:hover {
 	opacity:0.7;
 	
 }
