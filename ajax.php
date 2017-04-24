@@ -233,9 +233,9 @@ switch ($func) {
 			echo "Error updating record: " . mysqli_error($conn);
 			}
 		}
-		$queryUpdate = "UPDATE linksDev SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
-						"', facebook ='".$changedText[3]."', insta = '".$changedText[4]."', paypal = '".$changedText[5]."',
-						website = '".$changedText[6]."', twitter = '".$changedText[7]."' WHERE id = ".$userID;
+		$queryUpdate = "UPDATE linksDev SET linkedIn = '".$text[0]."', googlePlus = '".$text[1]."', github = '".$text[2].
+						"', facebook ='".$text[3]."', insta = '".$text[4]."', paypal = '".$text[5]."',
+						website = '".$text[6]."', twitter = '".$text[7]."' WHERE id = ".$userID;
 		echo $queryUpdate;
 		if (mysqli_query($conn, $queryUpdate)) {
 		} else {
