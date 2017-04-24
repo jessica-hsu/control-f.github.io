@@ -310,7 +310,349 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
 		
 		<div class="row" id="bg6">
 			<div class="section" id="s6">Social Media
-		  		
+		  		<div class="col-lg-9  col-lg-offset-2 left-box " id = "social-media">
+        <button onclick="editSocial(this);" class="edit-icon">
+            <span class="glyphicon glyphicon-pencil "></span>
+        </button>
+        <button onclick="update('links-facts')" class="edit-icon">
+            <span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
+        </button>
+        <br>
+        <p class = "sub-heading" > Social Media </p>
+
+        <p id="links-text" contentEditable="false">
+        <div class="table-responsive">
+          <table class="table table-striped" id="link-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>URL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>LinkedIn</td>
+                <td id="linkedinurl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT linkedIn FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['linkedIn']);
+                  ?>
+                </td>
+
+              </tr>
+              <tr>
+                <td>Google Plus</td>
+                <td id="googleurl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT googlePlus FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['googlePlus']);
+                  ?>
+                </td>
+              </tr>
+              <tr>
+                <td>Github</td>
+                <td id="githuburl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT github FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['github']);
+                  ?>
+                </td>
+              </tr>
+              <tr>
+                <td>Facebook</td>
+                <td id="fburl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT facebook FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['facebook']);
+                  ?>
+                </td>
+              </tr>
+              <tr>
+                <td>Instagram</td>
+                <td id="instaurl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT insta FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['insta']);
+                  ?>
+                </td>
+              </tr>
+              <tr>
+                <td>Twitter</td>
+                <td id="twitterurl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT twitter FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['twitter']);
+                  ?>
+                </td>
+              </tr>
+              <tr>
+                <td>PayPal</td>
+                <td id="paypalurl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT paypal FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['paypal']);
+                  ?>
+                </td>
+              </tr>
+              <tr>
+                <td>Personal Website</td>
+                <td id="websiteurl" class = "social-links" contentEditable="false">
+                  <?php
+                  $query = "SELECT website FROM links WHERE id=6;";
+                  if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                    echo("Error: %s\n"+ mysqli_error($conn));
+                    exit(1);
+                  }
+                  $row = mysqli_fetch_assoc($result);
+                  echo($row['website']);
+                  ?>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+            <center>
+
+              <a href = "<?php
+                $query = "SELECT linkedIn FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['linkedIn']);
+                ?>">
+                  <i class="fa fa-linkedin-square" id="linkedinicon" style="font-size:48px;color:#007bb6"></i> &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT googlePlus FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['googlePlus']);
+                ?>">
+                  <i class="fa fa-google" style="font-size:48px;color:#d34836"></i> &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT github FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['github']);
+                ?>">
+                  <i class="fa fa-github-square" style="font-size:48px;color:black"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT facebook FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['facebook']);
+                ?>">
+                  <i class="fa fa-facebook-official" style="font-size:48px;color:#3b5998"></i> &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT insta FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['insta']);
+                ?>">
+                  <i class="fa fa-instagram" style="font-size:48px;color:#cd486b"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT twitter FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['twitter']);
+                ?>">
+                <i class="fa fa-twitter" style="font-size:48px;color:# 00aced"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT paypal FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['paypal']);
+                ?>">
+                  <i class="fa fa-paypal" style="font-size:48px;color:#003087"></i>  &nbsp &nbsp
+              </a>
+
+              <a href = "<?php
+                $query = "SELECT website FROM links WHERE id=6;";
+                if ( ! ( $result = mysqli_query($conn, $query)) ) {
+                  echo("Error: %s\n"+ mysqli_error($conn));
+                  exit(1);
+                }
+                $row = mysqli_fetch_assoc($result);
+                echo($row['website']);
+                ?>">
+                  <i class="fa fa-globe" style="font-size:48px;color:#47ffd1"></i>
+              </a>
+            </center>
+          </div>
+        </p>
+
+        <script>
+          function editSocial(button) {
+            var text = document.getElementById("link-table");
+
+            var links = document.getElementsByClassName('social-links');
+            var linkedinurl = document.getElementById("linkedinurl");
+            var googleurl = document.getElementById("googleurl");
+
+            var box = document.getElementById("social-media");
+            var save = document.getElementById('save-links');
+            var linkedinicon = document.getElementById('linkedinicon');
+
+            if (linkedinurl.contentEditable == "true") {
+                for (var i=0; i < links.length; i++) {
+                  links.item(i).contentEditable = "false";
+                }
+                text.style.display="none";
+                box.style.backgroundColor="#e8e9ea";
+                box.style.border = "none";
+                save.style.display = "none";
+                $(button).find(".glyphicon").removeClass("glyphicon-remove").addClass("glyphicon-pencil");
+            } else {
+                for (var i=0; i < links.length; i++) {
+                  links.item(i).contentEditable = "true";
+                }
+                text.style.display="inline-block";
+                box.style.backgroundColor ="#f2f2f2";
+                box.style.border = "2px dashed #cecece";
+                save.style.display = "block";
+                $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
+            }
+
+            for (var i=0; i < links.length; i++) {
+              if (linkedinurl == null) {
+                linkedinicon.style.display = "none";
+              }
+            }
+        }
+
+        function update(id) {
+          console.log("in update function");
+          var table = document.getElementById('link-table');
+          //table.style.display = 'none';
+          f = 'change-social';
+          var links = [];
+          var linktext = document.getElementsByClassName('social-links');
+
+          var temp="";
+          for (var i = 0; i < linktext.length; i++) {
+            temp = linktext[i].innerHTML;
+            links.push(temp);
+          }
+          console.log('links');
+          console.log(links);
+          $.ajax({
+                url: 'ajax.php',
+                data: {companyFunc: f, textUpdateCompany: links},
+                type: 'post',
+                dataType: "html",
+                success: function(result) {
+                  console.log("yay");
+                  console.log(result.responseText);
+                },
+                error: function(result) {
+                  console.log(result);
+                }
+            });
+          }
+
+        </script>
+
+      </div>
+
+    </div>
+
+  </div>
+<script>
+function logout() {
+  console.log("logging out ... ");
+  f="logout";
+  network = document.getElementById('network').innerHTML;
+  console.log(network);
+  profileType = document.getElementById('profileType').innerHTML;
+  console.log(profileType);
+  hello( network ).logout({force:true},function(e){
+    console.log("force logout of " + network);
+  });
+
+  $.ajax({
+        url: 'ajax.php',
+        data: {func: f},
+        type: 'post',
+        success: function(result) {
+            console.log("action performed successfully");
+            if (profileType == "dev") {
+              window.location.href = "loginDev.php";
+            } else {
+                window.location.href = "loginComp.php";
+            }
+        },
+        error: function(result) {
+          console.log(result);
+        }
+    });
+
+}
+</script>
 		  	</div>
 			<div class="bg" id="social-media">
 				
