@@ -271,7 +271,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
       <div class="col-lg-9  col-lg-offset-2 left-box " id = "social-media">
         <button onclick="editSocial(this);" class="edit-icon">
             <span class="glyphicon glyphicon-pencil "></span>
-        </button> <br>
+        </button>
         <button onclick="update('links-facts')" class="edit-icon">
             <span id="save-links" class="glyphicon glyphicon-floppy-disk"></span>
         </button>
@@ -520,6 +520,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                 for (var i=0; i < links.length; i++) {
                   links.item(i).contentEditable = "false";
                 }
+                text.style.display="none";
                 box.style.backgroundColor="#e8e9ea";
                 box.style.border = "none";
                 save.style.display = "none";
@@ -528,6 +529,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
                 for (var i=0; i < links.length; i++) {
                   links.item(i).contentEditable = "true";
                 }
+                text.style.display="inline-block";
                 box.style.backgroundColor ="#f2f2f2";
                 box.style.border = "2px dashed #cecece";
                 save.style.display = "block";
@@ -558,7 +560,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
           console.log(links);
           $.ajax({
                 url: 'ajax.php',
-                data: {func: f, textUpdateCompany: links},
+                data: {companyFunc: f, textUpdateCompany: links},
                 type: 'post',
                 dataType: "html",
                 success: function(result) {
