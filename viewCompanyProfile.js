@@ -16,8 +16,9 @@ function save(id) {
       changedText = [];
       var location = document.getElementById('loc');
       var founder = document.getElementById('found');
-      var focus = document.getElementById('focus');
-      changedText = [location.innerHTML,founder.innerHTML,focus.innerHTML];
+      var focusMenu = document.getElementById('ourFocus');
+	  var selectedFocus = focusMenu.options[focusMenu.selectedIndex].text;
+      changedText = [location.innerHTML,founder.innerHTML,selectedFocus];
       console.log(changedText);
       break;
     case 'proud-text':
@@ -125,6 +126,9 @@ function editFacts(button) {
   var save = document.getElementById('save-quick-facts-text').parentElement;
 
   if ( text.contentEditable == "true") {
+	  focusMenu = document.getElementById('ourFocus');
+	  selectedFocus = focusMenu.options[focusMenu.selectedIndex].text;
+	  focus.innerHTML = selectedFocus;
        text.contentEditable = "false";
        box.style.backgroundColor="white";
        box.style.border = "none";
@@ -139,7 +143,47 @@ function editFacts(button) {
       box.style.border = "2px dashed #cecece";
       location.contentEditable=true;
       founder.contentEditable=true;
-      focus.contentEditable=true;
+      tempFocus = focus.innerHTML;
+      focus.innerHTML="<select id='ourFocus'></select>";
+      $("#ourFocus").append("\
+		<option class='foci' value='1'>Advocacy & Human Rights</option>\
+		<option class='foci' value='2'>Animals</option>\
+		<option class='foci' value='3'>Arts & Culture</option>\
+		<option class='foci' value='4'>Board Development</option>\
+		<option class='foci' value='5'>Children & Youth</option>\
+		<option class='foci' value='6'>Community</option>\
+		<option class='foci' value='7'>Computers & Technology</option>\
+		<option class='foci' value='8'>Crisis Support</option>\
+		<option class='foci' value='9'>Disaster Relief</option>\
+		<option class='foci' value='10'>Education & Literacy</option>\
+		<option class='foci' value='11'>Emergency & Safety</option>\
+		<option class='foci' value='12'>Employment</option>\
+		<option class='foci' value='13'>Environment</option>\
+		<option class='foci' value='14'>Faith-based</option>\
+		<option class='foci' value='15'>Health & Medicine</option>\
+		<option class='foci' value='16'>Homeless & Housing</option>\
+		<option class='foci' value='17'>Hunger</option>\
+		<option class='foci' value='18'>Immigrants & Refugees</option>\
+		<option class='foci' value='19'>International</option>\
+		<option class='foci' value='20'>Justice & Legal</option>\
+		<option class='foci' value='21'>LGBT</option>\
+		<option class='foci' value='22'>Media & Broadcasting</option>\
+		<option class='foci' value='23'>People with Disabilities</option>\
+		<option class='foci' value='24'>Politics</option>\
+		<option class='foci' value='25'>Race & Ethnicity</option>\
+		<option class='foci' value='26'>Seniors</option>\
+		<option class='foci' value='27'>Sports & Recreation</option>\
+		<option class='foci' value='28'>Veterans & Military Families</option>\
+		<option class='foci' value='29'>Women</option>\
+		<option class='foci' value='30'>Other</option>"); 
+      console.log(tempFocus);
+      opts = document.getElementsByTagName('option');
+      for (var i =0; opts.length; i++) {
+    	  if (opts[i].innerHTML == tempFocus) {
+    		  opts[i].selected = "selected";
+    	  }
+      }
+    		 
       $(button).find(".glyphicon").removeClass("glyphicon-pencil").addClass("glyphicon-remove");
       save.style.display ="inline";
   }
