@@ -216,7 +216,7 @@ switch ($func) {
 		
 		break;
 	case 'change-social':
-		$query = "SELECT * FROM links WHERE id = " .$userID;
+		$query = "SELECT * FROM linksDev WHERE id = " .$userID;
 		echo $query . "\n";
 				
 		if ( ! ( $result = mysqli_query($conn, $query)) ) {
@@ -225,7 +225,7 @@ switch ($func) {
         	}
 		
 		if (mysqli_num_rows($result) <1) {
-			$queryNew = "INSERT INTO links (id ) VALUES (" . $userID . ") ";
+			$queryNew = "INSERT INTO linksDev (id ) VALUES (" . $userID . ") ";
 			echo $queryNew . "\n";
 				
 			if (mysqli_query($conn, $queryNew)) {
@@ -233,7 +233,7 @@ switch ($func) {
 			echo "Error updating record: " . mysqli_error($conn);
 			}
 		}
-		$queryUpdate = "UPDATE links SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
+		$queryUpdate = "UPDATE linksDev SET linkedIn = '".$changedText[0]."', googlePlus = '".$changedText[1]."', github = '".$changedText[2].
 						"', facebook ='".$changedText[3]."', insta = '".$changedText[4]."', paypal = '".$changedText[5]."',
 						website = '".$changedText[6]."', twitter = '".$changedText[7]."' WHERE id = ".$userID;
 		echo $queryUpdate;
