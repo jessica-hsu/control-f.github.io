@@ -1,6 +1,8 @@
 <?php session_start();
-$compID = $_SESSION['ID'];
-$compName = $_SESSION['userName'];
+$compID =6;
+$compName = 'Jessica Hsu';
+//$compID = $_SESSION['ID'];
+//$compName = $_SESSION['userName'];
 
 ?>
 <!DOCTYPE html>
@@ -13,8 +15,8 @@ $compName = $_SESSION['userName'];
 	<meta http-equix="X-UA-Compatible" content="IE=edge">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	
+
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -26,7 +28,7 @@ $compName = $_SESSION['userName'];
     <script src="hello.all.js"></script>
 
 	<!-- jQUERY -->
-	
+
 	<link rel="stylesheet" href="postAd.css">
 
 	<!--<link rel='icon' href='img/icon.ico' type='image/x-icon'>-->
@@ -43,7 +45,7 @@ $compName = $_SESSION['userName'];
        			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
           			<span class="icon-bar"></span>
           			<span class="icon-bar"></span>
-          			<span class="icon-bar"></span>                        
+          			<span class="icon-bar"></span>
       			</button>
     		</div>
     		<div>
@@ -51,7 +53,7 @@ $compName = $_SESSION['userName'];
        			 	<ul class="nav navbar-nav">
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
-         				<li><a href="welcome.php">Home</a></li>         		
+         				<li><a href="welcome.php">Home</a></li>
          				<li><a href="viewCompanyProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
@@ -61,13 +63,13 @@ $compName = $_SESSION['userName'];
     		</div>
     	</nav>
 
-
+ <div class = "container content-box ">
 	<h1>Post an Advertisement</h1>
 
-	<div>			
-	<span><h2>Your company: <?php echo $compName;?></h2></span>
-	
-  		<form action="">
+	<div class="subtitles">
+	<center><span class = "company-text">Your company: <span id = "company-name"><?php echo $compName;?></span></span></center>
+
+  		<form class = "subtitles" action="">
    			<label for="project" id="projtype">Project Type</label>
 	   			<select id="project" name="project">
 	   				<option value="Website/Web Application">Website/Web Application</option>
@@ -79,13 +81,15 @@ $compName = $_SESSION['userName'];
 	      			<option value="IT Support">IT Support</option>
 	      		</select>
 
-	      	<br>
-	      	<label for="why">Please give a short description of the project:</label>
+	      	<div id ="division-bar"> </div>
+	      	<label id="summary" for="why">Please give a short description of the project:</label>
+				<br>
    				<input type="text" id="why" name="whyproject" placeholder="Description">
 
   			<br>
 
 	      	<label for="why">What is the purpose of this project?</label>
+				<br>
    				<input type="text" id="purpose" name="whyproject" placeholder="This project will...">
 
   			<br>
@@ -97,10 +101,10 @@ $compName = $_SESSION['userName'];
     		</button>
 
   		</form>
-	</div>
 
-	<div class = "row" id="result-table">
-		<div class="col-sm-6">
+
+	<div class = "row subtitles" id="result-table">
+
 			<div class="table-responsive">
 				<table class="table table-striped" id="profiles">
 					<thead><tr>
@@ -119,9 +123,10 @@ $compName = $_SESSION['userName'];
 						</tr>
 					</tbody>
 				</table>
-			</div>
+
 		</div>
 	</div>
+</div>
 </div>
 	<script>
 		function p() {
@@ -139,12 +144,12 @@ $compName = $_SESSION['userName'];
 			var cell2 = document.getElementById('type');
 			var cell3 = document.getElementById('description');
 			var cell4 = document.getElementById('purp');
-	
+
 			cell1.innerHTML = mahName.innerHTML;
 			cell2.innerHTML = project_selected;
 			cell3.innerHTML = why.value;
 			cell4.innerHTML = purpose.value;
-			 			
+
 			var preview = 'preview';
 			var submit = 'submit';
 			table.style.display = "block";
@@ -153,10 +158,10 @@ $compName = $_SESSION['userName'];
 		function post() {
 			f = "postAd";
 			text = [];
-			purpose = document.getElementById('purpose').value; 
-			description = document.getElementById('why').value; 
-			project = document.getElementById('project'); 
-			project_type = project.options[project.selectedIndex].value; 
+			purpose = document.getElementById('purpose').value;
+			description = document.getElementById('why').value;
+			project = document.getElementById('project');
+			project_type = project.options[project.selectedIndex].value;
 			user = document.getElementById('user').innerHTML; console.log("company id is: " + user);
 			console.log("my company name is: "+ document.getElementById('mahName').innerHTML);
 			text.push(project_type); text.push(description); text.push(purpose);
@@ -164,11 +169,11 @@ $compName = $_SESSION['userName'];
 			$.ajax({
 	            url: 'ajax.php',
 	            data: {func: f, textUpdate: text, id: user},
-	            type: 'post',	            
+	            type: 'post',
 	            success: function(result) {
 	                console.log("action performed successfully");
 	               	window.location.href = 'viewCompanyProfile.php';
-	            }, 
+	            },
 	            error: function(result) {
 	            	console.log(result);
 	            }
@@ -184,7 +189,7 @@ $compName = $_SESSION['userName'];
 			hello( network ).logout({force:true},function(e){
 				console.log("force logout of " + network);
 			});
-			
+
 			$.ajax({
 		        url: 'ajax.php',
 		        data: {func: f},
@@ -196,12 +201,12 @@ $compName = $_SESSION['userName'];
 		            } else {
 		               	window.location.href = "loginComp.php";
 		            }
-		        }, 
+		        },
 		        error: function(result) {
 		        	console.log(result);
 		        }
 		    });
-			
+
 		}
 	</script>
 <?php mysqli_close($conn);?>
