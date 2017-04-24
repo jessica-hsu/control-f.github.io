@@ -53,7 +53,7 @@ $userID = 1;
          			</ul>
          			<ul class="nav navbar-nav navbar-right">
          				<li><a href="welcome.php">Home</a></li>         		
-         				<li><a href="viewProfile2.php">Profile</a></li>
+         				<li><a href="viewProfile.php">Profile</a></li>
          				<li><a href="search.php">Search</a></li>
          				<li><a href="contact.php">Contact Us</a></li>
          				<li><a id="logout" onclick="logout()" >Logout</a></li>
