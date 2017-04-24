@@ -124,6 +124,9 @@ nav {
 	overflow:scroll;
 	table-layout: fixed;
 }
+td {
+	overflow:scroll;
+}
 
 @media screen and (max-width: 824px) {
 	.section {
