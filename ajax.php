@@ -317,7 +317,7 @@ switch ($companyFunc) {
         	}
 		
 		if (mysqli_num_rows($result) <1) {
-			$queryNew = "INSERT INTO ImageTable (id ) VALUES (" . $userID . ") ";
+			$queryNew = "INSERT INTO links (id ) VALUES (" . $userID . ") ";
 			echo $queryNew . "\n";
 				
 			if (mysqli_query($conn, $queryNew)) {
