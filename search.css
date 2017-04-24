@@ -9,17 +9,50 @@
     margin: 0;
 }
 
+.search-background{
+  background-image: url("img/desk-search.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: overlay;
+	width:105vw;
+	height: 102vh;
+  background-color: #d6d7d8;
 
+
+
+}
+
+.container-fluid {
+	padding:0px;
+}
+.container {
+	padding:0px;
+	margin:0px;
+}
+
+.row {
+	text-align: center;
+}
+/*
  body {
 	height: 100%;
 	width: 100%;
 	background-color: #e0e0e0;
 	color: #6b6666;
 	padding: 1%;
+}*/
+
+.top-row{
+    margin-top: 15vh;
 }
 
-#searchbox {
-    margin: 100px auto 50px;
+/*.searchbox {
+	margin: 1vh;
+}*/
+
+.subtitles {
+	font-size: 3rem;
+	padding:0px;
 }
 
 .comp {
@@ -46,5 +79,120 @@
 }
 #result-table {
 	display: none;
-	
+
+}
+
+*:focus {
+outline: 0;
+outline: none;
+}
+
+
+.select-box:active, .select-box:hover {
+  outline: none;
+	box-shadow: none !important;
+
+	box-shadow: inset 20px 20px #f00;
+}
+
+#results {
+	background-color: #e0e0e0;
+	width: 105vw;
+	padding-bottom: 5vh;
+
+
+}
+
+.select-box {
+  position: relative;
+	float: none;
+  margin: 15px;
+  width: 30vw;
+	height:3rem;
+	font-size: 2rem;
+	text-align: center;
+	background-color: #e0e0e0;
+
+}
+#profiles {
+
+margin-left: 12vw;
+margin-right: 8vw;
+width: 80vw;
+
+
+}
+h4 {
+	background-color: #9b9999;
+	color: #ededed;
+	margin-top: -2vh;
+	padding-top: 15vh;
+	padding-bottom: 7vh;
+
+	font-size: 5rem;
+	text-align: center;
+}
+
+.btn {
+	background: none;
+	font-size: 3rem;
+}
+
+thead {
+	font-size: 2rem;
+
+}
+
+
+
+
+.btn-profile:hover {
+	color:#ededed;
+	background-color: #9b9999;
+}
+
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: none; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+		font-size: 3rem;
+}
+
+#myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+
+@media screen and (max-width: 767px) {
+	.subtitles{
+		font-size: 2.2rem;
+	}
+	.select-box {
+		font-size: 1.6rem;
+	}
+
+	h4 {
+		font-size: 3.5rem;
+	}
+	.btn {
+		background: none;
+		font-size: 2.2rem;
+	}
+
+	thead {
+		font-size: 1.6rem;
+
+	}
+
+
 }
