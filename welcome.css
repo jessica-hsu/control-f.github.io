@@ -9,69 +9,67 @@
     margin: 0;
 }
 
+body {
+  background-image: url("img/desk-search.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: overlay;
+  width: 100vw;
+  height: 100vh;
 
- body {
-	height: 100%;
-	width: 100%;
-	background-color: #e0e0e0;
+
+  background-color: #d6d7d8;
 	color: #6b6666;
-	padding: 1%;
+  position: relative;
 }
+
 
 h1 {
 	font-family: Raleway;
-	font-size: 350%;
+	font-size: 5rem;
 	text-align: center;
 	padding-top: 15%;
+  padding-bottom: 7%;
 	font-weight: bold;
+
 }
 
 p {
 	font-family: Raleway;
-	font-size: 250%;
+	font-size: 2.5rem;
 	text-align: center;
+}
+
+.text-container {
+  padding-top: 18vh;
+
 }
 
 #here {
 	color: #4ec996;
 }
 
-/*.arrow-up {
-  width: 0; 
-  height: 0; 
-  -webkit-align-content: center;
-  align-content: center;
-  border-left: 50px solid red;
-  border-right: 50px solid ;
-  border-bottom: 50px solid #47FF7C;
-  padding-top: 8%;
-  margin-right: 50px;
-}*/
-
 @media screen and (max-width: 561px) {
-
-	.left {
-		padding-top: 9%;
-		padding-bottom: 0%;
-	}
-
-}
-
-
-@media screen and (min-width: 900px){
-	.left{
-		padding-top: 4%; 
-		padding-bottom: 20%;
-	}
-}
-
+  h1 {
+    font-size: 3rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
 
 
 }
 
 
+@media screen and (max-width: 900px){
+	h1 {
+    font-size: 4rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+}
 
 
 
-
-
+}
