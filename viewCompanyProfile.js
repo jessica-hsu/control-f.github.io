@@ -178,7 +178,7 @@ function editFacts(button) {
 		<option class='foci' value='30'>Other</option>"); 
       console.log(tempFocus);
       opts = document.getElementsByTagName('option');
-      for (var i =0; opts.length; i++) {
+      for (var i =0;i< opts.length; i++) {
     	  if (opts[i].innerHTML == tempFocus) {
     		  opts[i].selected = "selected";
     	  }
