@@ -2,7 +2,7 @@
 session_start();	
 $userID = $_GET['info'];
 
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
