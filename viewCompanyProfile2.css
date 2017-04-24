@@ -121,7 +121,7 @@ nav {
 	margin: 0;
    	 width:100%;
    	 white-space: nowrap;
-	word-wrap: break-word;
+	table-layout: fixed;
 }
 
 @media screen and (max-width: 824px) {
