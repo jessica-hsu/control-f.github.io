@@ -109,7 +109,7 @@ if (strcmp($_SESSION['profileType'], "dev")==0) {
    				$row = mysqli_fetch_assoc($result);
    				echo($row['cName']);
    				?>
-				<img id ="profile-pic" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
+				<img id ="profile-pic" class="img-circle img-responsive" alt="Please upload profile picture."  onclick="editImage(this);" onError="imgError(this)" src ="<?php #query to get user information#
         		$query = "SELECT imageURL FROM ImageTable WHERE compID = " .$userID;
         		if ( ! ( $result = mysqli_query($conn, $query)) ) {
           		echo("Error: %s\n"+ mysqli_error($conn));
