@@ -1,9 +1,8 @@
 <?php 
 session_start();	
-/*$userID = $_GET['info'];
+$userID = $_GET['info'];
 
-}*/
-$userID=2;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
