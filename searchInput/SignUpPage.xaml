@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="false"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="searchInput.SignUpPage">
+
+    <Grid Padding="0" RowSpacing="0" ColumnSpacing="0">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20,10,10,20">
+            <BoxView Color="Transparent" HeightRequest="10" />
+            <Label TextColor="#fffcfc" FontSize="Large" XAlign="Center" Text="     Log in as a developer     " />
+            <Button Text="GOOGLE" BackgroundColor="#3b5998" TextColor="#ffffff" 
+				FontSize="Large" Clicked="GOOGLE_Clicked"/>
+            <Button Text="LINKEDIN" BackgroundColor="#f7fcff" TextColor="#0c0c0c" 
+				FontSize="Large" Clicked="GOOGLE_Clicked"/>
+            <Label TextColor="#000000" FontSize="Large" XAlign="Center" Text="placeholderr" />
+
+            <Label TextColor="#fffcfc" FontSize="Large" XAlign="Center" Text="     Log in as a company     " />
+            <Button Text="GOOGLE" BackgroundColor="#009925" TextColor="#ffffff" 
+				FontSize="Large" Clicked="GOOGLE_Clicked"/>
+            <Button Text="LINKEDIN" BackgroundColor="#f7fcff" TextColor="#0c0c0c" 
+				FontSize="Large" Clicked="GOOGLE_Clicked"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

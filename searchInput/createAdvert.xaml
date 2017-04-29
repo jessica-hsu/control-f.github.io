@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Padding="40" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="searchInput.createAdvert">
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Entry x:Name="title" Placeholder="Title"/>
+        <Label Text="Description:"/>
+        <Editor x:Name="Description" VerticalOptions="FillAndExpand"/>
+        <StackLayout VerticalOptions="Center">
+            <Picker x:Name="type" SelectedIndexChanged="type_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>Options</x:String>
+                </Picker.Items>
+            </Picker>
+            <Picker x:Name="status" SelectedIndexChanged="status_SelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>Not started</x:String>
+                    <x:String>Planning</x:String>
+                    <x:String>Development</x:String>
+                    <x:String>Clean Up</x:String>
+                    <x:String>Finished</x:String>
+                </Picker.Items>
+            </Picker>
+        </StackLayout>
+        <Button Text="Post" Clicked="Button_Clicked"/>
+    </StackLayout>
+</ContentPage>

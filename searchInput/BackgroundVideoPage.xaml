@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage 
+    BackgroundColor="Black"
+    NavigationPage.HasNavigationBar="false"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="searchInput.BackgroundVideoPage">
+    <Grid Padding="0" RowSpacing="0" ColumnSpacing="0">
+        <!--<controls:Video x:Name="video" Source="Videos/Orchestra.mp4" Loop="true" 
+			HorizontalOptions="Fill" VerticalOptions="Fill" />-->
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="20,10,10,20">
+
+
+            <StackLayout Orientation="Horizontal" Padding="0" Spacing="5" HorizontalOptions="Center">
+                <Image Source="icon.png" />
+                <Label Text="Control - F" FontAttributes="Italic" TextColor="#ffffff" FontSize="60" XAlign="Center" />
+            </StackLayout>
+
+
+
+            <Button Text="CREATE ACCOUNT" BackgroundColor="#3b5998" TextColor="#ffffff" 
+				FontSize="Medium" Clicked="SignUp_Clicked" />
+            <Label TextColor="#fffcfc" FontSize="Medium" XAlign="Center" Text="Already a user?" />
+            <Button Text="LOG IN" BackgroundColor="#3b9845" TextColor="#0c0c0c" 
+				FontSize="Medium" Clicked="LogIn_Clicked"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

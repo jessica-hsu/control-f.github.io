@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="searchInput.editSkills">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+    <Entry x:Name="years_e" Placeholder="Years Experience"/>
+    <Entry x:Name="portf_e" Placeholder="Link to your Portfolio"/>
+    <Button x:Name="submit_button" Text="Submit" Clicked="submit_button_Clicked"/>
+    </StackLayout>
+</ContentPage>

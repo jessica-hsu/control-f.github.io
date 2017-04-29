@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="searchInput.welcomeDev">
+
+    <StackLayout Padding="40">
+        <Picker x:Name="searchPicker" Title="Search for" SelectedIndexChanged="Picker_SelectedIndexChanged">
+            <Picker.Items>
+                <x:String>Developer</x:String>
+                <x:String>Company</x:String>
+                <x:String>Advert</x:String>
+            </Picker.Items>
+        </Picker>
+        <Picker x:Name="secondPicker" Title="With the following" SelectedIndexChanged="secondPicker_SelectedIndexChanged">
+        </Picker>
+        <Button Text="Search" Clicked="Button_Clicked"/>
+        <Button Text="Your Dev" Clicked="Button_Clicked_1"/>
+    </StackLayout>
+</ContentPage>

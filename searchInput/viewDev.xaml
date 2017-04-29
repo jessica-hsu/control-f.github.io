@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Padding="40" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="searchInput.viewDev">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label x:Name="firstName"/>
+        <Label x:Name="lastName"/>
+        <Label x:Name="email"/>
+        <Label x:Name="phone"/>
+        <Label x:Name="age"/>
+        <Label VerticalOptions="FillAndExpand" x:Name="skills"/>
+        <Label VerticalOptions="FillAndExpand" x:Name="uDes"/>
+    </StackLayout>
+</ContentPage>

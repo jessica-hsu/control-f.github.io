@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Padding="40" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="searchInput.viewCompany">
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label x:Name="cName"/>
+        <Label x:Name="contact"/>
+        <Label x:Name="cEmail"/>
+        <Label x:Name="link"/>
+        <Label x:Name="founder"/>
+        <Label x:Name="location"/>
+        <Label x:Name="focus"/>
+        <Label x:Name="cPhoneNumber"/>
+        <Label x:Name="cDes" VerticalOptions="FillAndExpand"/>
+    </StackLayout>
+    
+</ContentPage>

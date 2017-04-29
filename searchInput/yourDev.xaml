@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="searchInput.yourDev">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label x:Name="ID"/>
+        <Label x:Name="Name"/>
+        <Label x:Name="phone"/>
+        <Label x:Name="email"/>
+        <Label x:Name="age"/>
+        <Label VerticalOptions="FillAndExpand" x:Name="skills"/>
+        <Label VerticalOptions="FillAndExpand" x:Name="uDes"/>
+
+
+        <Button x:Name="remove_skill" Text="Remove a skill" Clicked="remove_skill_Clicked"/>
+        <Button x:Name="add_skill" Text="Add a skill" Clicked="add_skill_Clicked"/>
+       
+
+
+   </StackLayout>
+    
+
+</ContentPage>
